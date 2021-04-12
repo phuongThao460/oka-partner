@@ -1,0 +1,67 @@
+.App{
+  background-color: #235d9f;
+  font-family: MuseoSans,Roboto,sans-serif;
+}
+*{
+  box-sizing: border-box;
+  padding: 0;
+}
+body{
+  background-color: #235d9f;
+}
+.flexbox{
+  padding: 32px 0;
+}
+.container{
+  background: white;
+  max-width: 380px;
+  min-height: auto;
+  height: auto;
+  zoom: 1;
+  margin: 0 auto;
+  border-radius: 6px;
+  padding: 0;
+}
+h3{
+  font-size: 24px;
+  text-align: center;
+  position: relative;
+  margin-top: 8px;
+  margin-bottom: 60px;
+  box-sizing: inherit;
+}
+.container .card{
+  border: none;
+  padding: 40px;
+  height: 620px;
+  position: relative;
+  box-sizing: inherit;
+}
+
+label{
+  margin-bottom: 4px;
+}
+.flexbox .container .card .card-body{
+  padding: 0;
+}
+.flexbox .container .card .card-body .card-title{
+  font-family: MuseoSans,Roboto,sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+}
+.flexbox .container .card .card-body .card-text{
+  
+  color: #687176;
+  margin-bottom: 16px;
+}
+.flexbox .container .card .card-body #basic .ant-row{
+  margin-bottom: -7px;
+  margin-top: 10px;
+}
+.flexbox .container .card .card-body #basic .ant-row .ant-col label{
+  width: 300px;
+  height: 20px;
+}
+.flexbox .container .card .card-body #basic .ant-row .ant-col label::before{
+  content: none;
+}
