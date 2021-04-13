@@ -16,13 +16,9 @@ body{
   padding: 32px 0;
   .container{
     background: white;
-    max-width: 380px;
-    min-height: auto;
-    height: auto;
-    zoom: 1;
-    margin: 0 auto;
     border-radius: 6px;
     padding: 0;
+    max-width: 380px;
     .card{
       border: none;
       padding: 40px;
@@ -93,8 +89,18 @@ body{
           width: 100%;
           border-bottom: 1px dashed #d9dfe8;
         }
+        .icon{
+          display: flex;
+          justify-content: space-between;
+          a{
+            img{
+              width: 135px;
+              height: 40px;
+              padding-right: 16px;
+            }
+          }
+        } 
       }
-      
     }
   }
 }

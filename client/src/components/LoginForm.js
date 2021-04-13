@@ -1,8 +1,9 @@
 import React from 'react'
+
 import '../App.scss'
 import 'antd/dist/antd.css';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button} from 'antd';
 function LoginForm() {
   return (
     <div className="flexbox">
@@ -50,6 +51,10 @@ function LoginForm() {
               <div className="line-spacing"></div>
               <p>Not yet a partner? <a href="/#">Register here</a></p>
               <div className="line-spacing"></div>
+              <div className="icon">
+                <a href="/#"><img src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.15752-9/171394894_279771510359855_1592770365183563183_n.png?_nc_cat=106&ccb=1-3&_nc_sid=ae9488&_nc_ohc=2qpQhAHDsD4AX9LHDEz&_nc_ht=scontent.fsgn4-1.fna&oh=df97f886d8443fc908d106ccf9bded4a&oe=609A6CA1" alt="logostore"/></a>
+                <a href="/#"><img src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.15752-9/171809966_301492954709103_1844160620762849620_n.png?_nc_cat=111&ccb=1-3&_nc_sid=ae9488&_nc_ohc=wCIGKhoA_IMAX-1UTVu&_nc_ht=scontent.fsgn3-1.fna&oh=e0b2b96897f7f31aa82040e5bde07d08&oe=6098B802" alt="logostore"/></a>
+              </div>             
             </div>
           </div>
       </div>
