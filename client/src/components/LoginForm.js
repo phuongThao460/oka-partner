@@ -40,6 +40,7 @@ function LoginForm() {
                 <Form.Item><a className="login-form-forgot" href="/#">Forgot your password</a></Form.Item>
                 <Form.Item ><Button type="primary" htmlType="submit" id="button-submit" block>Log in</Button></Form.Item>
               </Form>
+              
               <div className="line-spacing"></div>
               
               <p>Not yet a partner? <a href="/#">Register here</a></p>
