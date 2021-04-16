@@ -1,5 +1,5 @@
 import React from 'react'
-import '../style/login.scss'
+import '../style/LoginForm.scss'
 import 'antd/dist/antd.css';
 import {useForm} from 'react-hook-form';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -9,7 +9,7 @@ function LoginForm() {
   const {register, handleSubmit} = useForm();
   const onSubmit = async (data) =>{
     try {
-      const response = await axios.post('http://localhost:3001/', data);
+      const response = await axios.post("http://localhost:3001", data);
       console.log(`response`, response);
     } catch (error) {
       console.log(`error.response.data.message`, error.response.data.message)

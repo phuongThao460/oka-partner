@@ -1,11 +1,11 @@
-//import LoginForm from './components/LoginForm'
-import Navbar from './components/Navbar'
+import LoginForm from './components/LoginForm'
+//import Navbar from './components/Navbar'
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-      {/* <LoginForm/> */}
+      {/* <Navbar/> */}
+      <LoginForm/>
     </div>
   );
 }

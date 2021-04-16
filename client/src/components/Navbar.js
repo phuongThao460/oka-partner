@@ -1,4 +1,5 @@
 import React from 'react'
+import '../style/Navbar.scss'
 import {  Layout, Menu }  from  'antd';
 const { Header } = Layout;
 function Navbar() {

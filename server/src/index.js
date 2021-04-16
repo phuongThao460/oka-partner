@@ -5,6 +5,7 @@ const app = express();
 const PORT = 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(express.json({ extended: true }));
 
 app.get('/', (req,res,next) => {
   const {email} = req.query;
