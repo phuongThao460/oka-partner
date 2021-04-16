@@ -1,9 +1,30 @@
 import React from 'react'
-import '../App.scss'
+import '../style/login.scss'
 import 'antd/dist/antd.css';
+import {useForm} from 'react-hook-form';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Form, Input, Button} from 'antd';
+import axios from 'axios';
 function LoginForm() {
+  const {register, handleSubmit} = useForm();
+  const onSubmit = async (data) =>{
+    try {
+      const response = await axios.post('http://localhost:3001/', data);
+      console.log(`response`, response);
+    } catch (error) {
+      console.log(`error.response.data.message`, error.response.data.message)
+    }
+    
+  }
+  const handleGetUserClick = async () =>{
+    try {
+      const response = await axios.get('http://localhost:3001?email=rinneya@gmail.com');
+      console.log(`response.data.profile`, response.data.profile);
+    } catch (error) {
+      console.log(`error.response.data.message`, error.response.data.message)
+    }
+    
+  }
   return (
     <div className="flexbox">
       <div className="container">
@@ -14,7 +35,7 @@ function LoginForm() {
               
               <p className="card-text">Log in to manage your accommodation from checking reservations to managing room availability!</p>
               
-              <Form name="basic" initialValues={{remember: false,}}>
+              <Form name="basic" initialValues={{remember: false,}} method='post' onSubmit={handleSubmit(onSubmit)}>
                 <Form.Item name="" label="Your email address"
                     rules={[
                       {
@@ -26,7 +47,7 @@ function LoginForm() {
                         message: 'Please input your E-mail!',
                       },
                     ]}>
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Enter your email address here"/>
+                    <Input  {... register('email')} prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Enter your email address here"/>
                 </Form.Item>
                 <Form.Item label="Password" id="password"
                   rules={[
@@ -35,10 +56,10 @@ function LoginForm() {
                       message: 'Please input your password!',
                     },
                   ]}>
-                  <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password"/>
+                  <Input.Password {... register('password')} prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password"/>
                 </Form.Item>
                 <Form.Item><a className="login-form-forgot" href="/#">Forgot your password</a></Form.Item>
-                <Form.Item ><Button type="primary" htmlType="submit" id="button-submit" block>Log in</Button></Form.Item>
+                <Form.Item ><Button onClick={handleGetUserClick} type="primary" htmlType="submit" id="button-submit" block>Log in</Button></Form.Item>
               </Form>
               
               <div className="line-spacing"></div>
