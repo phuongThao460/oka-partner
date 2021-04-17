@@ -1,10 +1,8 @@
-import LoginForm from './components/LoginForm'
-//import Navbar from './components/Navbar'
+import LoginForm from './components/pages/LoginForm'
 
 function App() {
   return (
     <div className="App">
-      {/* <Navbar/> */}
       <LoginForm/>
     </div>
   );
