@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../style/paner-form/Cards.css';
+import '../../style/paner-form/Cards.css'
 import CardItem from './CardItem';
 
 function Cards() {
