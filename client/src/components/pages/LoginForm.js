@@ -1,6 +1,7 @@
 import React from 'react'
-import '../style/LoginForm.scss'
+import '../../style/pages/LoginForm.scss'
 import 'antd/dist/antd.css';
+import {Link} from 'react-router-dom'
 import {useForm} from 'react-hook-form';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Form, Input, Button} from 'antd';
@@ -64,7 +65,7 @@ function LoginForm() {
               
               <div className="line-spacing"></div>
               
-              <p>Not yet a partner? <a href="/#">Register here</a></p>
+              <p>Not yet a partner? <Link to='/home'>Register here</Link></p>
               
               <div className="line-spacing"></div>
               

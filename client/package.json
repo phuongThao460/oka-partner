@@ -2,7 +2,6 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy":"",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
@@ -41,6 +40,7 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^5.0.0"
+    "node-sass": "^5.0.0",
+    "react-router-dom": "^5.2.0"
   }
 }
