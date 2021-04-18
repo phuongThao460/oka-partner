@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../style/paner-form/Navbar.css";
-import { Button } from "../paner-form/Button";
+import { Button, ButtonLogIn } from "../paner-form/Button";
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
@@ -28,7 +28,7 @@ function Navbar() {
       <nav className="navbar">
         <div className="navbar-container">
           <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            Traveloka Tera <i className="fab fa-typo3" />
+            OKA Tera <i className="fab fa-typo3" />
           </Link>
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
@@ -67,7 +67,9 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStype="btn--outline">SIGN UP</Button>}
+          <div className="verticalLine"></div>
+          {button && <ButtonLogIn buttonStype="btn--secondary">Log In</ButtonLogIn>}
+          {button && <Button buttonStype="btn--outline">Register Your Accommodation</Button>}
         </div>
       </nav>
     </>
