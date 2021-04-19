@@ -38,7 +38,7 @@ render(){
             <Form
               name="basic"
               initialValues={{ remember: false }}
-              method="post"
+              
             >
               <Form.Item
                 name=''
