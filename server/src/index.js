@@ -26,7 +26,7 @@ app.get('/', (req,res,next) => {
   return res.status(200).send({profile})
 });
 
-app.post('/', (req, res, next) =>{
+app.post('/', (req, res) =>{
   console.log(`req.body`, req.body);
   res.status(201).json({message:'Log in successfull'})
 });
