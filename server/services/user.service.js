@@ -41,7 +41,7 @@ module.exports = {
 
 			// Route CORS settings (overwrite global settings)
 			cors: {
-				origin: ["http://localhost:3000", "https://localhost:4000"],
+				origin: ["http://localhost:3000", "https://localhost:5000"],
 				methods: ["GET", "OPTIONS", "POST"],
 				credentials: true
 			},
