@@ -26,14 +26,14 @@ class PasswordCheck extends Component {
         <div className="container">
           <div className="card">
             <div className="title">
-              <Button
+              <button
                 type="link"
                 htmlType="submit"
                 id="back-button"
                 icon={<ArrowLeftOutlined className="site-form-item-icon" />}
               >
                 <Link to="/register"></Link>
-              </Button>
+              </button>
               <h3>Traveloka Tera</h3>
             </div>
 
