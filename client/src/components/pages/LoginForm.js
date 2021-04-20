@@ -4,7 +4,7 @@ import "antd/dist/antd.css";
 import { Link } from "react-router-dom";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Form, Input, Button } from "antd";
-import Axios from "axios";
+import axios from "axios";
 
 class LoginForm extends Component{
   constructor(props){
@@ -12,13 +12,17 @@ class LoginForm extends Component{
     this.loginNameRef = createRef();
     this.loginPWRef = createRef();
 }
-confirmLogin = () =>{
-    Axios.post('http://localhost:3000/api/user/signin',{
+confirmLogin = async() =>{
+  await axios.post("http://localhost:3000/api/user/signin",
+    {
         "username": this.loginNameRef.current.value,
         "password": this.loginPWRef.current.value
     })
-    .catch(error =>{
-        alert(error.data);
+    .then(result =>{
+      alert(`result.data`,result.data);
+    })
+    .catch(error => {
+        alert(error.toJSON());
     });
 }
 render(){
@@ -36,9 +40,8 @@ render(){
             </p>
 
             <Form
-              name="basic"
+              name="login"
               initialValues={{ remember: false }}
-              
             >
               <Form.Item
                 name=''
@@ -98,7 +101,7 @@ render(){
             <div className="line-spacing"></div>
 
             <p>
-              Not yet a partner? <Link to="/home">Register here</Link>
+              Not yet a partner? <Link to="/register">Register here</Link>
             </p>
 
             <div className="line-spacing"></div>

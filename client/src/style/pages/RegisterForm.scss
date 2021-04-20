@@ -1,3 +1,4 @@
+//run npm install --save-dev  --unsafe-perm node-sass
 $font-app: Roboto,'Helvetica Neue',Arial,sans-serif;
 
 .flexbox{
@@ -18,8 +19,8 @@ $font-app: Roboto,'Helvetica Neue',Arial,sans-serif;
         font-size: 24px;
         text-align: center;
         position: relative;
-        margin-top: 8px;
-        margin-bottom: 60px;
+        margin-bottom: 40px;
+        margin-top: 0;
         box-sizing: inherit;
       }
       .card-body{
@@ -30,17 +31,16 @@ $font-app: Roboto,'Helvetica Neue',Arial,sans-serif;
         }
         .card-text{
           color: #687176;
-          margin: 0;
+          margin-bottom: 16px;
         }
         p{
           font-family: $font-app;
           font-size: 14px;
         }
-        #login{
-          height: 237px;
+        #reg{
+          height: 145px;
           .ant-row{
-            margin-bottom: -7px;
-            margin-top: 16px;
+            margin-bottom: 16px;
             .ant-col{
               label{
                 width: 300px;
@@ -54,7 +54,7 @@ $font-app: Roboto,'Helvetica Neue',Arial,sans-serif;
               }
               .ant-form-item-control-input{
                 .ant-form-item-control-input-content{
-                  #button-submit{
+                  #button-next{
                     background: #FF5E1F;
                     padding: 8px 12px;
                     border-radius: 6px;
@@ -64,33 +64,14 @@ $font-app: Roboto,'Helvetica Neue',Arial,sans-serif;
                     line-height: 24px;
                     box-sizing: border-box;
                     height: 41px;
+                    
                   }
                 }
               }
             }
           }
         }
-        .line-spacing{
-          font-size: 14px;
-          margin-top: 16px;
-          margin-bottom: 16px;
-          width: 100%;
-          border-bottom: 1px dashed #d9dfe8;
-        }
-        .icon{
-          -webkit-box-pack: justify;
-          display: flex;
-          justify-content: space-between;
-          a{
-            display: flex;
-            flex: 1;
-            padding-right: 30px;
-            img{
-              width: 135px;
-              height: 40px;
-            }
-          }
-        } 
+        
       }
     }
   }

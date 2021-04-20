@@ -92,6 +92,28 @@ module.exports = {
 				}
 			}
 		},
+		register: {
+			rest: {
+				method: "POST",
+				path: "/register",
+			},
+			params: {
+				username: {type:"string", min:3},
+				password:{type:"string", min: 6},
+			},
+			async handler({action,params,meta, ... ctx}) {
+				const {username, password} = params;
+				if(!username && !password){
+					throw new MoleculerError("Username and Password is incorrect");
+				}
+				//http://localhost:3000/api/user/sigin/signin?username=b@gmail.com&password=1111111
+				const createUser = await dbContext.UserInfo.create({
+					UserName: username,
+					PasswordUser: password,
+				});
+				return createUser;
+			}
+		},
 
 		/**
 		 * Welcome, a username
