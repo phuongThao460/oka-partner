@@ -12,9 +12,9 @@ function App() {
   return (
     <>
       <Router>
-        <Route path='/' exact component={Home} />
+        <Route path='/' exact component={LoginForm} />
         <Switch>
-          <Route path='/login' component={LoginForm} />
+          <Route path='/home' component={Home} />
           <Route path='/register' component={RegisterForm} />
           <Route path='/personal-detail' component={PersonalDetail} />
           <Route path='/password-check' component={PasswordCheck} />
