@@ -70,7 +70,7 @@ class LoginForm extends Component {
               <div className="line-spacing"></div>
 
               <p>
-                Not yet a partner? <Link to="/register">Register here</Link>
+                Not yet a partner? <Link to="/home">Register here</Link>
               </p>
 
               <div className="line-spacing"></div>
