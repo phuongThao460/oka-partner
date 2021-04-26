@@ -29,47 +29,67 @@ $font-app: Roboto,'Helvetica Neue',Arial,sans-serif;
           font-size: 20px;
           line-height: 24px;
         }
-        .card-text{
-          color: #687176;
-          margin-bottom: 16px;
+        .reg-form {
+          box-sizing: inherit;
+          
+          i {
+            position: absolute;
+            color: #235d9f;
+          }
+          .form-label {
+            display: block;
+            margin-bottom: 2px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            color: #4c5052;
+            cursor: default;
+            font-weight: 1000;
+          }
+          input {
+            background-color: rgb(236, 248, 255);;
+            display: block;
+            padding: 7px 0px 7px 29px;
+            font-size: 14px;
+            border: 1px solid #235d9f;
+            border-radius: 3px;
+            width: 100%;
+            margin-bottom: 16px;
+            line-height: 20.02px;
+            &:focus {
+              outline: none;
+              border-color: #8c9fba;
+            }
+          }
+
+          .icon {
+            padding: 10px;
+            min-width: 40px;
+          }
+          .login-form-forgot {
+            width: 100%;
+            display: block;
+            margin-bottom: 16px;
+          }
+          #btn-next {
+            width: 100%;
+            background: #ff5e1f;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-width: 0;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 24px;
+            box-sizing: border-box;
+            height: 41px;
+            color: #fff;
+            outline: none;
+            margin-bottom: 16px;
+          }
+
         }
         p{
           font-family: $font-app;
           font-size: 14px;
-        }
-        #reg{
-          height: 145px;
-          .ant-row{
-            margin-bottom: 16px;
-            .ant-col{
-              label{
-                width: 300px;
-                height: 20px;
-                padding-top: 10px;
-                color: #3C4D65;
-                font-size: 14px;
-                &::before{
-                  content: none;
-                }
-              }
-              .ant-form-item-control-input{
-                .ant-form-item-control-input-content{
-                  #button-next{
-                    background: #FF5E1F;
-                    padding: 8px 12px;
-                    border-radius: 6px;
-                    border-width: 0;
-                    font-weight: bold;
-                    font-size: 16px;
-                    line-height: 24px;
-                    box-sizing: border-box;
-                    height: 41px;
-                    
-                  }
-                }
-              }
-            }
-          }
         }
         
       }

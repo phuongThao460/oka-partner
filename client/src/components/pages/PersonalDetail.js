@@ -22,19 +22,9 @@ class PersonalDetail extends Component {
                 <span className="form-label">First name</span>
                 <input
                   className="form-input"
-                  type="email"
                   placeholder="Enter your first name here"
                   ref={this.loginNameRef}
-                  rules={[
-                    {
-                      type: "email",
-                      message: "The input is not valid E-mail!",
-                    },
-                    {
-                      required: true,
-                      message: "Please input your E-mail!",
-                    },
-                  ]}
+                  type= "text"
                 ></input>
 
                 <span className="form-label">Last name</span>
@@ -44,9 +34,9 @@ class PersonalDetail extends Component {
                   ref={this.loginPWRef}
                 ></input>
 
-                <button onClick={this.confirmLogin} id="btn-next">
-                  Log in
-                </button>
+                
+                <Link to="/password-check"><button onClick={this.confirmLogin} id="btn-next">Next</button></Link>
+                
               </div>
             </div>
           </div>

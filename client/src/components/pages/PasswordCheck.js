@@ -2,8 +2,6 @@ import { Component } from "react";
 import "../../style/pages/PasswordCheck.scss";
 import "antd/dist/antd.css";
 import { Link } from "react-router-dom";
-import { LockOutlined, ArrowLeftOutlined } from "@ant-design/icons";
-import { Form, Input, Button, Radio } from "antd";
 //import axios from "axios";
 
 class PasswordCheck extends Component {
@@ -11,86 +9,99 @@ class PasswordCheck extends Component {
     value: 1,
   };
   render() {
-    const radioStyle = {
-      display: "flex",
-      //height: "35px",
-      //lineHeight: "30px",
-      marginBottom: "16px",
-      marginRight:"0",
-      alignItems: "center",
-    };
-    const { value } = this.state;
-
     return (
       <div className="flexbox">
         <div className="container">
           <div className="card">
             <div className="title">
-              <button
-                type="link"
-                htmlType="submit"
-                id="back-button"
-                icon={<ArrowLeftOutlined className="site-form-item-icon" />}
-              >
-                <Link to="/register"></Link>
-              </button>
+              <Link to="/register" className="register-link">
+                <i class="fas fa-lg fa-arrow-left icon" />
+              </Link>
               <h3>Traveloka Tera</h3>
             </div>
 
             <div className="card-body">
               <h5 className="card-title">Now—let's set up your password!</h5>
-              <Form
-                method="POST"
-                name="pass"
-                initialValues={{ remember: false }}
-              >
-              <div id="radio-group">
-              <Radio.Group onChange={this.onChange} value={value}>
-                <p>Here's how to make a strong password:</p>
-                  <Radio value={1}><p id="text">use at least 8 characters (A–Z, 0–9)</p></Radio>
-                  <Radio style={radioStyle} value={2}>
-                  <p id="text">include lower case letters (a,b, and so on)</p>
-                  </Radio>
-                  <Radio style={radioStyle} value={3}>
-                  <p id="text">include upper case letters (A, B, and so on)</p>
-                  </Radio>
-                  <Radio style={radioStyle} value={4}>
-                  <p id="text">include numbers (1,2, and so on)</p>
-                  </Radio>
-                  <Radio style={radioStyle} value={5}>
-                  <p id="text">avoid including your username</p>
-                  </Radio>
-                </Radio.Group>
-              </div>
-                <Form.Item
-                  label="Password"
-                  id="password"
+              <div className="password-form">
+                <div className="radio-group">
+                  <div className="radio-line">
+                    <div class="radio-button">
+                      <div class="checkList checkList-unchecked"></div>
+                    </div>
+                    <div class="radio-text">
+                      <span>
+                        <p>use at least 8 characters (A–Z, 0–9)</p>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="radio-line">
+                    <div class="radio-button">
+                      <div class="checkList checkList-unchecked"></div>
+                    </div>
+                    <div class="radio-text">
+                      <span>
+                        <p>include lower case letters (a,b, and so on)</p>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="radio-line">
+                    <div class="radio-button">
+                      <div class="checkList checkList-unchecked"></div>
+                    </div>
+                    <div class="radio-text">
+                      <span>
+                        <p>include upper case letters (A, B, and so on)</p>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="radio-line">
+                    <div class="radio-button">
+                      <div class="checkList checkList-unchecked"></div>
+                    </div>
+                    <div class="radio-text">
+                      <span>
+                        <p>include numbers (1,2, and so on)</p>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="radio-line">
+                    <div class="radio-button">
+                      <div class="checkList checkList-unchecked"></div>
+                    </div>
+                    <div class="radio-text">
+                      <span>
+                        <p>avoid including your username</p>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <span className="form-label">Your password</span>
+                <i class="fa fa-envelope icon"></i>
+                <input
+                  className="form-input"
+                  type="email"
+                  placeholder="Enter your email address here"
+                  ref={this.loginNameRef}
                   rules={[
                     {
+                      type: "email",
+                      message: "The input is not valid E-mail!",
+                    },
+                    {
                       required: true,
-                      message: "Please input your password!",
+                      message: "Please input your E-mail!",
                     },
                   ]}
-                >
-                  <Input.Password
-                    //ref={this.loginPWRef}
-                    prefix={<LockOutlined className="site-form-item-icon" />}
-                    type="password"
-                    placeholder="Password"
-                  />
-                </Form.Item>
-                <Form.Item>
-                  <Button
-                    //onClick={this.confirmLogin}
-                    type="primary"
-                    htmlType="submit"
-                    id="button-password"
-                    block
-                  >
-                    Next
-                  </Button>
-                </Form.Item>
-              </Form>
+                ></input>
+                <button onClick={this.confirmLogin} id="btn-next">
+                  Next
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -55,7 +55,7 @@ class LoginForm extends Component {
                   ]}
                 ></input>
 
-                <span className="form-label">Your email address</span>
+                <span className="form-label">Your password</span>
                 <i class="fa fa-lock fa-lg position-absolute icon"></i>
                 <input
                   type="password"
