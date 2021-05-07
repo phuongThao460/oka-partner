@@ -114,7 +114,16 @@ module.exports = {
 				return createUser;
 			}
 		},
-
+		getListPropertyType: {
+			rest: {
+				method: "POST",
+				path: "/lstPropType",
+			},
+			async handler() {
+				const getList = await dbContext.LOAINHA.findAll();
+				return getList;
+			}
+		},
 		/**
 		 * Welcome, a username
 		 *
