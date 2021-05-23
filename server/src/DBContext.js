@@ -1,13 +1,13 @@
-const {Sequelize} = require("sequelize");
+const { Sequelize } = require("sequelize");
 
 
 const userDBOptions = {
 	dialect: "mssql",
 	host: "localhost",
-	port: "1400",
-	database: "UserAccount",
+	port: "1433",
+	database: "RENTALAPARTMENT",
 	username: "sa",
-	password: "123456789@abc"
+	password: "12345@abc"
 };
 /*
 class DatabaseContext{

@@ -6,7 +6,6 @@ function Home() {
     <div style={{ backgroundImage: "url(/images/img-home.jpg)" }}>
       <Navbar/>
       <Cards />
-      
     </div>
   );
 }

@@ -11,12 +11,12 @@ class LoginForm extends Component {
   }
   confirmLogin = async () => {
     await axios
-      .post("http://localhost:3000/api/user/signin", {
+      .post("http://localhost:3000/api/partner/signin", {
         username: this.loginNameRef.current.value,
         password: this.loginPWRef.current.value,
       })
       .then((result) => {
-        alert(result.data);
+        console.log(result.data);
       })
       .catch((error) => {
         alert(error.toJSON());
@@ -65,7 +65,8 @@ class LoginForm extends Component {
                 <a className="login-form-forgot" href="/#">
                   Forgot your password
                 </a>
-                <button onClick={this.confirmLogin} id="btn-login">Log in</button>
+                <Link to="/registrationDetail/generationInformation"><button onClick={this.confirmLogin} id="btn-login">Log in</button></Link>
+                
               </div>
               <div className="line-spacing"></div>
 
