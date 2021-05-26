@@ -1,9 +1,9 @@
 /* eslint-disable react/no-direct-mutation-state */
-import React from "react";
+import React, { Component ,createRef} from "react";
 import "../../RegistrationDetail.css";
 import { PropertyData } from "../data/PropertyType";
-import Axios from 'axios'
-class GenerationInformation extends React.Component {
+import Axios from "axios";
+class GenerationInformation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,45 +14,71 @@ class GenerationInformation extends React.Component {
       lstCity: [],
       lstDistrict: [],
     };
+    this.fullName = createRef();
+    this.email = createRef();
+    this.phoneNumber = createRef();
+    this.idenCode = createRef();
+    this.idenType = createRef();
+    this.country = createRef();
+    this.gender = createRef();
+    this.address = createRef();
+    this.taxCode = createRef();
     this.getListCountry();
   }
-  
-  getListCountry = () =>{
-
-    Axios.post('http://localhost:3000/api/partner/registrationDetail/getListCountry',{}).then(
-            (response) => {
-                this.state.lstCountry = response.data;
-                this.setState(this);
-            });
-  }
-  getListCity = () =>{
-    Axios.post('http://localhost:3000/api/partner/registrationDetail/getListCity',{countryId: this.state.idCountry}).then(
-            (response) => {
-                this.state.lstCity = response.data;
-                this.setState(this);
-            });
-  }
+  createContact =() =>{
+    Axios.post("http://localhost:3000/api/partner/registrationDetail/contactRegistration",{
+      "fullName": this.fullName.current.value,
+      "email" : this.email.current.value,
+      "phoneNumber" : this.phoneNumber.current.value,
+      "idenCode" : this.idenCode.current.value,
+      "idenType" : this.idenType.current.value,
+      "country" : this.country.current.value,
+      "gender" : this.gender.current.value,
+      "address" : this.address.current.value,
+      "taxCode" : this.taxCode.current.value,
+    }).then((response) => {console.log(response.data)})
+  };
+  getListCountry = () => {
+    Axios.post(
+      "http://localhost:3000/api/partner/registrationDetail/getListCountry",
+      {}
+    ).then((response) => {
+      this.state.lstCountry = response.data;
+      this.setState(this);
+    });
+  };
+  getListCity = () => {
+    Axios.post(
+      "http://localhost:3000/api/partner/registrationDetail/getListCity",
+      { countryId: this.state.idCountry }
+    ).then((response) => {
+      this.state.lstCity = response.data;
+      this.setState(this);
+    });
+  };
   getListDistrict = () => {
-    Axios.post('http://localhost:3000/api/partner/registrationDetail/getListDistrict',{cityId: this.state.idCity}).then(
-            (response) => {
-                this.state.lstDistrict = response.data;
-                this.setState(this);
-            });
-  }
-  changeCountry = (event) =>{
-    this.state.idCountry= event.target.value;
+    Axios.post(
+      "http://localhost:3000/api/partner/registrationDetail/getListDistrict",
+      { cityId: this.state.idCity }
+    ).then((response) => {
+      this.state.lstDistrict = response.data;
+      this.setState(this);
+    });
+  };
+  changeCountry = (event) => {
+    this.state.idCountry = event.target.value;
     this.setState(this);
     this.getListCity();
-  }
-  changeCity = (event) =>{
+  };
+  changeCity = (event) => {
     this.state.idCity = event.target.value;
     this.setState(this);
     this.getListDistrict();
-  }
-  changeDistrict = (event)=>{
+  };
+  changeDistrict = (event) => {
     this.state.idDistrict = event.target.value;
     this.setState(this);
-  }
+  };
   render() {
     return (
       <>
@@ -64,11 +90,11 @@ class GenerationInformation extends React.Component {
               </div>
             </div>
           </div>
-          <div className="table-row css-row">
+          <div className="table__title css-row">
             <div className="detail__column css-col">
               <div
                 className="box__detail css-bx-dtl"
-                style={{ marginBottom: "30px" }}
+                style={{ marginBottom: "16px" }}
               >
                 <div className="box__detail__section header clearfix css-section">
                   <span>Property Detail</span>
@@ -405,10 +431,18 @@ class GenerationInformation extends React.Component {
                           style={{ width: "250px" }}
                         >
                           <div className="select has-value">
-                            <select className="select-control" value={this.state.idCountry} onChange={this.changeCountry}>
-                              <option className="select-option">Select Country...</option>
-                              {this.state.lstCountry.map((item,index) => (
-                                <option value={item.ID_QUOCGIA}>{item.TEN_QUOCGIA}</option>
+                            <select
+                              className="select-control"
+                              value={this.state.idCountry}
+                              onChange={this.changeCountry}
+                            >
+                              <option className="select-option">
+                                Select Country...
+                              </option>
+                              {this.state.lstCountry.map((item, index) => (
+                                <option value={item.ID_QUOCGIA}>
+                                  {item.TEN_QUOCGIA}
+                                </option>
                               ))}
                             </select>
                           </div>
@@ -427,10 +461,18 @@ class GenerationInformation extends React.Component {
                           style={{ width: "250px" }}
                         >
                           <div className="select has-value">
-                            <select className="select-control" value={this.state.idCity} onChange={this.changeCity}>
-                              <option className="select-option">Select City...</option>
-                              {this.state.lstCity.map((item,index) => (
-                                <option value={item.ID_THANHPHO}>{item.TEN_THANHPHO}</option>
+                            <select
+                              className="select-control"
+                              value={this.state.idCity}
+                              onChange={this.changeCity}
+                            >
+                              <option className="select-option">
+                                Select City...
+                              </option>
+                              {this.state.lstCity.map((item, index) => (
+                                <option value={item.ID_THANHPHO}>
+                                  {item.TEN_THANHPHO}
+                                </option>
                               ))}
                             </select>
                           </div>
@@ -449,10 +491,18 @@ class GenerationInformation extends React.Component {
                           style={{ width: "250px" }}
                         >
                           <div className="select has-value">
-                            <select className="select-control" value={this.state.idDistrict} onChange={this.changeDistrict}>
-                              <option className="select-option">Select District...</option>
-                              {this.state.lstDistrict.map((item,index) => (
-                                <option value={item.ID_QUAN}>{item.TEN_QUAN}</option>
+                            <select
+                              className="select-control"
+                              value={this.state.idDistrict}
+                              onChange={this.changeDistrict}
+                            >
+                              <option className="select-option">
+                                Select District...
+                              </option>
+                              {this.state.lstDistrict.map((item, index) => (
+                                <option value={item.ID_QUAN}>
+                                  {item.TEN_QUAN}
+                                </option>
                               ))}
                             </select>
                           </div>
@@ -615,6 +665,333 @@ class GenerationInformation extends React.Component {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="table__title css-row">
+            <div className="detail__column css-col">
+              <div
+                className="box__detail css-bx-dtl"
+                style={{ marginBottom: "30px" }}
+              >
+                <div className="box__detail__section header clearfix css-section">
+                  <span>Main Contact</span>
+                </div>
+                <div className="box__detail__section clearfix css-section">
+                  <div className="box-row css-row">
+                    <div
+                      className="box-column css-box-col"
+                      style={{ marginTop: "8px" }}
+                    >
+                      <label className="box-label css-label">
+                        <span>Full Name</span>
+                        <span className="label-required">*</span>
+                      </label>
+                    </div>
+                    <div className="box-column css-bxcol2">
+                      <div className="input-group css-inp">
+                        <div className="input-group__inner">
+                          <div className="input control-container css-radio-gr">
+                            <div className="__inner">
+                              <div className="__padder">
+                                <input
+                                  ref={this.fullName}
+                                  touched="true"
+                                  type="text"
+                                  className="css-txt -control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <ul className="css-error --simple">
+                          <li>
+                            <span>This section must be filled.</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="box-row css-row">
+                    <div
+                      className="box-column css-box-col"
+                      style={{ marginTop: "8px" }}
+                    >
+                      <label className="box-label css-label">
+                        <span>Email</span>
+                        <span className="label-required">*</span>
+                      </label>
+                    </div>
+                    <div className="box-column css-bxcol2">
+                      <div className="input-group css-inp">
+                        <div className="input-group__inner">
+                          <div className="input control-container css-radio-gr">
+                            <div className="__inner">
+                              <div className="__padder">
+                                <input
+                                  ref={this.email}
+                                  touched="true"
+                                  type="email"
+                                  className="css-txt -control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <ul className="css-error --simple">
+                          <li>
+                            <span>This section must be filled.</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="box-row css-row">
+                    <div
+                      className="box-column css-box-col"
+                      style={{ marginTop: "8px" }}
+                    >
+                      <label className="box-label css-label">
+                        <span>Phone Number</span>
+                        <span className="label-required">*</span>
+                      </label>
+                    </div>
+                    <div className="box-column css-bxcol2">
+                      <div className="input-group css-inp">
+                        <div className="input-group__inner">
+                          <div className="input control-container css-radio-gr">
+                            <div className="__inner">
+                              <div className="__padder">
+                                <input
+                                  ref={this.phoneNumber}
+                                  touched="true"
+                                  type="text"
+                                  className="css-txt -control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <ul className="css-error --simple">
+                          <li>
+                            <span>This section must be filled.</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="box-row css-row">
+                    <div
+                      className="box-column css-box-col"
+                      style={{ marginTop: "8px" }}
+                    >
+                      <label className="box-label css-label">
+                        <span>Identification Code</span>
+                        <span className="label-required">*</span>
+                      </label>
+                    </div>
+                    <div className="box-column css-bxcol2">
+                      <div className="input-group css-inp">
+                        <div className="input-group__inner">
+                          <div className="input control-container css-radio-gr">
+                            <div className="__inner">
+                              <div className="__padder">
+                                <input
+                                  ref={this.idenCode}
+                                  touched="true"
+                                  type="text"
+                                  className="css-txt -control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <ul className="css-error --simple">
+                          <li>
+                            <span>This section must be filled.</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="box-row css-row">
+                    <div
+                      className="box-column css-box-col"
+                      style={{ marginTop: "8px" }}
+                    >
+                      <label className="box-label css-label">
+                        <span>Identification Type</span>
+                        <span className="label-required">*</span>
+                      </label>
+                    </div>
+                    <div className="box-column css-bxcol2">
+                      <div className="input-group css-inp">
+                        <div className="input-group__inner">
+                          <div className="input control-container css-radio-gr">
+                            <div className="__inner">
+                              <div className="__padder">
+                                <input
+                                  ref={this.idenType}
+                                  touched="true"
+                                  type="text"
+                                  className="css-txt -control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <ul className="css-error --simple">
+                          <li>
+                            <span>This section must be filled.</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="box-row css-row">
+                    <div
+                      className="box-column css-box-col"
+                      style={{ marginTop: "8px" }}
+                    >
+                      <label className="box-label css-label">
+                        <span>Country</span>
+                        <span className="label-required">*</span>
+                      </label>
+                    </div>
+                    <div className="box-column css-bxcol2">
+                      <div className="input-group css-inp">
+                        <div className="input-group__inner">
+                          <div className="input control-container css-radio-gr">
+                            <div className="__inner">
+                              <div className="__padder">
+                                <input
+                                  ref={this.country}
+                                  touched="true"
+                                  type="text"
+                                  className="css-txt -control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <ul className="css-error --simple">
+                          <li>
+                            <span>This section must be filled.</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="box-row css-row">
+                    <div
+                      className="box-column css-box-col"
+                      style={{ marginTop: "8px" }}
+                    >
+                      <label className="box-label css-label">
+                        <span>Gender</span>
+                        <span className="label-required">*</span>
+                      </label>
+                    </div>
+                    <div className="box-column css-bxcol2">
+                      <div className="input-group css-inp">
+                        <div className="input-group__inner">
+                          <div className="input control-container css-radio-gr">
+                            <div className="__inner">
+                              <div className="__padder">
+                                <input
+                                  ref={this.gender}
+                                  touched="true"
+                                  type="text"
+                                  className="css-txt -control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <ul className="css-error --simple">
+                          <li>
+                            <span>This section must be filled.</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="box-row css-row">
+                    <div
+                      className="box-column css-box-col"
+                      style={{ marginTop: "8px" }}
+                    >
+                      <label className="box-label css-label">
+                        <span>Address</span>
+                        <span className="label-required">*</span>
+                      </label>
+                    </div>
+                    <div className="box-column css-bxcol2">
+                      <div className="input-group css-inp">
+                        <div className="input-group__inner">
+                          <div className="input control-container css-radio-gr">
+                            <div className="__inner">
+                              <div className="__padder">
+                                <input
+                                  ref={this.address}
+                                  touched="true"
+                                  type="text"
+                                  className="css-txt -control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <ul className="css-error --simple">
+                          <li>
+                            <span>This section must be filled.</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="box-row css-row">
+                    <div className="box-column css-box-col"style={{ marginTop: "8px" }}>
+                      <label className="box-label css-label">
+                        <span>Tax Code</span>
+                        <span className="label-required">*</span>
+                      </label>
+                    </div>
+                    <div className="box-column css-bxcol2">
+                      <div className="input-group css-inp">
+                        <div className="input-group__inner">
+                          <div className="input control-container css-radio-gr">
+                            <div className="__inner">
+                              <div className="__padder">
+                                <input
+                                  ref={this.taxCode}
+                                  touched="true"
+                                  type="text"
+                                  className="css-txt -control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <ul className="css-error --simple">
+                          <li>
+                            <span>This section must be filled.</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+
                 </div>
               </div>
             </div>
