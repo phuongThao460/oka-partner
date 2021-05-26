@@ -1,6 +1,7 @@
 import GenerationInformation from '../pages/GenerationInformation'
 import PropertyDetail from '../pages/PropertyDetail'
 import PropertyFacilities from '../pages/PropertyFacilities'
+import Rooms from '../pages/Rooms'
 import RoomFacilities from '../pages/RoomFacilities'
 const SidebarData = [
   {
@@ -33,6 +34,7 @@ const SidebarData = [
     number: 1,
     path: "/registrationDetail/propertyFacilities",
     main: () => <PropertyFacilities/>,
+    exact: true
   },
   {
     key: 4,
@@ -41,7 +43,9 @@ const SidebarData = [
     cNumber: 'bagde__number bagde__color bagde__pill css-bagde',
     title: 'Rooms',
     number: 1,
-    path: "/"
+    path: "/registrationDetail/rooms",
+    main: () => <Rooms/>,
+    exact: true
   },
   {
     key: 5,
@@ -52,6 +56,7 @@ const SidebarData = [
     number: 1,
     path: "/registrationDetail/roomFacilities",
     main: () => <RoomFacilities/>,
+    exact: true
   },
   {
     key: 6,
@@ -60,7 +65,8 @@ const SidebarData = [
     cNumber: 'bagde__number bagde__color bagde__pill css-bagde',
     title: 'Photos',
     number: 1,
-    path: "/"
+    path: "/",
+    exact: true
   },
   {
     key: 7,

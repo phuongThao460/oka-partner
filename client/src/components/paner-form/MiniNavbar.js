@@ -9,6 +9,8 @@ function MiniNavbar() {
     activeObj: null,
     SidebarData,
   });
+  //const menuItem = [];
+  //const [selected, setSelectedMenuItem] = useState(menuItem[0].title);
   function toggleActive(index) {
     setActive({ ...active, activeObj: active.SidebarData[index] });
   }
