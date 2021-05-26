@@ -391,6 +391,7 @@ h2 {
   list-style-type: none;
 }
 .css-line {
+  margin-top: 0;
   font-size: 14px;
   margin-top: 16px;
   margin-bottom: 16px;
@@ -995,7 +996,17 @@ textarea {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
+.css-number .control-container:not(:last-of-type) .-control,
+.css-number .control-container:not(:last-of-type) .select-control {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.css-txt-2.-control{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
 .css-txt-2 {
+  
   display: block;
   font-size: 14px;
   line-height: 20.02px;
@@ -1106,4 +1117,9 @@ textarea {
   padding-left: 15px;
   padding-right: 15px;
   flex: 0 0 58.3333%;
+}
+.css-txt-2 .control-container:not(:first-of-type) .-control,
+.css-txt-2 .control-container:not(:first-of-type) .select-control {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
