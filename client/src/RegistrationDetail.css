@@ -143,6 +143,10 @@ select {
   width: 3px;
   background-color: transparent;
 }
+.css-check:hover {
+  font-weight: 600;
+  background-color: #f2f4f7;
+}
 .css-tbl-block {
   background-color: rgb(208, 232, 245);
   border: 1px solid lightgray;

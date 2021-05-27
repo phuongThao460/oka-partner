@@ -1,8 +1,9 @@
 /* eslint-disable react/no-direct-mutation-state */
-import React, { Component ,createRef} from "react";
+import React, { Component, createRef } from "react";
 import "../../RegistrationDetail.css";
 import { PropertyData } from "../data/PropertyType";
 import Axios from "axios";
+import { Link } from "react-router-dom";
 class GenerationInformation extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +15,7 @@ class GenerationInformation extends Component {
       lstCity: [],
       lstDistrict: [],
     };
+    this.idApart = createRef();
     this.fullName = createRef();
     this.email = createRef();
     this.phoneNumber = createRef();
@@ -25,18 +27,24 @@ class GenerationInformation extends Component {
     this.taxCode = createRef();
     this.getListCountry();
   }
-  createContact =() =>{
-    Axios.post("http://localhost:3000/api/partner/registrationDetail/contactRegistration",{
-      "fullName": this.fullName.current.value,
-      "email" : this.email.current.value,
-      "phoneNumber" : this.phoneNumber.current.value,
-      "idenCode" : this.idenCode.current.value,
-      "idenType" : this.idenType.current.value,
-      "country" : this.country.current.value,
-      "gender" : this.gender.current.value,
-      "address" : this.address.current.value,
-      "taxCode" : this.taxCode.current.value,
-    }).then((response) => {console.log(response.data)})
+  createContact = () => {
+    Axios.post(
+      "http://localhost:3000/api/partner/registrationDetail/contactRegistration",
+      {
+        "idNha": this.idApart.current.value,
+        "fullName": this.fullName.current.value,
+        "email": this.email.current.value,
+        "phoneNumber": this.phoneNumber.current.value,
+        "idenCode": this.idenCode.current.value,
+        "idenType": this.idenType.current.value,
+        "country": this.country.current.value,
+        "gender": this.gender.current.value,
+        "address": this.address.current.value,
+        "taxCode": this.taxCode.current.value,
+      }
+    ).then((response) => {
+      console.log(response.data);
+    });
   };
   getListCountry = () => {
     Axios.post(
@@ -106,7 +114,7 @@ class GenerationInformation extends Component {
                       style={{ marginTop: "8px" }}
                     >
                       <label className="box-label css-label">
-                        <span>Property Name</span>
+                        <span>ID Property</span>
                         <span
                           className="label-required"
                           style={{
@@ -125,7 +133,7 @@ class GenerationInformation extends Component {
                             <div className="__inner">
                               <div className="__padder">
                                 <input
-                                  name="generalInformation,propertyDetails,propertyName"
+                                  ref={this.idApart}
                                   touched="true"
                                   type="text"
                                   className="css-txt -control"
@@ -152,7 +160,16 @@ class GenerationInformation extends Component {
                       style={{ marginTop: "8px" }}
                     >
                       <label className="box-label css-label">
-                        <span>Legal Entity Name</span>
+                        <span>Property Name</span>
+                        <span
+                          className="label-required"
+                          style={{
+                            marginLeft: "3px",
+                            color: "rgb(87, 167, 237)",
+                          }}
+                        >
+                          *
+                        </span>
                       </label>
                     </div>
                     <div className="box-column css-bxcol2">
@@ -162,120 +179,20 @@ class GenerationInformation extends Component {
                             <div className="__inner">
                               <div className="__padder">
                                 <input
-                                  name="generalInformation,propertyDetails,propertyName"
+                                  ref={this.nameHouse}
                                   touched="true"
                                   type="text"
                                   className="css-txt -control"
-                                  value=""
                                 />
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="line css-line"
-                    style={{ marginTop: "0px" }}
-                  ></div>
-                  <div className="box-row css-row">
-                    <div
-                      className="box-column css-box-col"
-                      style={{ marginTop: "8px" }}
-                    >
-                      <label className="box-label css-label">
-                        <span>
-                          Does This Property Have Different Name Previously?
-                        </span>
-                      </label>
-                    </div>
-                    <div
-                      className="c-column css-bxcol2"
-                      style={{ marginTop: "8px" }}
-                    >
-                      <div
-                        touched="true"
-                        value="NO_PAST_NAME"
-                        className="radio-group control-container css-radio css-radio-gr"
-                      >
-                        <div className="radio c-radio--is-inline css-btn-radio">
-                          <input
-                            name="generalInformation,propertyDetails,previousNameBoolean"
-                            type="radio"
-                            value="YES_PAST_NAME"
-                            id="radio-9"
-                          />
-                          <label className="" for="radio-9">
-                            <span>Yes</span>
-                          </label>
-                        </div>
-                        <div
-                          className="radio c-radio--is-inline css-btn-radio"
-                          style={{ marginLeft: "16px" }}
-                        >
-                          <input
-                            name="generalInformation,propertyDetails,previousNameBoolean"
-                            type="radio"
-                            value="NO_PAST_NAME"
-                            id="radio-10"
-                          />
-                          <label className="" for="radio-10">
-                            <span>No</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="line css-line"
-                    style={{ marginTop: "0px" }}
-                  ></div>
-                  <div className="box-row css-row">
-                    <div
-                      className="box-column css-box-col"
-                      style={{ marginTop: "8px" }}
-                    >
-                      <label className="box-label css-label">
-                        <span>
-                          Does This Property Belong to Particular Hotel Chain?
-                        </span>
-                      </label>
-                    </div>
-                    <div
-                      className="c-column css-bxcol2"
-                      style={{ marginTop: "-4px" }}
-                    >
-                      <div
-                        touched="true"
-                        value="NO_PAST_NAME"
-                        class="radio-group control-container css-radio css-radio-gr"
-                      >
-                        <div className="radio c-radio--is-inline css-btn-radio">
-                          <input
-                            name="generalInformation,propertyDetails,previousNameBoolean"
-                            type="radio"
-                            value="YES_PAST_NAME"
-                            id="radio-9"
-                          />
-                          <label className="" for="radio-9">
-                            <span>Yes</span>
-                          </label>
-                        </div>
-                        <div
-                          className="radio c-radio--is-inline css-btn-radio"
-                          style={{ marginTop: "16px" }}
-                        >
-                          <input
-                            name="generalInformation,propertyDetails,previousNameBoolean"
-                            type="radio"
-                            value="NO_PAST_NAME"
-                            id="radio-10"
-                          />
-                          <label className="" for="radio-10">
-                            <span>No</span>
-                          </label>
-                        </div>
+                        <ul className="css-error --simple">
+                          <li>
+                            <span>This section must be filled.</span>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -296,7 +213,11 @@ class GenerationInformation extends Component {
                       <div className="radio-group control-container css-radio css-radio-gr">
                         {PropertyData.map((item, index) => {
                           return (
-                            <div key={index} className={item.cRadio}>
+                            <div
+                              ref={this.typeProperty}
+                              key={index}
+                              className={item.cRadio}
+                            >
                               <input
                                 name={item.inputName}
                                 type={item.type}
@@ -316,7 +237,10 @@ class GenerationInformation extends Component {
                         })}
                         <div
                           className="c-flexbox css-flexbox"
-                          style={{ marginTop: "16px", marginBottom: "-15px" }}
+                          style={{
+                            marginTop: "16px",
+                            marginBottom: "-15px",
+                          }}
                         >
                           <div
                             className="radio css-btn-radio"
@@ -347,11 +271,18 @@ class GenerationInformation extends Component {
                             >
                               <div className="select control-container css-select css-radio-gr">
                                 <div className="select has-value">
-                                  <select className="select-control">
-                                    <option className="select-option">
-                                      {" "}
-                                      1
+                                  <select
+                                    className="select-control"
+                                    value={this.state.idStyle}
+                                  >
+                                    <option value="0" className="select-option">
+                                      Select Type
                                     </option>
+                                    {this.state.lstStyle.map((item, index) => (
+                                      <option value={item.ID_STYLE}>
+                                        {item.TEN_STYLE}
+                                      </option>
+                                    ))}
                                   </select>
                                 </div>
                               </div>
@@ -386,7 +317,7 @@ class GenerationInformation extends Component {
                               <div className="__inner">
                                 <div className="__padder --enter-active">
                                   <textarea
-                                    name="generalInformation,propertyDetails,propertyAddress,streetAddress"
+                                    ref={this.street}
                                     touched="true"
                                     type="text"
                                     className="-control css-textarea"
@@ -436,10 +367,10 @@ class GenerationInformation extends Component {
                               value={this.state.idCountry}
                               onChange={this.changeCountry}
                             >
-                              <option className="select-option">
+                              <option value="0" className="select-option">
                                 Select Country...
                               </option>
-                              {this.state.lstCountry.map((item, index) => (
+                              {this.state.lstCountry.map((item) => (
                                 <option value={item.ID_QUOCGIA}>
                                   {item.TEN_QUOCGIA}
                                 </option>
@@ -469,7 +400,7 @@ class GenerationInformation extends Component {
                               <option className="select-option">
                                 Select City...
                               </option>
-                              {this.state.lstCity.map((item, index) => (
+                              {this.state.lstCity.map((item) => (
                                 <option value={item.ID_THANHPHO}>
                                   {item.TEN_THANHPHO}
                                 </option>
@@ -500,7 +431,7 @@ class GenerationInformation extends Component {
                                 Select District...
                               </option>
                               {this.state.lstDistrict.map((item, index) => (
-                                <option value={item.ID_QUAN}>
+                                <option value={item.ID_QUAN} ref={item.ID_QUAN}>
                                   {item.TEN_QUAN}
                                 </option>
                               ))}
@@ -613,58 +544,6 @@ class GenerationInformation extends Component {
                       </div>
                     </div>
                   </div>
-                  <div
-                    className="line css-line"
-                    style={{ marginTop: "0px" }}
-                  ></div>
-                  <div className="box-row css-row">
-                    <div
-                      className="box-column css-box-col"
-                      style={{ marginTop: "8px" }}
-                    >
-                      <label className="box-label css-label">
-                        <span>
-                          Does This Property Use Channel Manager System?{" "}
-                        </span>
-                      </label>
-                    </div>
-                    <div
-                      className="c-column css-bxcol2"
-                      style={{ marginTop: "8px" }}
-                    >
-                      <div
-                        touched="true"
-                        value="NO_PAST_NAME"
-                        className="radio-group control-container css-radio css-radio-gr"
-                      >
-                        <div className="radio c-radio--is-inline css-btn-radio">
-                          <input
-                            name="generalInformation,propertyDetails,previousNameBoolean"
-                            type="radio"
-                            value="YES_PAST_NAME"
-                            id="radio-9"
-                          />
-                          <label className="" for="radio-9">
-                            <span>Yes</span>
-                          </label>
-                        </div>
-                        <div
-                          className="radio c-radio--is-inline css-btn-radio"
-                          style={{ marginTop: "16px" }}
-                        >
-                          <input
-                            name="generalInformation,propertyDetails,previousNameBoolean"
-                            type="radio"
-                            value="NO_PAST_NAME"
-                            id="radio-10"
-                          />
-                          <label className="" for="radio-10">
-                            <span>No</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -713,7 +592,10 @@ class GenerationInformation extends Component {
                       </div>
                     </div>
                   </div>
-
+                  <div
+                    className="line css-line"
+                    style={{ marginTop: "0px" }}
+                  ></div>
                   <div className="box-row css-row">
                     <div
                       className="box-column css-box-col"
@@ -748,7 +630,10 @@ class GenerationInformation extends Component {
                       </div>
                     </div>
                   </div>
-
+                  <div
+                    className="line css-line"
+                    style={{ marginTop: "0px" }}
+                  ></div>
                   <div className="box-row css-row">
                     <div
                       className="box-column css-box-col"
@@ -783,7 +668,10 @@ class GenerationInformation extends Component {
                       </div>
                     </div>
                   </div>
-
+                  <div
+                    className="line css-line"
+                    style={{ marginTop: "0px" }}
+                  ></div>
                   <div className="box-row css-row">
                     <div
                       className="box-column css-box-col"
@@ -818,7 +706,10 @@ class GenerationInformation extends Component {
                       </div>
                     </div>
                   </div>
-
+                  <div
+                    className="line css-line"
+                    style={{ marginTop: "0px" }}
+                  ></div>
                   <div className="box-row css-row">
                     <div
                       className="box-column css-box-col"
@@ -853,7 +744,10 @@ class GenerationInformation extends Component {
                       </div>
                     </div>
                   </div>
-
+                  <div
+                    className="line css-line"
+                    style={{ marginTop: "0px" }}
+                  ></div>
                   <div className="box-row css-row">
                     <div
                       className="box-column css-box-col"
@@ -888,7 +782,10 @@ class GenerationInformation extends Component {
                       </div>
                     </div>
                   </div>
-
+                  <div
+                    className="line css-line"
+                    style={{ marginTop: "0px" }}
+                  ></div>
                   <div className="box-row css-row">
                     <div
                       className="box-column css-box-col"
@@ -923,7 +820,10 @@ class GenerationInformation extends Component {
                       </div>
                     </div>
                   </div>
-
+                  <div
+                    className="line css-line"
+                    style={{ marginTop: "0px" }}
+                  ></div>
                   <div className="box-row css-row">
                     <div
                       className="box-column css-box-col"
@@ -958,9 +858,15 @@ class GenerationInformation extends Component {
                       </div>
                     </div>
                   </div>
-
+                  <div
+                    className="line css-line"
+                    style={{ marginTop: "0px" }}
+                  ></div>
                   <div className="box-row css-row">
-                    <div className="box-column css-box-col"style={{ marginTop: "8px" }}>
+                    <div
+                      className="box-column css-box-col"
+                      style={{ marginTop: "8px" }}
+                    >
                       <label className="box-label css-label">
                         <span>Tax Code</span>
                         <span className="label-required">*</span>
@@ -990,22 +896,17 @@ class GenerationInformation extends Component {
                       </div>
                     </div>
                   </div>
-
-
                 </div>
               </div>
             </div>
           </div>
-          <div
-            className="block"
-            style={{
-              marginRight: "0px",
-              marginBottom: "50px",
-              backgroundColor: "red",
-              width: "20px",
-              height: "50px",
-            }}
-          ></div>
+          <div className="block css-contact">
+            <Link to="/registrationDetail/propertyDetail">
+              <button className="btn-contact" onClick={this.createContact}>
+                Save and Continues
+              </button>
+            </Link>
+          </div>
         </div>
       </>
     );
