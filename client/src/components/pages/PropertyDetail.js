@@ -28,54 +28,7 @@ function PropertyDetail() {
                     </label>
                   </div>
                   <div className="box-column css-col">
-                    <span>Australian Dollar (AUD)</span>
-                  </div>
-                </div>
-                <div
-                  className="line css-line"
-                  style={{ marginTop: "0px" }}
-                ></div>
-                <div className="box-row css-row">
-                  <div
-                    className="box-column css-box-col"
-                    style={{ marginTop: "8px" }}
-                  >
-                    <label className="box-label css-label">
-                      <span>Reception Area</span>
-                    </label>
-                  </div>
-                  <div
-                    className="c-column css-bxcol2"
-                    style={{ marginTop: "-4px" }}
-                  >
-                    <div
-                      touched="true"
-                      value="NO_PAST_NAME"
-                      class="radio-group control-container css-radio css-radio-gr"
-                    >
-                      <div className="radio css-btn-radio">
-                        <input
-                          name="generalInformation,propertyDetails,previousNameBoolean"
-                          type="radio"
-                          value="YES_PAST_NAME"
-                          id="radio-9"
-                        />
-                        <label className="" for="radio-9">
-                          <span>Available 24 Hours</span>
-                        </label>
-                      </div>
-                      <div className="radio css-btn-radio">
-                        <input
-                          name="generalInformation,propertyDetails,previousNameBoolean"
-                          type="radio"
-                          value="NO_PAST_NAME"
-                          id="radio-10"
-                        />
-                        <label className="" for="radio-10">
-                          <span>Not Available 24 Hours</span>
-                        </label>
-                      </div>
-                    </div>
+                    <span>Vietnam Dong (VND)</span>
                   </div>
                 </div>
                 <div

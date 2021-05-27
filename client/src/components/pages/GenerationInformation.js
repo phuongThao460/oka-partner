@@ -8,9 +8,11 @@ class GenerationInformation extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      idStyle: 0,
       idCountry: 0,
       idCity: 0,
       idDistrict: 0,
+      lstStyle: [],
       lstCountry: [],
       lstCity: [],
       lstDistrict: [],
@@ -26,6 +28,7 @@ class GenerationInformation extends Component {
     this.address = createRef();
     this.taxCode = createRef();
     this.getListCountry();
+    this.getListStyle();
   }
   createContact = () => {
     Axios.post(
@@ -44,6 +47,15 @@ class GenerationInformation extends Component {
       }
     ).then((response) => {
       console.log(response.data);
+    });
+  };
+  getListStyle = () => {
+    Axios.post(
+      "http://localhost:3000/api/partner/registrationDetail/getListStyle",
+      {}
+    ).then((response) => {
+      this.state.lstStyle = response.data;
+      this.setState(this);
     });
   };
   getListCountry = () => {
@@ -134,7 +146,7 @@ class GenerationInformation extends Component {
                               <div className="__padder">
                                 <input
                                   ref={this.idApart}
-                                  touched="true"
+                                  touched="true"  
                                   type="text"
                                   className="css-txt -control"
                                 />
