@@ -7,6 +7,7 @@ import PasswordCheck from './components/pages/PasswordCheck'
 import Services from './components/pages/Services';
 import Products from './components/pages/Products'
 import RegistrationDetail from './components/pages/RegistrationDetail'
+import AddHomeBlock from './components/pages/AddHomeBlock'
 //import PropertyFacilities from './components/pages/PropertyFacilities'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/services' component={Services} />
           <Route path='/products' component={Products} />
           <Route path='/registrationDetail' component={RegistrationDetail}/>
+          <Route path='/AddHomeBlock' component={AddHomeBlock}/>
         </Switch>
       </Router>
       {/* <PropertyFacilities/> */}
