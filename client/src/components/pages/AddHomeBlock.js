@@ -23,6 +23,7 @@ function AddHomeBlock() {
                         </div>
                         <div class="c-block css-btn-edit">
                             <div class="c-flexbox css-1bvc4cc">
+                            <Link to="/ListHome">
                                 <button type="button" class="c-btn c-btn--theme-tera c-btn--variant-default c-btn--size-sm c-btn--has-icon css-7mp1uz btn btn--primary btn--small ">
                                     
                                         <g id="add">
@@ -33,6 +34,7 @@ function AddHomeBlock() {
                                         <span>Your Apartments</span>
                                     </span>
                                 </button>
+                            </Link>
                             </div>
                         </div>
                     </div>
