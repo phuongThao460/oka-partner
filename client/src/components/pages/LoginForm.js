@@ -71,7 +71,7 @@ class LoginForm extends Component {
               <div className="line-spacing"></div>
 
               <p>
-                Not yet a partner? <Link to="/home">Register here</Link>
+                Not yet a partner? <Link to="/home" style={{color: "#5899d6", fontWeight: "600"}}>Register here</Link>
               </p>
 
               <div className="line-spacing"></div>

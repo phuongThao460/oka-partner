@@ -229,13 +229,23 @@ module.exports = {
 				return getType;
 			},
 		},
+		getApartType: {
+			rest: {
+				method: "POST",
+				path: "/registrationDetail/getApartType",
+			},
+			async handler(ctx) {
+				const listCountry = dbContext.LOAINHA.findAll();
+				return listCountry;
+			},
+		},
 		getListCountry: {
 			rest: {
 				method: "POST",
 				path: "/registrationDetail/getListCountry",
 			},
 			async handler(ctx) {
-				const listCountry = dbContext.THANHPHO.findAll();
+				const listCountry = dbContext.QUOCGIA.findAll();
 				return listCountry;
 			},
 		},
@@ -282,7 +292,7 @@ module.exports = {
 			},
 			params: {
 				idNha: { type: "string" },
-				idChuHo: { type: "number" },
+				//idChuHo: { type: "number" },
 				idLoaiNha: { type: "number" },
 				tenNha: { type: "string" },
 				huyPhong: { type: "boolean" },
@@ -297,13 +307,13 @@ module.exports = {
 				idQuan: { type: "number" },
 				soNguoi: { type: "number" },
 				soGiuongPhu: { type: "number" },
-				idGia: { type: "number" },
-				trangThai: { type: "number" },
+				// idGia: { type: "number" },
+				// trangThai: { type: "number" },
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const {
 					idNha,
-					idChuHo,
+					// idChuHo,
 					idLoaiNha,
 					tenNha,
 					huyPhong,
@@ -318,12 +328,12 @@ module.exports = {
 					idQuan,
 					soNguoi,
 					soGiuongPhu,
-					idGia,
-					trangThai,
+					//idGia,
+					//trangThai,
 				} = params;
 				const createApartment = await dbContext.NHA.create({
 					ID_NHA: idNha,
-					ID_TT_CHUHO: idChuHo,
+					//ID_TT_CHUHO: idChuHo,
 					ID_LOAINHA: idLoaiNha,
 					TEN_NHA: tenNha,
 					FREE_CANCEL: huyPhong,
@@ -338,8 +348,8 @@ module.exports = {
 					ID_QUAN: idQuan,
 					SO_NGUOI: soNguoi,
 					SO_GIUONGPHU: soGiuongPhu,
-					ID_BANGGIA: idGia,
-					ID_TRANGTHAI_NHA: trangThai
+					//ID_BANGGIA: idGia,
+					//ID_TRANGTHAI_NHA: trangThai
 				});
 				return createApartment;
 			},

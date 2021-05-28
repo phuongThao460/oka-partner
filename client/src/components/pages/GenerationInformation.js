@@ -48,8 +48,7 @@ class GenerationInformation extends Component {
       "http://localhost:3000/api/partner/registrationDetail/createApartment",
       {
         idNha: this.idNha.current.value,
-        idChuHo: this.idChuHo.current.value,
-        idLoaiNha: this.state.idStyle,
+        idLoaiNha: this.state.idStyle.value,
         tenNha: this.tenNha.current.value,
         huyPhong: this.huyPhong.current.value,
         checkIn: this.checkIn.current.value,
@@ -60,11 +59,11 @@ class GenerationInformation extends Component {
         soNha: this.soNha.current.value,
         tenDuong: this.tenDuong.current.value,
         dienTich: this.dienTich.current.value,
-        idQuan: this.state.idDistrict,
+        idQuan: this.state.idDistrict.value,
         soNguoi: this.soNguoi.current.value,
         soGiuongPhu: this.soGiuongPhu.current.value,
-        idGia: this.idGia.current.value,
-        trangThai: this.trangThai.current.value,
+        //idGia: this.idGia.current.value,
+        //trangThai: this.trangThai.current.value,
       }
     ).then((response) => {
       console.log(response.data);
@@ -79,7 +78,7 @@ class GenerationInformation extends Component {
   };
   getListStyle = () => {
     Axios.post(
-      "http://localhost:3000/api/partner/registrationDetail/getListStyle",
+      "http://localhost:3000/api/partner/registrationDetail/getApartType",
       {}
     ).then((response) => {
       this.state.lstStyle = response.data;
@@ -275,10 +274,10 @@ class GenerationInformation extends Component {
                                   </option>
                                   {this.state.lstStyle.map((item, index) => (
                                     <option
-                                      value={item.ID_STYLE}
+                                      value={item.ID_LOAINHA}
                                       ref={this.idStyle}
                                     >
-                                      {item.TEN_STYLE}
+                                      {item.TEN_LOAINHA}
                                     </option>
                                   ))}
                                 </select>
@@ -463,9 +462,42 @@ class GenerationInformation extends Component {
                     </div>
                   </div>
                   <div
-                    className="line css-line"
-                    style={{ marginTop: "0px" }}
-                  ></div>
+                        className="line css-line"
+                        style={{ marginTop: "0px" }}
+                      ></div>
+                      {/* Area */}
+                      <div className="box-row css-row">
+                        <div
+                          className="box-column css-box-col"
+                          style={{ marginTop: "8px" }}
+                        >
+                          <label className="box-label css-label">
+                            <span>Area</span>
+                          </label>
+                        </div>
+                        <div className="box-column css-column">
+                          <div className="input-group css-inp" style={{width: "270px"}}>
+                            <div className="input-group__inner">
+                              <div className="input control-container css-radio-gr">
+                                <div className="__inner">
+                                  <div className="__padder">
+                                    <input
+                                      ref={this.dienTich}
+                                      touched="true"
+                                      type="text"
+                                      className="css-txt -control"
+                                      
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="input-group-addon css-number-2">
+                                <span>square meter</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 </div>
               </div>
               <div className="table__title css-row">
@@ -654,13 +686,83 @@ class GenerationInformation extends Component {
                                       touched="true"
                                       type="text"
                                       className="css-txt -control"
-                                      value=""
+                                      
                                     />
                                   </div>
                                 </div>
                               </div>
                               <div className="input-group-addon css-number-2">
                                 <span>floors</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="line css-line"
+                        style={{ marginTop: "0px" }}
+                      ></div>
+                      {/* Number of Persons */}
+                      <div className="box-row css-row">
+                        <div
+                          className="box-column css-box-col"
+                          style={{ marginTop: "8px" }}
+                        >
+                          <label className="box-label css-label">
+                            <span>Number of Persons</span>
+                          </label>
+                        </div>
+                        <div className="box-column css-column">
+                          <div className="input-group css-inp">
+                            <div className="input-group__inner">
+                              <div className="input control-container css-radio-gr">
+                                <div className="__inner">
+                                  <div className="__padder">
+                                    <input
+                                      ref={this.soNguoi}
+                                      touched="true"
+                                      type="text"
+                                      className="css-txt -control"
+                                      
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="input-group-addon css-number-2">
+                                <span>persons</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="line css-line"
+                        style={{ marginTop: "0px" }}
+                      ></div>
+                      {/* Extra Bed */}
+                      <div className="box-row css-row">
+                        <div
+                          className="box-column css-box-col"
+                          style={{ marginTop: "8px" }}
+                        >
+                          <label className="box-label css-label">
+                            <span>Extra Bed</span>
+                          </label>
+                        </div>
+                        <div className="box-column css-column">
+                          <div className="input-group css-inp">
+                            <div className="input-group__inner">
+                              <div className="input control-container css-radio-gr">
+                                <div className="__inner">
+                                  <div className="__padder">
+                                    <input
+                                      ref={this.soGiuongPhu}
+                                      touched="true"
+                                      type="text"
+                                      className="css-txt -control"
+                                    />
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -934,7 +1036,7 @@ class GenerationInformation extends Component {
           </div>
 
           <div className="block css-contact">
-            <Link to="/registrationDetail/propertyDetail">
+            <Link to="/registrationDetail/propertyFacilities">
               <button className="btn-contact" onClick={this.createApartment}>
                 Save and Continues
               </button>
