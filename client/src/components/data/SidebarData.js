@@ -24,7 +24,6 @@ const SidebarData = [
     number: 1,
     path: "/registrationDetail/generationInformation",
     main: () => <GenerationInformation/>,
-    exact: true
   },
   {
     key: 3,

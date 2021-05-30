@@ -107,20 +107,79 @@ module.exports = {
 				taxCode: { type: "string" },
 			},
 			async handler({ action, params, meta, ...ctx }) {
-				const { fullName, email, phoneNumber, idenCode, idenType, country, gender, address, taxCode } = params;
-				
+				const {
+					fullName,
+					email,
+					phoneNumber,
+					idenCode,
+					idenType,
+					country,
+					gender,
+					address,
+					taxCode,
+				} = params;
+
 				const createUser = await dbContext.THONGTINCHUHO.create({
 					TEN_CHUHO: fullName,
 					EMAIL: email,
-					PHONE_NUMBER:phoneNumber,
+					PHONE_NUMBER: phoneNumber,
 					MA_GIAYTOTUYTHAN: idenCode,
 					LOAI_GIAYTOTUYTHAN: idenType,
 					QUOCTICH: country,
 					GIOITINH: gender,
 					DIACHI: address,
-					MASO_THUE: taxCode
+					MASO_THUE: taxCode,
 				});
 				return createUser;
+			},
+		},
+		showApartment: {
+			rest: {
+				method: "POST",
+				path: "/showApartment",
+			},
+			params: {
+				idChuHo: { type: "string" },
+			},
+			async handler({ action, params, meta, ...ctx }) {
+				const { idChuHo } = params;
+				const show = await dbContext.THONGTINCHUHO.findAll({
+					attributes: ["TEN_CHUHO"],
+					where: {
+						ID_TT_CHUHO: idChuHo,
+					},
+					include: ["NHAs"],
+				});
+				return show;
+			},
+		},
+		showMainContact: {
+			rest: {
+				method: "POST",
+				path: "/showMainContact",
+			},
+			params: {
+				idTk: { type: "string" },
+			},
+			async handler({ action, params, meta, ...ctx }) {
+				const { idTk } = params;
+				const intId = parseInt(idTk);
+
+				const showTK = await dbContext.TAIKHOAN.findAll({
+					attributes: ["ID_TAIKHOAN"],
+					where: {
+						ID_TAIKHOAN: idTk,
+					},
+					include: [
+						{
+							model: dbContext.THONGTINCHUHO,
+							as: "THONGTINCHUHOs",
+							attributes: ["TEN_CHUHO"],
+							include: ["NHAs"]
+						},
+					],
+				});
+				return showTK;
 			},
 		},
 		register: {
@@ -360,9 +419,9 @@ module.exports = {
 				path: "/registrationDetail/createPrice",
 			},
 			params: {
-				firstPrice: {type: "number"},
-				secondPrice: {type: "number"},
-				thirdPrice: {type: "number"}
+				firstPrice: { type: "string" },
+				secondPrice: { type: "string" },
+				thirdPrice: { type: "string" },
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const { firstPrice, secondPrice, thirdPrice } = params;

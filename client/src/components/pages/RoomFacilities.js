@@ -16,7 +16,7 @@ export default class RoomFacilities extends Component {
   getListAnimal = () => {
     axios
       .post(
-        "http://localhost:3000/api/partner/registrationDetail/getListPropFaci",
+        "http://localhost:3000/api/partner/registrationDetail/getListRoomFacility",
         {}
       )
       .then((response) => {
@@ -42,7 +42,7 @@ export default class RoomFacilities extends Component {
             <Accordion
               key={item.ID_NOITHAT}
               title={item.TEN_NOITHAT}
-              content={item["NT"].map((index) => (
+              content={item["CTNT"].map((index) => (
                 <div className="checkbox-group control-container css-radio css-radio-gr">
                   <div className="table-row css-checkbox-group">
                     <div className="table-column checkbox">
