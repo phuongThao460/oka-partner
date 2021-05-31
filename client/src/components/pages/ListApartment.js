@@ -33,7 +33,7 @@ class ListApartment extends React.Component {
             <div key={item.ID_TT_CHUHO}>
               <div key={item.THUTU_NHA}>
                 <p>ma nha: {item.ID_NHA}</p>
-                <p> loai nha: {item.ID_LOAINHA}</p>
+                <p>loai nha: {item.ID_LOAINHA}</p>
                 <p>ten nha: {item.TEN_NHA}</p>
                 <p>chinh sach huy phong: {item.FREE_CANCEL}</p>
                 <p>checkin: {item.CHECKIN}</p>
