@@ -1002,6 +1002,7 @@ class GenerationInformation extends Component {
                             <div className="radio c-radio--is-inline css-btn-radio">
                               <input
                                 ref={this.huyPhong}
+                                name="mainContact,generalInformation,propertyDetails,previousNameBoolean"
                                 type="radio"
                                 value="true"
                                 id="radio-9"
@@ -1016,6 +1017,7 @@ class GenerationInformation extends Component {
                             >
                               <input
                                 ref={this.huyPhong}
+                                name="mainContact,generalInformation,propertyDetails,previousNameBoolean"
                                 type="radio"
                                 value="false"
                                 id="radio-10"
