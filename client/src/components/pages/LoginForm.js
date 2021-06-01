@@ -35,7 +35,7 @@ class LoginForm extends Component {
                 Log in to manage your accommodation from checking reservations
                 to managing room availability!
               </p>
-              <div className="login-form">
+              <div className="login-form" >
                 <span className="form-label">Your email address</span>
                 <i class="fa fa-envelope icon"></i>
                 <input

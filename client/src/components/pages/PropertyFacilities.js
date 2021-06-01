@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Accordion from "../paner-form/Accordion";
+import { Link } from 'react-router-dom'
 export default class PropertyFacilities extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +27,176 @@ export default class PropertyFacilities extends Component {
   };
   render() {
     return (
-      <>
+      <div className="oka-page">
+        <div className="container css-theme">
+          <div className="table-row css-row">
+            <div
+              className="table__column css-column"
+              style={{ marginTop: "58px" }}
+            >
+              <div className="table__detail css-detail">
+                <span>
+                  <div className="slidebar css-sidebar">
+                    <Link
+                      key="1"
+                      to="/registrationDetail/mainContact"
+                      className="slidebar-item css-check"
+                    >
+                      <div className="c-flexbox css-nb">
+                        <span className="text css-nb-text">Main Contact</span>
+                        <span
+                          className="bagde__number bagde__color bagde__pill css-bagde"
+                          style={{
+                            paddingRight: "10px",
+                            paddingLeft: "10px",
+                          }}
+                        >
+                          7
+                        </span>
+                      </div>
+                    </Link>
+                    <Link
+                      key="1"
+                      to="/registrationDetail/generationInformation"
+                      className="slidebar-item css-check"
+                    >
+                      <div className="c-flexbox css-nb">
+                        <span className="text css-nb-text">
+                          General Information
+                        </span>
+                        <span
+                          className="bagde__number bagde__color bagde__pill css-bagde"
+                          style={{
+                            paddingRight: "10px",
+                            paddingLeft: "10px",
+                          }}
+                        >
+                          7
+                        </span>
+                      </div>
+                    </Link>
+                    <Link
+                      key="1"
+                      to="/registrationDetail/propertyFacilities"
+                      className="slidebar-item slidebar-item--is-active css-check"
+                    >
+                      <div className="c-flexbox css-nb">
+                        <span className="text css-nb-text">
+                          Property Facilities
+                        </span>
+                        <span
+                          className="bagde__number bagde__color bagde__pill css-bagde"
+                          style={{
+                            paddingRight: "10px",
+                            paddingLeft: "10px",
+                          }}
+                        >
+                          7
+                        </span>
+                      </div>
+                    </Link>
+                    <Link
+                      key="1"
+                      to="/registrationDetail/rooms"
+                      className="slidebar-item css-check"
+                    >
+                      <div className="c-flexbox css-nb">
+                        <span className="text css-nb-text">Rooms</span>
+                        <span
+                          className="bagde__number bagde__color bagde__pill css-bagde"
+                          style={{
+                            paddingRight: "10px",
+                            paddingLeft: "10px",
+                          }}
+                        >
+                          7
+                        </span>
+                      </div>
+                    </Link>
+                    <Link
+                      key="1"
+                      to="/registrationDetail/roomFacilities"
+                      className="slidebar-item css-check"
+                    >
+                      <div className="c-flexbox css-nb">
+                        <span className="text css-nb-text">
+                          Room Facilities
+                        </span>
+                        <span
+                          className="bagde__number bagde__color bagde__pill css-bagde"
+                          style={{
+                            paddingRight: "10px",
+                            paddingLeft: "10px",
+                          }}
+                        >
+                          7
+                        </span>
+                      </div>
+                    </Link>
+                    <Link key="1" to="" className="slidebar-item css-check">
+                      <div className="c-flexbox css-nb">
+                        <span className="text css-nb-text">Photos</span>
+                        <span
+                          className="bagde__number bagde__color bagde__pill css-bagde"
+                          style={{
+                            paddingRight: "10px",
+                            paddingLeft: "10px",
+                          }}
+                        >
+                          7
+                        </span>
+                      </div>
+                    </Link>
+                    <Link key="1" to="" className="slidebar-item css-check">
+                      <div className="c-flexbox css-nb">
+                        <span className="text css-nb-text">
+                          Payment Information
+                        </span>
+                        <span
+                          className="bagde__number bagde__color bagde__pill css-bagde"
+                          style={{
+                            paddingRight: "10px",
+                            paddingLeft: "10px",
+                          }}
+                        >
+                          7
+                        </span>
+                      </div>
+                    </Link>
+                  </div>
+                </span>
+                <div
+                  className="table__block css-tbl-block"
+                  style={{ marginTop: "30px" }}
+                >
+                  <label className="block__label css-label">
+                    <span>Mandatory Fields Progress</span>
+                  </label>
+                  <div className="block__row css-row">
+                    <div className="block__column css-block-col">
+                      <div className="progress css-progress">
+                        <div
+                          className="progress__bar"
+                          role="progressbar"
+                          aria-valuenow="52"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          style={{ width: "52%" }}
+                        ></div>
+                      </div>
+                    </div>
+                    <div
+                      align="right"
+                      className="column css-col"
+                      style={{ paddingLeft: "0px" }}
+                    >
+                      <span className="text css-text">52%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
       <div className="table__column__2 css-column-2">
         <div className="table__title css-row" style={{ marginBottom: "16px" }}>
             <div className="column2 css-col">
@@ -64,7 +234,9 @@ export default class PropertyFacilities extends Component {
         
       </div>
         
-      </>
+      </div>
+        </div>
+      </div>
     );
   }
 }

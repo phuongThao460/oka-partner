@@ -1007,12 +1007,11 @@ textarea {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
-.css-txt-2.-control{
+.css-txt-2.-control {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
 .css-txt-2 {
-  
   display: block;
   font-size: 14px;
   line-height: 20.02px;
@@ -1146,4 +1145,10 @@ textarea {
   display: grid;
   justify-content: end;
   height: 50px;
+}
+.c-flexbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
