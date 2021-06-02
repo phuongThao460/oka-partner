@@ -76,7 +76,7 @@ module.exports = {
 				if (!username && !password) {
 					throw new MoleculerError("Không có người dùng này");
 				}
-				// Test 1: http://localhost:3000/api/partner/signin?username=demo1&password=abc123
+				// Test 1: http://localhost:3000/api/partner/signin?username=a@gmail.com&password=123456
 				const checkUser = await dbContext.TAIKHOAN.findOne({
 					where: {
 						TEN_TAIKHOAN: username,
@@ -96,6 +96,7 @@ module.exports = {
 				path: "/registrationDetail/contactRegistration",
 			},
 			params: {
+				idTK: { type: "string" },
 				fullName: { type: "string" },
 				email: { type: "string" },
 				phoneNumber: { type: "string" },
@@ -108,6 +109,7 @@ module.exports = {
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const {
+					idTK,
 					fullName,
 					email,
 					phoneNumber,
@@ -118,7 +120,7 @@ module.exports = {
 					address,
 					taxCode,
 				} = params;
-
+				//const idtk = parseInt(idTK);
 				const createUser = await dbContext.THONGTINCHUHO.create({
 					TEN_CHUHO: fullName,
 					EMAIL: email,
@@ -129,6 +131,7 @@ module.exports = {
 					GIOITINH: gender,
 					DIACHI: address,
 					MASO_THUE: taxCode,
+					ID_TAIKHOAN: idTK,
 				});
 				return createUser;
 			},
@@ -168,14 +171,14 @@ module.exports = {
 				const showTK = await dbContext.TAIKHOAN.findAll({
 					attributes: ["ID_TAIKHOAN"],
 					where: {
-						ID_TAIKHOAN: idTk,
+						ID_TAIKHOAN: intId,
 					},
 					include: [
 						{
 							model: dbContext.THONGTINCHUHO,
 							as: "THONGTINCHUHOs",
 							attributes: ["TEN_CHUHO"],
-							include: ["NHAs"]
+							include: ["NHAs"],
 						},
 					],
 				});
@@ -214,6 +217,28 @@ module.exports = {
 			async handler() {
 				const getList = await dbContext.STYLE.findAll();
 				return getList;
+			},
+		},
+		getApartmentPrice: {
+			rest: {
+				method: "POST",
+				path: "/getApartmentPrice",
+			},
+			params: {
+				idPrice: { type: "string" },
+			},
+			async handler({ action, params, meta, ...ctx }) {
+				let { idPrice } = params;
+				const lsPrice = await dbContext.BANGGIA.findAll();
+				let output = 0;
+				for (let i = 0; i < lsPrice.length; i++) {
+					let element = lsPrice[i];
+					if (element.ID_BANGGIA == idPrice) {
+						output = element;
+						break;
+					}
+				}
+				return output;
 			},
 		},
 		getDetailApartment: {

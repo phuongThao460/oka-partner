@@ -163,7 +163,7 @@ class GenerationInformation extends Component {
                     </div>
                   </Link>
                   <Link
-                    key="1"
+                    key="2"
                     to="/registrationDetail/generationInformation"
                     className="slidebar-item slidebar-item--is-active css-check"
                   >
@@ -180,7 +180,7 @@ class GenerationInformation extends Component {
                       </span>
                     </div>
                   </Link>
-                  <Link key="1" to="/registrationDetail/propertyFacilities" className="slidebar-item css-check">
+                  <Link key="3" to="/registrationDetail/propertyFacilities" className="slidebar-item css-check">
                     <div className="c-flexbox css-nb">
                       <span className="text css-nb-text">Property Facilities</span>
                       <span
@@ -194,7 +194,7 @@ class GenerationInformation extends Component {
                       </span>
                     </div>
                   </Link>
-                  <Link key="1" to="/registrationDetail/rooms" className="slidebar-item css-check">
+                  <Link key="4" to="/registrationDetail/rooms" className="slidebar-item css-check">
                     <div className="c-flexbox css-nb">
                       <span className="text css-nb-text">Rooms</span>
                       <span
@@ -208,7 +208,7 @@ class GenerationInformation extends Component {
                       </span>
                     </div>
                   </Link>
-                  <Link key="1" to="/registrationDetail/roomFacilities" className="slidebar-item css-check">
+                  <Link key="5" to="/registrationDetail/roomFacilities" className="slidebar-item css-check">
                     <div className="c-flexbox css-nb">
                       <span className="text css-nb-text">Room Facilities</span>
                       <span
@@ -222,7 +222,7 @@ class GenerationInformation extends Component {
                       </span>
                     </div>
                   </Link>
-                  <Link key="1" to="" className="slidebar-item css-check">
+                  <Link key="6" to="" className="slidebar-item css-check">
                     <div className="c-flexbox css-nb">
                       <span className="text css-nb-text">Photos</span>
                       <span
@@ -236,7 +236,7 @@ class GenerationInformation extends Component {
                       </span>
                     </div>
                   </Link>
-                  <Link key="1" to="" className="slidebar-item css-check">
+                  <Link key="7" to="" className="slidebar-item css-check">
                     <div className="c-flexbox css-nb">
                       <span className="text css-nb-text">Payment Information</span>
                       <span
@@ -545,7 +545,7 @@ class GenerationInformation extends Component {
                                 Select Country...
                               </option>
                               {this.state.lstCountry.map((item) => (
-                                <option value={item.ID_QUOCGIA}>
+                                <option key={item.ID_QUOCGIA} value={item.ID_QUOCGIA}>
                                   {item.TEN_QUOCGIA}
                                 </option>
                               ))}
@@ -599,7 +599,7 @@ class GenerationInformation extends Component {
                                 Select District...
                               </option>
                               {this.state.lstDistrict.map((item, index) => (
-                                <option value={item.ID_QUAN} ref={item.ID_QUAN}>
+                                <option key={item.ID_QUAN} value={item.ID_QUAN} ref={item.ID_QUAN}>
                                   {item.TEN_QUAN}
                                 </option>
                               ))}
@@ -997,7 +997,7 @@ class GenerationInformation extends Component {
                           <div
                             touched="true"
                             value="NO_PAST_NAME"
-                            class="radio-group control-container css-radio css-radio-gr"
+                            className="radio-group control-container css-radio css-radio-gr"
                           >
                             <div className="radio c-radio--is-inline css-btn-radio">
                               <input
@@ -1007,7 +1007,7 @@ class GenerationInformation extends Component {
                                 value="true"
                                 id="radio-9"
                               />
-                              <label className="" for="radio-9">
+                              <label className="" htmlFor="radio-9">
                                 <span>Yes</span>
                               </label>
                             </div>
@@ -1022,7 +1022,7 @@ class GenerationInformation extends Component {
                                 value="false"
                                 id="radio-10"
                               />
-                              <label className="" for="radio-10">
+                              <label className="" htmlFor="radio-10">
                                 <span>No</span>
                               </label>
                             </div>

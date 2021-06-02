@@ -74,7 +74,7 @@ class Rooms extends React.Component {
                     </div>
                   </Link>
                   <Link
-                    key="1"
+                    key="2"
                     to="/registrationDetail/generationInformation"
                     className="slidebar-item css-check"
                   >
@@ -91,7 +91,7 @@ class Rooms extends React.Component {
                       </span>
                     </div>
                   </Link>
-                  <Link key="1" to="/registrationDetail/propertyFacilities" className="slidebar-item css-check">
+                  <Link key="3" to="/registrationDetail/propertyFacilities" className="slidebar-item css-check">
                     <div className="c-flexbox css-nb">
                       <span className="text css-nb-text">Property Facilities</span>
                       <span
@@ -105,7 +105,7 @@ class Rooms extends React.Component {
                       </span>
                     </div>
                   </Link>
-                  <Link key="1" to="/registrationDetail/rooms" className="slidebar-item slidebar-item--is-active css-check">
+                  <Link key="4" to="/registrationDetail/rooms" className="slidebar-item slidebar-item--is-active css-check">
                     <div className="c-flexbox css-nb">
                       <span className="text css-nb-text">Rooms</span>
                       <span
@@ -119,7 +119,7 @@ class Rooms extends React.Component {
                       </span>
                     </div>
                   </Link>
-                  <Link key="1" to="/registrationDetail/roomFacilities" className="slidebar-item css-check">
+                  <Link key="5" to="/registrationDetail/roomFacilities" className="slidebar-item css-check">
                     <div className="c-flexbox css-nb">
                       <span className="text css-nb-text">Room Facilities</span>
                       <span
@@ -133,7 +133,7 @@ class Rooms extends React.Component {
                       </span>
                     </div>
                   </Link>
-                  <Link key="1" to="" className="slidebar-item css-check">
+                  <Link key="6" to="" className="slidebar-item css-check">
                     <div className="c-flexbox css-nb">
                       <span className="text css-nb-text">Photos</span>
                       <span
@@ -147,7 +147,7 @@ class Rooms extends React.Component {
                       </span>
                     </div>
                   </Link>
-                  <Link key="1" to="" className="slidebar-item css-check">
+                  <Link key="7" to="" className="slidebar-item css-check">
                     <div className="c-flexbox css-nb">
                       <span className="text css-nb-text">Payment Information</span>
                       <span

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-direct-mutation-state */
 import React, { createRef } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
@@ -5,6 +6,10 @@ import "../../RegistrationDetail.css";
 class MainContact extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      idTT: 0,
+      idTk: document.location.pathname.substring(32),
+    };
     this.fullName = createRef();
     this.email = createRef();
     this.phoneNumber = createRef();
@@ -14,6 +19,7 @@ class MainContact extends React.Component {
     this.gender = createRef();
     this.address = createRef();
     this.taxCode = createRef();
+    this.idTK = createRef();
   }
   createContact = () => {
     Axios.post(
@@ -28,10 +34,15 @@ class MainContact extends React.Component {
         gender: this.gender.current.value,
         address: this.address.current.value,
         taxCode: this.taxCode.current.value,
+        idTK: this.state.idTk.toString(),
       }
     ).then((response) => {
-      console.log(response.data);
-    });
+      // this.state.idTT = response.data;
+      // this.setState(this);
+
+      console.log(this.state.idTk);
+      this.props.history.push("/registrationDetail/generationInformation");
+    }).catch(err => console.log(err.response));
   };
   render() {
     return (
@@ -64,7 +75,7 @@ class MainContact extends React.Component {
                       </div>
                     </Link>
                     <Link
-                      key="1"
+                      key="2"
                       to="/registrationDetail/generationInformation"
                       className="slidebar-item css-check"
                     >
@@ -84,7 +95,7 @@ class MainContact extends React.Component {
                       </div>
                     </Link>
                     <Link
-                      key="1"
+                      key="3"
                       to="/registrationDetail/propertyFacilities"
                       className="slidebar-item css-check"
                     >
@@ -104,7 +115,7 @@ class MainContact extends React.Component {
                       </div>
                     </Link>
                     <Link
-                      key="1"
+                      key="4"
                       to="/registrationDetail/rooms"
                       className="slidebar-item css-check"
                     >
@@ -122,7 +133,7 @@ class MainContact extends React.Component {
                       </div>
                     </Link>
                     <Link
-                      key="1"
+                      key="5"
                       to="/registrationDetail/roomFacilities"
                       className="slidebar-item css-check"
                     >
@@ -141,7 +152,7 @@ class MainContact extends React.Component {
                         </span>
                       </div>
                     </Link>
-                    <Link key="1" to="" className="slidebar-item css-check">
+                    <Link key="6" to="" className="slidebar-item css-check">
                       <div className="c-flexbox css-nb">
                         <span className="text css-nb-text">Photos</span>
                         <span
@@ -155,7 +166,7 @@ class MainContact extends React.Component {
                         </span>
                       </div>
                     </Link>
-                    <Link key="1" to="" className="slidebar-item css-check">
+                    <Link key="7" to="" className="slidebar-item css-check">
                       <div className="c-flexbox css-nb">
                         <span className="text css-nb-text">
                           Payment Information
@@ -226,6 +237,7 @@ class MainContact extends React.Component {
                       <span>Main Contact</span>
                     </div>
                     <div className="box__detail__section clearfix css-section">
+                      {/* Full name*/}
                       <div className="box-row css-row">
                         <div
                           className="box-column css-box-col"
@@ -264,6 +276,7 @@ class MainContact extends React.Component {
                         className="line css-line"
                         style={{ marginTop: "0px" }}
                       ></div>
+                      {/* Email */}
                       <div className="box-row css-row">
                         <div
                           className="box-column css-box-col"
@@ -283,7 +296,7 @@ class MainContact extends React.Component {
                                     <input
                                       ref={this.email}
                                       touched="true"
-                                      type="email"
+                                      type="text"
                                       className="css-txt -control"
                                     />
                                   </div>
@@ -302,6 +315,7 @@ class MainContact extends React.Component {
                         className="line css-line"
                         style={{ marginTop: "0px" }}
                       ></div>
+                      {/* phone number*/}
                       <div className="box-row css-row">
                         <div
                           className="box-column css-box-col"
@@ -340,6 +354,7 @@ class MainContact extends React.Component {
                         className="line css-line"
                         style={{ marginTop: "0px" }}
                       ></div>
+                      {/* Identification Code */}
                       <div className="box-row css-row">
                         <div
                           className="box-column css-box-col"
@@ -378,6 +393,7 @@ class MainContact extends React.Component {
                         className="line css-line"
                         style={{ marginTop: "0px" }}
                       ></div>
+                      {/* Identification Type */}
                       <div className="box-row css-row">
                         <div
                           className="box-column css-box-col"
@@ -416,6 +432,7 @@ class MainContact extends React.Component {
                         className="line css-line"
                         style={{ marginTop: "0px" }}
                       ></div>
+                      {/* Country */}
                       <div className="box-row css-row">
                         <div
                           className="box-column css-box-col"
@@ -454,6 +471,7 @@ class MainContact extends React.Component {
                         className="line css-line"
                         style={{ marginTop: "0px" }}
                       ></div>
+                      {/* Gender */}
                       <div className="box-row css-row">
                         <div
                           className="box-column css-box-col"
@@ -464,6 +482,30 @@ class MainContact extends React.Component {
                             <span className="label-required">*</span>
                           </label>
                         </div>
+                        <div className="box-column css-bxcol2">
+                          <div className="input-group css-inp">
+                            <div className="input-group__inner">
+                              <div className="input control-container css-radio-gr">
+                                <div className="__inner">
+                                  <div className="__padder">
+                                    <input
+                                      ref={this.gender}
+                                      touched="true"
+                                      type="text"
+                                      className="css-txt -control"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <ul className="css-error --simple">
+                              <li>
+                                <span>This section must be filled.</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      {/*
                         <div
                           className="c-column css-bxcol2"
                           style={{ marginTop: "-4px" }}
@@ -471,17 +513,17 @@ class MainContact extends React.Component {
                           <div
                             touched="true"
                             value="NO_PAST_NAME"
-                            class="radio-group control-container css-radio css-radio-gr"
+                            className="radio-group control-container css-radio css-radio-gr"
                           >
                             <div className="radio c-radio--is-inline css-btn-radio">
                               <input
-                                name="mainContact,generalInformation,propertyDetails,previousNameBoolean"
+                                name="mainContact,previousNameBoolean"
                                 ref={this.gender}
                                 type="radio"
                                 value="Female"
                                 id="radio-9"
                               />
-                              <label className="" for="radio-9">
+                              <label className="" htmlFor="radio-9">
                                 <span>Female</span>
                               </label>
                             </div>
@@ -490,23 +532,24 @@ class MainContact extends React.Component {
                               style={{ marginTop: "16px" }}
                             >
                               <input
-                                name="mainContact,generalInformation,propertyDetails,previousNameBoolean"
+                                name="mainContact,previousNameBoolean"
                                 ref={this.gender}
                                 type="radio"
                                 value="Male"
                                 id="radio-10"
                               />
-                              <label className="" for="radio-10">
+                              <label className="" htmlFor="radio-10">
                                 <span>Male</span>
                               </label>
                             </div>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                       <div
                         className="line css-line"
                         style={{ marginTop: "0px" }}
                       ></div>
+                       {/* Address */}
                       <div className="box-row css-row">
                         <div
                           className="box-column css-box-col"
@@ -545,6 +588,7 @@ class MainContact extends React.Component {
                         className="line css-line"
                         style={{ marginTop: "0px" }}
                       ></div>
+                      {/* Tax Code */}
                       <div className="box-row css-row">
                         <div
                           className="box-column css-box-col"
@@ -584,11 +628,12 @@ class MainContact extends React.Component {
                 </div>
               </div>
               <div className="block css-contact">
-                <Link to="/registrationDetail/generationInformation">
-                  <button className="btn-contact" onClick={this.createContact}>
-                    Save and Continues
-                  </button>
-                </Link>
+                <button
+                  className="btn-contact"
+                  onClick={this.createContact}
+                >
+                  Save and Continues
+                </button>
               </div>
             </div>
           </div>
