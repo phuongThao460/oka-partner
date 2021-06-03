@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Accordion from "../paner-form/Accordion";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 export default class PropertyFacilities extends Component {
   constructor(props) {
     super(props);
@@ -11,8 +11,17 @@ export default class PropertyFacilities extends Component {
       ID_CT_CSVC: 0,
       typeFaci: [],
       lstFaci: [],
+      idApart: 0,
     };
     this.getListAnimal();
+  }
+  handleSubmit = ()=> {
+    this.state.idApart = document.location.pathname.substring(39);
+		this.setState(this);
+		if(this.state.idApart !== "0"){
+			this.props.history.push("/registrationDetail/rooms/" + this.state.idApart); 
+			//this.props.history.push("/lstApartment/" + this.state.idTk); 
+		}
   }
   getListAnimal = () => {
     axios
@@ -197,44 +206,59 @@ export default class PropertyFacilities extends Component {
               </div>
             </div>
 
-      <div className="table__column__2 css-column-2">
-        <div className="table__title css-row" style={{ marginBottom: "16px" }}>
-            <div className="column2 css-col">
-              <div className="text2 css-text-2">
-                <h2>Property Facilities</h2>
-              </div>
-            </div>
-          </div>
-          <div className="table__title css-row">
-            <div className="detail__column css-col">
-            {this.state.typeFaci.map((item) => (
-          <>
-            <Accordion
-              key={item.ID_CSVC}
-              title={item.TEN_CSVC}
-              content={item["CHITIETCSVC"].map((index) => (
-                <div className="checkbox-group control-container css-radio css-radio-gr">
-                  <div className="table-row css-checkbox-group">
-                    <div className="table-column checkbox">
-                      <div className="accorfion-checkbox css-checkbox">
-                        <input type="checkbox" key={index.ID_CT_CSVC} ref={index.ID_CT_CSVC}/>
-                        <label key={index.ID_CT_CSVC}>{index.TEN_CSVC}</label>
-                      </div>
-                    </div>
+            <div className="table__column__2 css-column-2">
+              <div
+                className="table__title css-row"
+                style={{ marginBottom: "16px" }}
+              >
+                <div className="column2 css-col">
+                  <div className="text2 css-text-2">
+                    <h2>Property Facilities</h2>
                   </div>
-                  <div className="line css-line" style={{ marginTop: "0px" }}></div>
                 </div>
-              ))}
-            />
-          </>
-        ))}
-            </div>
-          
+              </div>
+              <div className="table__title css-row">
+                <div className="detail__column css-col">
+                  {this.state.typeFaci.map((item) => (
+                    <>
+                      <Accordion
+                        key={item.ID_CSVC}
+                        title={item.TEN_CSVC}
+                        content={item["CHITIETCSVC"].map((index) => (
+                          <div className="checkbox-group control-container css-radio css-radio-gr">
+                            <div className="table-row css-checkbox-group">
+                              <div className="table-column checkbox">
+                                <div className="accorfion-checkbox css-checkbox">
+                                  <input
+                                    type="checkbox"
+                                    key={index.ID_CT_CSVC}
+                                    ref={index.ID_CT_CSVC}
+                                  />
+                                  <label key={index.ID_CT_CSVC}>
+                                    {index.TEN_CSVC}
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              className="line css-line"
+                              style={{ marginTop: "0px" }}
+                            ></div>
+                          </div>
+                        ))}
+                      />
+                    </>
+                  ))}
+                </div>
+              </div>
+              <div className="block css-contact">
+            
+              <button className="btn-contact" onClick={() => this.handleSubmit()}>
+                Save and Continues
+              </button>
           </div>
-        
-      </div>
-        
-      </div>
+            </div>
+          </div>
         </div>
       </div>
     );

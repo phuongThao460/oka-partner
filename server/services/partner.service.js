@@ -458,6 +458,55 @@ module.exports = {
 				return create;
 			},
 		},
+		createRoom: {
+			rest: {
+				method: "POST",
+				path: "/registrationDetail/createRoom",
+			},
+			params: {
+				idApart: { type: "string" },
+				roomName: { type: "string" },
+				idStyleRoom: { type: "string" },
+				idStyleBed: { type: "string" },
+				numberBed: { type: "string" },
+				maxPer: { type: "string" },
+				maxExtraBed: { type: "string" },
+				priceExtra: { type: "string" },
+				width: { type: "string" },
+				height: { type: "string" },
+				numberRooms: { type: "string" },
+			},
+			async handler({ action, params, meta, ...ctx }) {
+				const {
+					idApart,
+					roomName,
+					idStyleRoom,
+					idStyleBed,
+					numberBed,
+					maxPer,
+					maxExtraBed,
+					priceExtra,
+					width,
+					height,
+					numberRooms,
+				} = params;
+
+				const create = await dbContext.PHONG.create({
+					ID_NHA: idApart,
+					TEN_PHONG: roomName,
+					ID_LOAIPHONG: idStyleRoom,
+					ID_LOAIGIUONG: idStyleBed,
+					SOGIUONG: numberBed,
+					SONGUOITOIDA: maxPer,
+					SOGIUONG_PHU: maxExtraBed,
+					GIAGIUONG_PHU: priceExtra,
+					CHIEUDAI_PHONG: width,
+					CHIEURONG_PHONG: height,
+					SOLUONG: numberRooms,
+				});
+				return create;
+			},
+		},
 		/**
 		 * Welcome, a username
 		 *

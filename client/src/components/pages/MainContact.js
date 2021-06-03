@@ -44,6 +44,10 @@ class MainContact extends React.Component {
       this.props.history.push("/registrationDetail/generationInformation");
     }).catch(err => console.log(err.response));
   };
+  setName = (e) => {
+    this.state.fullName = e.target.value;
+    this.setState(this);
+  }
   render() {
     return (
       <div className="oka-page">
@@ -248,13 +252,15 @@ class MainContact extends React.Component {
                             <span className="label-required">*</span>
                           </label>
                         </div>
-                        <div className="box-column css-bxcol2">
+                        {this.state.fullName == null || this.state.fullName === "" ? <div className="box-column css-bxcol2">
                           <div className="input-group css-inp">
                             <div className="input-group__inner">
                               <div className="input control-container css-radio-gr">
                                 <div className="__inner">
                                   <div className="__padder">
                                     <input
+                                    pattern="[^\s]+"
+                                      onChange={this.setName}
                                       ref={this.fullName}
                                       touched="true"
                                       type="text"
@@ -271,7 +277,29 @@ class MainContact extends React.Component {
                             </ul>
                           </div>
                         </div>
-                      </div>
+                        :
+                        <div className="box-column css-bxcol2">
+                          <div className="input-group css-inp">
+                            <div className="input-group__inner">
+                              <div className="input control-container css-radio-gr">
+                                <div className="__inner">
+                                  <div className="__padder">
+                                    <input
+                                    onChange={this.setName}
+                                      ref={this.fullName}
+                                      touched="true"
+                                      type="text"
+                                      className="css-txt -control"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      
+                      }
+                        </div>
                       <div
                         className="line css-line"
                         style={{ marginTop: "0px" }}

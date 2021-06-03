@@ -16,8 +16,8 @@ function RegistrationDetail() {
         <Switch>
           <Route exact path="/registrationDetail/mainContact/:idTk"  component={MainContact}/>
           <Route path="/registrationDetail/generationInformation" component={GenerationInformation}/>
-          <Route path="/registrationDetail/propertyFacilities" component={PropertyFacilities}/>
-          <Route path="/registrationDetail/rooms" component={Rooms}/>
+          <Route path="/registrationDetail/propertyFacilities/:idNha" component={PropertyFacilities}/>
+          <Route path="/registrationDetail/rooms/:idNha" component={Rooms}/>
           <Route path="/registrationDetail/roomFacilities" component={RoomFacilities}/>
           
         </Switch>
