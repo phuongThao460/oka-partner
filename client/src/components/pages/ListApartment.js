@@ -3,11 +3,9 @@ import axios from "axios";
 import React from "react";
 
 class ListApartment extends React.Component {
-  // Ủa làm ngoài nữa hả :") ko làm trên file nhóm luôn, đợi tí t tìm code"
   constructor(props) {
     super(props);
     this.state = {
-      // id này cần lấy đúng ko?
       idTk: document.location.pathname.substring(14),
       idTT: 0,
       idApart: 0,
@@ -17,28 +15,16 @@ class ListApartment extends React.Component {
     this.showApartment();
   }
   showApartment = () => {
-    // Rồi, có id rồi đó
     axios
       .post("http://localhost:3000/api/partner/showMainContact", {
         idTk: this.state.idTk,
       })
       .then((result) => {
-        console.log(result.data[0].ID_TAIKHOAN); //id = 0  thì nó k có thông tin gì hết ráo
+        console.log(result.data[0].ID_TAIKHOAN);
         this.state.lstApartment = result.data[0].THONGTINCHUHOs[0].NHAs;
         this.setState(this);
       });
-    //this.getPrice();
-  };
-  // getPrice = () => {
-  //   axios
-  //     .post("http://localhost:3000/api/partner/getApartmentPrice", {
-  //       idPrice: this.props.model.ID_BANGGIA,
-  //     })
-  //     .then((response) => {
-  //       this.state.price = response.data[0].ID_BANGGIA;
-  //       this.setState(this);
-  //     });
-  // };
+    }
   render() {
     return (
       <div key={this.state.idTk}>
@@ -46,10 +32,11 @@ class ListApartment extends React.Component {
           <div key={item.ID_TAIKHOAN}>
             <div value={item.ID_TT_CHUHO}>
               <div value={item.THUTU_NHA}>
+                <p>Ten chu ho: {item.TEN_CHUHO}</p>
                 <p>ma nha: {item.ID_NHA}</p>
                 <p>loai nha: {item.ID_LOAINHA}</p>
                 <p>ten nha: {item.TEN_NHA}</p>
-                <p>
+                {/* <p>
                   chinh sach huy phong:{" "}
                   {item.FREE_CANCEL.toString() ? "Yes" : "No"}
                 </p>
@@ -66,7 +53,7 @@ class ListApartment extends React.Component {
                 <p>so giuong phu: {item.SO_GIUONGPHU}</p>
                 <p>muc gia 1: {this.state.price.MUCGIA_MOT}</p>
                 <p>muc gia 2: {item.MUCGIA_HAI}</p>
-                <p>muc gia 3: {item.MUCGIA_BA}</p>
+                <p>muc gia 3: {item.MUCGIA_BA}</p> */}
                 <p>------------------------------------------------</p>
               </div>
             </div>

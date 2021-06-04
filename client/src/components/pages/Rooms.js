@@ -50,7 +50,7 @@ class Rooms extends Component {
   getListRoom = () => {
     axios
       .post(
-        "http://localhost:3000/api/partner/registrationDetail/getRoomType",
+        "http://localhost:3000/api/partner/registrationDetail/getListRoomType",
         {}
       )
       .then((response) => {
@@ -61,7 +61,7 @@ class Rooms extends Component {
   getListBed = () => {
     axios
       .post(
-        "http://localhost:3000/api/partner/registrationDetail/getBedType",
+        "http://localhost:3000/api/partner/registrationDetail/getListBedType",
         {}
       )
       .then((response) => {

@@ -3,6 +3,7 @@ import React, { createRef } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import "../../RegistrationDetail.css";
+
 class MainContact extends React.Component {
   constructor(props) {
     super(props);
@@ -41,7 +42,7 @@ class MainContact extends React.Component {
       // this.setState(this);
 
       console.log(this.state.idTk);
-      this.props.history.push("/registrationDetail/generationInformation");
+      this.props.history.push("/registrationDetail/generationInformation/" + this.state.idTk);
     }).catch(err => console.log(err.response));
   };
   setName = (e) => {
@@ -656,6 +657,7 @@ class MainContact extends React.Component {
                 </div>
               </div>
               <div className="block css-contact">
+                
                 <button
                   className="btn-contact"
                   onClick={this.createContact}

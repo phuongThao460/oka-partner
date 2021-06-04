@@ -15,6 +15,8 @@ class GenerationInformation extends Component {
       lstCountry: [],
       lstCity: [],
       lstDistrict: [],
+      trangThai: "1",
+      idMain: document.location.pathname.substring(41),
     };
     this.idNha = createRef();
     this.idChuHo = createRef();
@@ -48,6 +50,7 @@ class GenerationInformation extends Component {
       "http://localhost:3000/api/partner/registrationDetail/createApartment",
       {
         idNha: this.idNha.current.value,
+        idChuHo: this.state.idMain,
         idLoaiNha: this.state.idStyle,
         tenNha: this.tenNha.current.value,
         huyPhong: this.huyPhong.value,
@@ -63,7 +66,7 @@ class GenerationInformation extends Component {
         soNguoi: this.soNguoi.current.value,
         soGiuongPhu: this.soGiuongPhu.current.value,
         //idGia: this.idGia.current.value,
-        //trangThai: this.trangThai.current.value,
+        trangThai: this.state.trangThai.toString(),
       }
     )
       .then((response) => {
@@ -85,7 +88,7 @@ class GenerationInformation extends Component {
   };
   getListStyle = () => {
     Axios.post(
-      "http://localhost:3000/api/partner/registrationDetail/getApartType",
+      "http://localhost:3000/api/partner/registrationDetail/getListApartType",
       {}
     ).then((response) => {
       this.state.lstStyle = response.data;

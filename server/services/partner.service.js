@@ -201,7 +201,7 @@ module.exports = {
 						"Username and Password is incorrect"
 					);
 				}
-				//http://localhost:3000/api/user/sigin/signin?username=b@gmail.com&password=1111111
+				//http://localhost:3000/api/partner/sigin/signin?username=b@gmail.com&password=1111111
 				const createUser = await dbContext.TAIKHOAN.create({
 					TEN_TAIKHOAN: username,
 					MATKHAU: password,
@@ -293,34 +293,52 @@ module.exports = {
 				return getList;
 			},
 		},
-		getRoomType: {
+		getListRoomType: {
 			rest: {
 				method: "POST",
-				path: "/registrationDetail/getRoomType",
+				path: "/registrationDetail/getListRoomType",
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const getType = await dbContext.LOAIPHONG.findAll();
 				return getType;
 			},
 		},
-		getBedType: {
+		getListBedType: {
 			rest: {
 				method: "POST",
-				path: "/registrationDetail/getBedType",
+				path: "/registrationDetail/getListBedType",
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const getType = await dbContext.LOAIGIUONG.findAll();
 				return getType;
 			},
 		},
-		getApartType: {
+		getListApartType: {
 			rest: {
 				method: "POST",
-				path: "/registrationDetail/getApartType",
+				path: "/registrationDetail/getListApartType",
 			},
 			async handler(ctx) {
-				const listCountry = dbContext.LOAINHA.findAll();
-				return listCountry;
+				const listType = dbContext.LOAINHA.findAll();
+				return listType;
+			},
+		},
+		getTypeApart: {
+			rest: {
+				method: "POST",
+				path: "/getTypeApart",
+			},
+			params: {
+				id: {type: "string"}
+			},
+			async handler(params, ...ctx) {
+				const {id} = params;
+				const type = dbContext.LOAINHA.findOne({
+					where:{
+						ID_LOAINHA: id
+					}
+				});
+				return type.TEN_LOAINHA;
 			},
 		},
 		getListCountry: {
@@ -376,7 +394,7 @@ module.exports = {
 			},
 			params: {
 				idNha: { type: "string" },
-				//idChuHo: { type: "number" },
+				idChuHo: { type: "string" },
 				idLoaiNha: { type: "string" },
 				tenNha: { type: "string" },
 				huyPhong: { type: "string" },
@@ -392,12 +410,12 @@ module.exports = {
 				soNguoi: { type: "string" },
 				soGiuongPhu: { type: "string" },
 				// idGia: { type: "number" },
-				// trangThai: { type: "number" },
+				trangThai: { type: "string" },
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const {
 					idNha,
-					// idChuHo,
+					idChuHo,
 					idLoaiNha,
 					tenNha,
 					huyPhong,
@@ -413,11 +431,11 @@ module.exports = {
 					soNguoi,
 					soGiuongPhu,
 					//idGia,
-					//trangThai,
+					trangThai,
 				} = params;
 				const createApartment = await dbContext.NHA.create({
 					ID_NHA: idNha,
-					//ID_TT_CHUHO: idChuHo,
+					ID_TT_CHUHO: idChuHo,
 					ID_LOAINHA: idLoaiNha,
 					TEN_NHA: tenNha,
 					FREE_CANCEL: huyPhong,
@@ -433,7 +451,7 @@ module.exports = {
 					SO_NGUOI: soNguoi,
 					SO_GIUONGPHU: soGiuongPhu,
 					//ID_BANGGIA: idGia,
-					//ID_TRANGTHAI_NHA: trangThai
+					ID_TRANGTHAI_NHA: trangThai
 				});
 				return createApartment;
 			},
@@ -505,6 +523,49 @@ module.exports = {
 					SOLUONG: numberRooms,
 				});
 				return create;
+			},
+		},
+		getAddressApartment: {
+			rest: {
+				method: "POST",
+				path: "/getAddressApartment",
+			},
+			params: {
+				id: { type: "string" },
+			},
+			async handler({ action, params, meta, ...ctx }) {
+				const { id } = params;
+				const myApart = await dbContext.NHA.findOne({
+					where: {
+						ID_NHA: id,
+					},
+				});
+				const myDistrict = await dbContext.QUAN.findOne({
+					where: {
+						ID_QUAN: myApart.ID_QUAN,
+					},
+				});
+				const myCity = await dbContext.THANHPHO.findOne({
+					where: {
+						ID_THANHPHO: myDistrict.ID_THANHPHO,
+					},
+				});
+				const myCountry = await dbContext.QUOCGIA.findOne({
+					where: {
+						ID_QUOCGIA: myCity.ID_QUOCGIA,
+					},
+				});
+				const output =
+					myApart.SONHA +
+					" " +
+					myApart.TEN_DUONG +
+					" " +
+					myDistrict.TEN_QUAN +
+					" " +
+					myCity.TEN_THANHPHO +
+					" " +
+					myCountry.TEN_QUOCGIA;
+				return output;
 			},
 		},
 		/**
