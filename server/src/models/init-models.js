@@ -1,5 +1,4 @@
 let DataTypes = require("sequelize").DataTypes;
-let _BANGGIA = require("./BANGGIA");
 let _CHITIETCSVC = require("./CHITIETCSVC");
 let _CHITIETNOITHAT = require("./CHITIETNOITHAT");
 let _CSVC = require("./CSVC");
@@ -7,6 +6,7 @@ let _CSVCNHA = require("./CSVCNHA");
 let _DANHGIA = require("./DANHGIA");
 let _DATCANHO = require("./DATCANHO");
 let _HINHANH = require("./HINHANH");
+let _HINHANHNHA = require("./HINHANHNHA");
 let _LOAIGIUONG = require("./LOAIGIUONG");
 let _LOAINHA = require("./LOAINHA");
 let _LOAIPHONG = require("./LOAIPHONG");
@@ -26,7 +26,6 @@ let _TRANGTHAIDATCANHO = require("./TRANGTHAIDATCANHO");
 let _TRANGTHAINHA = require("./TRANGTHAINHA");
 
 function initModels(sequelize) {
-	let BANGGIA = _BANGGIA(sequelize, DataTypes);
 	let CHITIETCSVC = _CHITIETCSVC(sequelize, DataTypes);
 	let CHITIETNOITHAT = _CHITIETNOITHAT(sequelize, DataTypes);
 	let CSVC = _CSVC(sequelize, DataTypes);
@@ -34,6 +33,7 @@ function initModels(sequelize) {
 	let DANHGIA = _DANHGIA(sequelize, DataTypes);
 	let DATCANHO = _DATCANHO(sequelize, DataTypes);
 	let HINHANH = _HINHANH(sequelize, DataTypes);
+	let HINHANHNHA = _HINHANHNHA(sequelize, DataTypes);
 	let LOAIGIUONG = _LOAIGIUONG(sequelize, DataTypes);
 	let LOAINHA = _LOAINHA(sequelize, DataTypes);
 	let LOAIPHONG = _LOAIPHONG(sequelize, DataTypes);
@@ -52,8 +52,6 @@ function initModels(sequelize) {
 	let TRANGTHAIDATCANHO = _TRANGTHAIDATCANHO(sequelize, DataTypes);
 	let TRANGTHAINHA = _TRANGTHAINHA(sequelize, DataTypes);
 
-	NHA.belongsTo(BANGGIA, { as: "ID_BANGGIA_BANGGIum", foreignKey: "ID_BANGGIA"});
-	BANGGIA.hasMany(NHA, { as: "NHAs", foreignKey: "ID_BANGGIA"});
 	CSVCNHA.belongsTo(CHITIETCSVC, { as: "ID_CT_CSVC_CHITIETCSVC", foreignKey: "ID_CT_CSVC"});
 	CHITIETCSVC.hasMany(CSVCNHA, { as: "CSVCNHAs", foreignKey: "ID_CT_CSVC"});
 	NOITHATPHONG.belongsTo(CHITIETNOITHAT, { as: "ID_CT_NOITHAT_CHITIETNOITHAT", foreignKey: "ID_CT_NOITHAT"});
@@ -112,7 +110,6 @@ function initModels(sequelize) {
 	TRANGTHAINHA.hasMany(NHA, { as: "NHAs", foreignKey: "ID_TRANGTHAI_NHA"});
 
 	return {
-		BANGGIA,
 		CHITIETCSVC,
 		CHITIETNOITHAT,
 		CSVC,
@@ -120,6 +117,7 @@ function initModels(sequelize) {
 		DANHGIA,
 		DATCANHO,
 		HINHANH,
+		HINHANHNHA,
 		LOAIGIUONG,
 		LOAINHA,
 		LOAIPHONG,

@@ -22,6 +22,7 @@ class Rooms extends Component {
     this.width = createRef();
     this.height = createRef();
     this.numberRooms = createRef();
+    this.descript = createRef();
     this.getListRoom();
     this.getListBed();
   }
@@ -39,6 +40,7 @@ class Rooms extends Component {
         width: this.width.current.value,
         height: this.height.current.value,
         numberRooms: this.numberRooms.current.value,
+        descript: this.descript.current.value,
       })
       .then((response) => {
         console.log(response.data);
@@ -790,6 +792,60 @@ class Rooms extends Component {
                             </div>
                           </div>
                         </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div className="table__title css-row">
+                    <div className="detail__column css-col">
+                      <div
+                        className="box__detail css-bx-dtl"
+                        style={{ marginBottom: "30px" }}
+                      >
+                        <div className="box__detail__section header clearfix css-section">
+                          <span>Description</span>
+                          <span
+                            className="label-required"
+                            style={{
+                              marginLeft: "3px",
+                              color: "rgb(87, 167, 237)",
+                            }}
+                          >
+                            *
+                          </span>
+                        </div>
+                        <div className="box__detail__section clearfix css-section">
+                          {/* Price */}
+                          <div className="box-row css-row">
+                            <div className="box-column css-box-col">
+                              <label className="box-label css-label">
+                                <span>Description of Room</span>
+                              </label>
+                            </div>
+                            <div
+                              className="box-column css-column"
+                              style={{ marginRight: "20px" }}
+                            >
+                              <div className="input-group css-inp">
+                                <div className="input-group__inner">
+                                  <div className="timepicker control-container css-radio-gr">
+                                    <div className="__inner">
+                                      <div className="__padder">
+                                        <textarea
+                                          style={{width: "432px", margin: "0px -269.25px 0px 0px", height: "138px", resize: "none"}}
+                                          ref={this.descript}
+                                          id="textarea"
+                                          type="text"
+                                          className="-control css-txt"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          </div>
                       </div>
                     </div>
                   </div>

@@ -409,7 +409,8 @@ module.exports = {
 				idQuan: { type: "string" },
 				soNguoi: { type: "string" },
 				soGiuongPhu: { type: "string" },
-				// idGia: { type: "number" },
+				gia: {type: "string"},
+				khuyenMai: {type: "string"},
 				trangThai: { type: "string" },
 			},
 			async handler({ action, params, meta, ...ctx }) {
@@ -430,7 +431,8 @@ module.exports = {
 					idQuan,
 					soNguoi,
 					soGiuongPhu,
-					//idGia,
+					gia,
+					khuyenMai,
 					trangThai,
 				} = params;
 				const createApartment = await dbContext.NHA.create({
@@ -450,30 +452,11 @@ module.exports = {
 					ID_QUAN: idQuan,
 					SO_NGUOI: soNguoi,
 					SO_GIUONGPHU: soGiuongPhu,
-					//ID_BANGGIA: idGia,
+					GIA: gia,
+					KHUYENMAI: khuyenMai,
 					ID_TRANGTHAI_NHA: trangThai
 				});
 				return createApartment;
-			},
-		},
-		createPrice: {
-			rest: {
-				method: "POST",
-				path: "/registrationDetail/createPrice",
-			},
-			params: {
-				firstPrice: { type: "string" },
-				secondPrice: { type: "string" },
-				thirdPrice: { type: "string" },
-			},
-			async handler({ action, params, meta, ...ctx }) {
-				const { firstPrice, secondPrice, thirdPrice } = params;
-				const create = await dbContext.BANGGIA.create({
-					MUCGIA_MOT: firstPrice,
-					MUCGIA_HAI: secondPrice,
-					MUCGIA_BA: thirdPrice,
-				});
-				return create;
 			},
 		},
 		createRoom: {
@@ -493,6 +476,7 @@ module.exports = {
 				width: { type: "string" },
 				height: { type: "string" },
 				numberRooms: { type: "string" },
+				descript: {type: "string"}
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const {
@@ -507,6 +491,7 @@ module.exports = {
 					width,
 					height,
 					numberRooms,
+					descript
 				} = params;
 
 				const create = await dbContext.PHONG.create({
@@ -521,6 +506,7 @@ module.exports = {
 					CHIEUDAI_PHONG: width,
 					CHIEURONG_PHONG: height,
 					SOLUONG: numberRooms,
+					MOTA: descript,
 				});
 				return create;
 			},

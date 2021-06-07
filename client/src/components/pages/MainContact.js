@@ -40,7 +40,6 @@ class MainContact extends React.Component {
     ).then((response) => {
       // this.state.idTT = response.data;
       // this.setState(this);
-
       console.log(this.state.idTk);
       this.props.history.push("/registrationDetail/generationInformation/" + this.state.idTk);
     }).catch(err => console.log(err.response));

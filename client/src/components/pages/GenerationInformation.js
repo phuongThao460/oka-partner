@@ -34,7 +34,8 @@ class GenerationInformation extends Component {
     this.idQuan = createRef();
     this.soNguoi = createRef();
     this.soGiuongPhu = createRef();
-    this.idGia = createRef();
+    this.gia = createRef();
+    this.khuyenMai = createRef();
     this.trangThai = createRef();
 
     //Price
@@ -50,7 +51,7 @@ class GenerationInformation extends Component {
       "http://localhost:33456/api/partner/registrationDetail/createApartment",
       {
         idNha: this.idNha.current.value,
-        idChuHo: this.state.idMain,
+        idChuHo: this.state.idMain.toString(),
         idLoaiNha: this.state.idStyle.toString(),
         tenNha: this.tenNha.current.value,
         huyPhong: this.huyPhong.current.value,
@@ -65,26 +66,16 @@ class GenerationInformation extends Component {
         idQuan: this.state.idDistrict,
         soNguoi: this.soNguoi.current.value,
         soGiuongPhu: this.soGiuongPhu.current.value,
-        //idGia: this.idGia.current.value,
+        gia: this.gia.current.value,
+        khuyenMai: this.khuyenMai.current.value,
         trangThai: "1",
       }
     )
       .then((response) => {
         console.log(response.data);
+        this.props.history.push("/registrationDetail/propertyFacilities/" + this.idNha.current.value);
       })
       .catch((err) => console.log(err.response));
-    // Axios.post(
-    //   "http://localhost:33456/api/partner/registrationDetail/createPrice",
-    //   {
-    //     firstPrice: this.firstPrice.current.value,
-    //     secondPrice: this.secondPrice.current.value,
-    //     thirdPrice: this.thirdPrice.current.value,
-    //   }
-    // )
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((err) => console.log(err.response));
   };
   getListStyle = () => {
     Axios.post(
@@ -687,7 +678,7 @@ class GenerationInformation extends Component {
                         <div className="box-column css-column">
                           <div
                             className="input-group css-inp"
-                            style={{ width: "270px" }}
+                            style={{ width: "220px" }}
                           >
                             <div className="input-group__inner">
                               <div className="input control-container css-radio-gr">
@@ -844,7 +835,7 @@ class GenerationInformation extends Component {
                                 className="input-group css-inp"
                                 style={{ display: "inline-block" }}
                               >
-                                <div className="input-group__inner">
+                                <div className="input-group__inner" style={{width: "fit-content"}}>
                                   <div
                                     className="input control-container css-radio-gr"
                                     style={{ width: "130px" }}
@@ -1111,7 +1102,7 @@ class GenerationInformation extends Component {
                           </span>
                         </div>
                         <div className="box__detail__section clearfix css-section">
-                          {/* Check-In Check-Out Time */}
+                          {/* Price */}
                           <div className="box-row css-row">
                             <div className="box-column css-box-col">
                               <label className="box-label css-label">
@@ -1123,7 +1114,7 @@ class GenerationInformation extends Component {
                               style={{ marginRight: "20px" }}
                             >
                               <label className="box-label css-label">
-                                <span>First Price</span>
+                                <span>Basic Price</span>
                                 <span
                                   className="label-required"
                                   style={{
@@ -1141,7 +1132,7 @@ class GenerationInformation extends Component {
                                       <div className="__padder">
                                         <input
                                           style={{ width: "250px" }}
-                                          ref={this.firstPrice}
+                                          ref={this.gia}
                                           id="time"
                                           type="number"
                                           defaultValue="07:30"
@@ -1161,7 +1152,7 @@ class GenerationInformation extends Component {
                               style={{ marginRight: "20px" }}
                             >
                               <label className="box-label css-label">
-                                <span>Second Price</span>
+                                <span>Discount</span>
                                 <span
                                   className="label-required"
                                   style={{
@@ -1184,7 +1175,7 @@ class GenerationInformation extends Component {
                                         >
                                           <input
                                             style={{ width: "250px" }}
-                                            ref={this.secondPrice}
+                                            ref={this.khuyenMai}
                                             type="number"
                                             className="-control css-txt"
                                           />
@@ -1196,49 +1187,7 @@ class GenerationInformation extends Component {
                               </div>
                             </div>
                           </div>
-                          <div className="box-row css-row">
-                            <div className="box-column css-box-col"></div>
-                            <div
-                              className="box-column css-column"
-                              style={{ marginRight: "20px" }}
-                            >
-                              <label className="box-label css-label">
-                                <span>Third Price</span>
-                                <span
-                                  className="label-required"
-                                  style={{
-                                    marginLeft: "3px",
-                                    color: "rgb(87, 167, 237)",
-                                  }}
-                                >
-                                  *
-                                </span>
-                              </label>
-                              <div className="input-group css-inp">
-                                <div className="input-group__inner">
-                                  <div className="timepicker control-container css-radio-gr">
-                                    <div className="__inner">
-                                      <div className="__padder">
-                                        <div
-                                          className="time-clock"
-                                          noValidate
-                                          style={{ position: "relative" }}
-                                        >
-                                          <input
-                                            style={{ width: "250px" }}
-                                            ref={this.thirdPrice}
-                                            type="number"
-                                            className="-control css-txt"
-                                          />
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
                           </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -1246,18 +1195,14 @@ class GenerationInformation extends Component {
               </div>
 
               <div className="block css-contact">
-                <Link
-                  to={
-                    "/registrationDetail/propertyFacilities/" + this.idNha
-                  }
-                >
+                
                   <button
                     className="btn-contact"
                     onClick={this.createApartment}
                   >
                     Save and Continues
                   </button>
-                </Link>
+              
               </div>
             </div>
           </div>

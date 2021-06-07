@@ -15,12 +15,12 @@ module.exports = function(sequelize, DataTypes) {
         key: 'ID_TAIKHOAN'
       }
     },
-    THUTU_NHA: {
-      type: DataTypes.INTEGER,
+    ID_NHA: {
+      type: DataTypes.STRING(50),
       allowNull: true,
       references: {
         model: 'NHA',
-        key: 'THUTU_NHA'
+        key: 'ID_NHA'
       }
     },
     SOSAO: {
@@ -38,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     indexes: [
       {
-        name: "PK__DANHGIA__D7D8AB78D74EFFA9",
+        name: "PK__DANHGIA__D7D8AB782327F0AB",
         unique: true,
         fields: [
           { name: "ID_DANHGIA" },

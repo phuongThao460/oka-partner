@@ -30,6 +30,9 @@ select {
   vertical-align: baseline;
   box-sizing: border-box;
 }
+#textarea{
+  outline: 0;
+}
 .css-detail {
   position: sticky;
   top: 100px;
