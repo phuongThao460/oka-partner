@@ -2,7 +2,7 @@
 
 const ApiGateway = require("moleculer-web");
 const cors = require("cors");
-const corsOptions = {origin:"http://localhost:5000"};
+const corsOptions = {origin:"http://localhost:54332"};
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context
  * @typedef {import('http').IncomingMessage} IncomingRequest Incoming HTTP Request
@@ -16,7 +16,7 @@ module.exports = {
 	// More info about settings: https://moleculer.services/docs/0.14/moleculer-web.html
 	settings: {
 		// Exposed port
-		port: process.env.PORT || 3000,
+		port: process.env.PORT || 33456,
 
 		// Exposed IP
 		ip: "0.0.0.0",

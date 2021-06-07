@@ -16,7 +16,7 @@ class ListApartment extends React.Component {
   }
   showApartment = () => {
     axios
-      .post("http://localhost:3000/api/partner/showMainContact", {
+      .post("http://localhost:33456/api/partner/showMainContact", {
         idTk: this.state.idTk,
       })
       .then((result) => {

@@ -16,7 +16,7 @@ class GenerationInformation extends Component {
       lstCity: [],
       lstDistrict: [],
       trangThai: "1",
-      idMain: document.location.pathname.substring(41),
+      idMain: document.location.pathname.substring(42),
     };
     this.idNha = createRef();
     this.idChuHo = createRef();
@@ -47,13 +47,13 @@ class GenerationInformation extends Component {
   }
   createApartment = () => {
     Axios.post(
-      "http://localhost:3000/api/partner/registrationDetail/createApartment",
+      "http://localhost:33456/api/partner/registrationDetail/createApartment",
       {
         idNha: this.idNha.current.value,
         idChuHo: this.state.idMain,
-        idLoaiNha: this.state.idStyle,
+        idLoaiNha: this.state.idStyle.toString(),
         tenNha: this.tenNha.current.value,
-        huyPhong: this.huyPhong.value,
+        huyPhong: this.huyPhong.current.value,
         checkIn: this.checkIn.current.value,
         checkOut: this.checkOut.current.value,
         khoangCachTT: this.khoangCachTT.current.value,
@@ -66,29 +66,29 @@ class GenerationInformation extends Component {
         soNguoi: this.soNguoi.current.value,
         soGiuongPhu: this.soGiuongPhu.current.value,
         //idGia: this.idGia.current.value,
-        trangThai: this.state.trangThai.toString(),
+        trangThai: "1",
       }
     )
       .then((response) => {
         console.log(response.data);
       })
       .catch((err) => console.log(err.response));
-    Axios.post(
-      "http://localhost:3000/api/partner/registrationDetail/createPrice",
-      {
-        firstPrice: this.firstPrice.current.value,
-        secondPrice: this.secondPrice.current.value,
-        thirdPrice: this.thirdPrice.current.value,
-      }
-    )
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((err) => console.log(err.response));
+    // Axios.post(
+    //   "http://localhost:33456/api/partner/registrationDetail/createPrice",
+    //   {
+    //     firstPrice: this.firstPrice.current.value,
+    //     secondPrice: this.secondPrice.current.value,
+    //     thirdPrice: this.thirdPrice.current.value,
+    //   }
+    // )
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((err) => console.log(err.response));
   };
   getListStyle = () => {
     Axios.post(
-      "http://localhost:3000/api/partner/registrationDetail/getListApartType",
+      "http://localhost:33456/api/partner/registrationDetail/getListApartType",
       {}
     ).then((response) => {
       this.state.lstStyle = response.data;
@@ -97,7 +97,7 @@ class GenerationInformation extends Component {
   };
   getListCountry = () => {
     Axios.post(
-      "http://localhost:3000/api/partner/registrationDetail/getListCountry",
+      "http://localhost:33456/api/partner/registrationDetail/getListCountry",
       {}
     ).then((response) => {
       this.state.lstCountry = response.data;
@@ -106,7 +106,7 @@ class GenerationInformation extends Component {
   };
   getListCity = () => {
     Axios.post(
-      "http://localhost:3000/api/partner/registrationDetail/getListCity",
+      "http://localhost:33456/api/partner/registrationDetail/getListCity",
       { countryId: this.state.idCountry }
     ).then((response) => {
       this.state.lstCity = response.data;
@@ -115,7 +115,7 @@ class GenerationInformation extends Component {
   };
   getListDistrict = () => {
     Axios.post(
-      "http://localhost:3000/api/partner/registrationDetail/getListDistrict",
+      "http://localhost:33456/api/partner/registrationDetail/getListDistrict",
       { cityId: this.state.idCity }
     ).then((response) => {
       this.state.lstDistrict = response.data;
@@ -1063,7 +1063,7 @@ class GenerationInformation extends Component {
                                     ref={this.huyPhong}
                                     name="mainContact,generalInformation,propertyDetails,previousNameBoolean"
                                     type="radio"
-                                    value="true"
+                                    value="1"
                                     id="radio-9"
                                   />
                                   <label className="" htmlFor="radio-9">
@@ -1078,7 +1078,7 @@ class GenerationInformation extends Component {
                                     ref={this.huyPhong}
                                     name="mainContact,generalInformation,propertyDetails,previousNameBoolean"
                                     type="radio"
-                                    value="false"
+                                    value="0"
                                     id="radio-10"
                                   />
                                   <label className="" htmlFor="radio-10">
@@ -1248,7 +1248,7 @@ class GenerationInformation extends Component {
               <div className="block css-contact">
                 <Link
                   to={
-                    "/registrationDetail/propertyFacilities" + this.state.idNha
+                    "/registrationDetail/propertyFacilities/" + this.idNha
                   }
                 >
                   <button

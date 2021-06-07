@@ -17,7 +17,7 @@ export default class RoomFacilities extends Component {
   getListAnimal = () => {
     axios
       .post(
-        "http://localhost:3000/api/partner/registrationDetail/getListRoomFacility",
+        "http://localhost:33456/api/partner/registrationDetail/getListRoomFacility",
         {}
       )
       .then((response) => {

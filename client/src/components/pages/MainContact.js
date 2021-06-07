@@ -24,7 +24,7 @@ class MainContact extends React.Component {
   }
   createContact = () => {
     Axios.post(
-      "http://localhost:3000/api/partner/registrationDetail/contactRegistration",
+      "http://localhost:33456/api/partner/registrationDetail/contactRegistration",
       {
         fullName: this.fullName.current.value,
         email: this.email.current.value,

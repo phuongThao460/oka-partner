@@ -27,7 +27,7 @@ class Rooms extends Component {
   }
   createRoom = () => {
     axios
-      .post("http://localhost:3000/api/partner/registrationDetail/createRoom", {
+      .post("http://localhost:33456/api/partner/registrationDetail/createRoom", {
         idApart: this.state.idApart.toString(),
         roomName: this.roomName.current.value,
         idStyleRoom: this.state.idRoom,
@@ -50,7 +50,7 @@ class Rooms extends Component {
   getListRoom = () => {
     axios
       .post(
-        "http://localhost:3000/api/partner/registrationDetail/getListRoomType",
+        "http://localhost:33456/api/partner/registrationDetail/getListRoomType",
         {}
       )
       .then((response) => {
@@ -61,7 +61,7 @@ class Rooms extends Component {
   getListBed = () => {
     axios
       .post(
-        "http://localhost:3000/api/partner/registrationDetail/getListBedType",
+        "http://localhost:33456/api/partner/registrationDetail/getListBedType",
         {}
       )
       .then((response) => {
