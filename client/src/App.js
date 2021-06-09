@@ -10,6 +10,7 @@ import RegistrationDetail from './components/pages/RegistrationDetail'
 import AddHomeBlock from './components/pages/AddHomeBlock'
 import ListHome from './components/pages/ListHome'
 import ListApartment from './components/pages/ListApartment'
+import StatusContent from './components/pages/StatusContent'
 //import PropertyFacilities from './components/pages/PropertyFacilities'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path='/AddHomeBlock/:idTk' component={AddHomeBlock}/>
           <Route path='/ListHome' component={ListHome}/>
           <Route path="/lstApartment" component={ListApartment} />
+          <Route path="/StatusContent" component={StatusContent} />
         </Switch>
       </Router>
       {/* <PropertyFacilities/> */}

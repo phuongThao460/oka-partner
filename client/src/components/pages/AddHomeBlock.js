@@ -43,7 +43,7 @@ class AddHomeBlock extends React.Component {
 								</div>
 								<div className="c-block css-btn-edit">
 									<div className="c-flexbox css-1bvc4cc">
-										<Link to="/ListHome">
+										<Link to="/StatusContent">
 											<button
 												type="button"
 												className="c-btn c-btn--theme-tera c-btn--variant-default c-btn--size-sm c-btn--has-icon css-7mp1uz btn btn--primary btn--small "
