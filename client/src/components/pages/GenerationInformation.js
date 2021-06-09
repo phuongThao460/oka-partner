@@ -48,6 +48,8 @@ class GenerationInformation extends Component {
   }
   createApartment = () => {
     Axios.post(
+      // Sửa cái này nè, đoi sv rồi
+      // dựa theo cái doc bà gửi sửa pk
       "http://localhost:33456/api/partner/registrationDetail/createApartment",
       {
         idNha: this.idNha.current.value,

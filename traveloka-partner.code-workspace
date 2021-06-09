@@ -13,6 +13,7 @@
 			"path": "backend"
 		},
 		{
+			"name": "config",
 			"path": "config"
 		}
 	],

@@ -1,22 +1,21 @@
 const { Sequelize } = require("sequelize");
 
-
-const userDBOptions = {
-	dialect: "mssql",
-	host: "localhost",
-	port: "1433",
-	database: "RENTALAPARTMENT",
-	username: "sa",
-	password: "12345@abc"
-};
 // const userDBOptions = {
 // 	dialect: "mssql",
-// 	host: "SQL5091.site4now.net",
+// 	host: "localhost",
 // 	port: "1433",
-// 	database: "db_a752df_rentalapartment",
-// 	username: "db_a752df_rentalapartment_admin",
-// 	password: "thu3c@nh0"
+// 	database: "RENTALAPARTMENT",
+// 	username: "sa",
+// 	password: "12345@abc"
 // };
+const userDBOptions = {
+	dialect: "mssql",
+	host: "SQL5050.site4now.net",
+	port: "1433",
+	database: "db_a752df_thuecanho",
+	username: "db_a752df_thuecanho_admin",
+	password: "thu3c@nh0",
+};
 /*
 class DatabaseContext{
     constructor(){
@@ -35,7 +34,7 @@ class DatabaseContext{
 */
 const initDBContext = () => {
 	const sequelize = new Sequelize(userDBOptions);
-	const context =  require("./models/init-models")(sequelize);
+	const context = require("./models/init-models")(sequelize);
 	console.log("Init DB thanh cong");
 	return context;
 };
