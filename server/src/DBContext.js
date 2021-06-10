@@ -1,21 +1,21 @@
 const { Sequelize } = require("sequelize");
 
-// const userDBOptions = {
-// 	dialect: "mssql",
-// 	host: "localhost",
-// 	port: "1433",
-// 	database: "RENTALAPARTMENT",
-// 	username: "sa",
-// 	password: "12345@abc"
-// };
 const userDBOptions = {
 	dialect: "mssql",
-	host: "SQL5050.site4now.net",
+	host: "localhost",
 	port: "1433",
-	database: "db_a752df_thuecanho",
-	username: "db_a752df_thuecanho_admin",
-	password: "thu3c@nh0",
+	database: "RENTALAPARTMENT",
+	username: "sa",
+	password: "12345@abc"
 };
+// const userDBOptions = {
+// 	dialect: "mssql",
+// 	host: "SQL5050.site4now.net",
+// 	port: "1433",
+// 	database: "db_a752df_thuecanho",
+// 	username: "db_a752df_thuecanho_admin",
+// 	password: "thu3c@nh0",
+// };
 /*
 class DatabaseContext{
     constructor(){

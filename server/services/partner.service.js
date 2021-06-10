@@ -76,11 +76,11 @@ module.exports = {
 				if (!username && !password) {
 					throw new MoleculerError("Không có người dùng này");
 				}
-				// Test 1: http://localhost:3000/api/partner/signin?username=a@gmail.com&password=123456
 				const checkUser = await dbContext.TAIKHOAN.findOne({
 					where: {
 						TEN_TAIKHOAN: username,
 						MATKHAU: password,
+						ROLE_TAIKHOAN: "Partner",
 					},
 				});
 				if (checkUser == null) {
@@ -201,12 +201,22 @@ module.exports = {
 						"Username and Password is incorrect"
 					);
 				}
-				//http://localhost:3000/api/partner/sigin/signin?username=b@gmail.com&password=1111111
+				const check = dbContext.TAIKHOAN.findOne({
+					where: {
+						TEN_TAIKHOAN: username,
+					},
+				});
+				if (check != null) {
+					return "Username is exits";
+				}
 				const createUser = await dbContext.TAIKHOAN.create({
 					TEN_TAIKHOAN: username,
 					MATKHAU: password,
+					ROLE_TAIKHOAN: "Partner",
 				});
 				return createUser;
+
+				//http://localhost:3000/api/partner/sigin/signin?username=b@gmail.com&password=1111111
 			},
 		},
 		getListStyle: {
@@ -329,14 +339,14 @@ module.exports = {
 				path: "/getTypeApart",
 			},
 			params: {
-				id: {type: "string"}
+				id: { type: "string" },
 			},
 			async handler(params, ...ctx) {
-				const {id} = params;
+				const { id } = params;
 				const type = dbContext.LOAINHA.findOne({
-					where:{
-						ID_LOAINHA: id
-					}
+					where: {
+						ID_LOAINHA: id,
+					},
 				});
 				return type.TEN_LOAINHA;
 			},
@@ -409,8 +419,8 @@ module.exports = {
 				idQuan: { type: "string" },
 				soNguoi: { type: "string" },
 				soGiuongPhu: { type: "string" },
-				gia: {type: "string"},
-				khuyenMai: {type: "string"},
+				gia: { type: "string" },
+				khuyenMai: { type: "string" },
 				trangThai: { type: "string" },
 			},
 			async handler({ action, params, meta, ...ctx }) {
@@ -454,7 +464,7 @@ module.exports = {
 					SO_GIUONGPHU: soGiuongPhu,
 					GIA: gia,
 					KHUYENMAI: khuyenMai,
-					ID_TRANGTHAI_NHA: trangThai
+					ID_TRANGTHAI_NHA: trangThai,
 				});
 				return createApartment;
 			},
@@ -476,7 +486,7 @@ module.exports = {
 				width: { type: "string" },
 				height: { type: "string" },
 				numberRooms: { type: "string" },
-				descript: {type: "string"}
+				descript: { type: "string" },
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const {
@@ -491,7 +501,7 @@ module.exports = {
 					width,
 					height,
 					numberRooms,
-					descript
+					descript,
 				} = params;
 
 				const create = await dbContext.PHONG.create({
@@ -552,6 +562,65 @@ module.exports = {
 					" " +
 					myCountry.TEN_QUOCGIA;
 				return output;
+			},
+		},
+		getListOrder: {
+			rest: {
+				method: "POST",
+				path: "/getListOrder",
+			},
+			params: {
+				idTk: { type: "string" },
+			},
+			async handler({ action, params, meta, ...ctx }) {
+				const { idTk } = params;
+				const intId = parseInt(idTk);
+
+				const getListOrder = await dbContext.TAIKHOAN.findAll({
+					attributes: ["ID_TAIKHOAN"],
+					where: {
+						ID_TAIKHOAN: intId,
+					},
+					include: [
+						{
+							model: dbContext.THONGTINCHUHO,
+							as: "THONGTINCHUHOs",
+							attributes: ["TEN_CHUHO"],
+							include: [
+								{
+									model: dbContext.NHA,
+									as: "NHAs",
+									attributes: ["ID_NHA"],
+									include: ["DATCANHOs"],
+								},
+							],
+						},
+					],
+				});
+				return getListOrder;
+			},
+		},
+		changeStatus: {
+			rest: {
+				method: "POST",
+				path: "/changeStatus",
+			},
+			params: {
+				idNha: { type: "string" },
+			},
+			async handler({ action, params, meta, ...ctx }) {
+				const { idNha } = params;
+				const getApat = await dbContext.NHA.findOne({
+					where: {
+						ID_NHA: idNha,
+					},
+				});
+				getApat.ID_TRANGTHAI_NHA = "3";
+				const change = await getApat.save({
+					fields: ["ID_TRANGTHAI_NHA"],
+				});
+
+				return change;
 			},
 		},
 		/**

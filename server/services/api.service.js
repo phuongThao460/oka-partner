@@ -2,7 +2,7 @@
 
 const ApiGateway = require("moleculer-web");
 const cors = require("cors");
-const corsOptions = {origin:"http://localhost:54332"};
+const corsOptions = {origin: ["http://localhost:54332", "http://localhost:5000"]};
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context
  * @typedef {import('http').IncomingMessage} IncomingRequest Incoming HTTP Request

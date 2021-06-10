@@ -84,7 +84,7 @@ class LoginForm extends Component {
               <p>
                 Not yet a partner?{" "}
                 <Link
-                  to="/home"
+                  to="/register"
                   style={{ color: "#5899d6", fontWeight: "600" }}
                 >
                   Register here

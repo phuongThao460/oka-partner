@@ -65,8 +65,7 @@ function initModels(sequelize) {
 	LOAIPHONG.hasMany(PHONG, { as: "PHONGs", foreignKey: "ID_LOAIPHONG"});
 	DANHGIA.belongsTo(NHA, { as: "THUTU_NHA_NHA", foreignKey: "THUTU_NHA"});
 	NHA.hasMany(DANHGIA, { as: "DANHGIa", foreignKey: "THUTU_NHA"});
-	DATCANHO.belongsTo(NHA, { as: "ID_NHA_NHA", foreignKey: "ID_NHA"});
-	NHA.hasMany(DATCANHO, { as: "DATCANHOs", foreignKey: "ID_NHA"});
+
 	PHONG.belongsTo(NHA, { as: "ID_NHA_NHA", foreignKey: "ID_NHA"});
 	NHA.hasMany(PHONG, { as: "PHONGs", foreignKey: "ID_NHA"});
 	STYLENHA.belongsTo(NHA, { as: "ID_NHA_NHA", foreignKey: "ID_NHA"});
@@ -83,6 +82,9 @@ function initModels(sequelize) {
 
 	THONGTINCHUHO.belongsTo(TAIKHOAN, { as: "ID_TAIKHOAN_TAIKHOAN", foreignKey: "ID_TAIKHOAN"});
 	TAIKHOAN.hasMany(THONGTINCHUHO, { as: "THONGTINCHUHOs", foreignKey: "ID_TAIKHOAN"});
+
+	DATCANHO.belongsTo(NHA, { as: "ID_NHA_NHA", foreignKey: "ID_NHA"});
+	NHA.hasMany(DATCANHO, { as: "DATCANHOs", foreignKey: "ID_NHA"});
 
 	HINHANH.belongsTo(PHONG, { as: "ID_PHONG_PHONG", foreignKey: "ID_PHONG"});
 	PHONG.hasMany(HINHANH, { as: "HINHANHs", foreignKey: "ID_PHONG"});

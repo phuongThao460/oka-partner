@@ -1,10 +1,33 @@
-import { Component } from "react";
+/* eslint-disable react/no-direct-mutation-state */
+import { Component, createRef } from "react";
 import "../../style/pages/RegisterForm.scss";
 import "antd/dist/antd.css";
 import { Link } from "react-router-dom";
-//import axios from "axios";
+import axios from "axios";
 
 class RegisterForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      idTk: 0,
+    };
+    this.loginNameRef = createRef();
+    this.loginPWRef = createRef();
+  }
+  confirmRegister = () => {
+    axios
+      .post("http://localhost:33456/api/partner/register", {
+        username: this.loginNameRef.current.value,
+        password: this.loginPWRef.current.value,
+      })
+      .then((result) => {
+        alert(result.data);
+        this.props.history.push("/");
+      })
+      .catch((error) => {
+        alert(error.data);
+      });
+  };
   render() {
     return (
       <div className="flexbox">
@@ -37,12 +60,26 @@ class RegisterForm extends Component {
                     },
                   ]}
                 ></input>
-                <button onClick={this.confirmLogin} id="btn-next">
+                <span className="form-label">Your password</span>
+                <i className="fa fa-lock fa-lg position-absolute icon"></i>
+                <input
+                  type="password"
+                  placeholder="Enter your password here"
+                  ref={this.loginPWRef}
+                ></input>
+                <button onClick={this.confirmRegister} id="btn-next">
                   Next
                 </button>
               </div>
+              <div className="line-spacing"></div>
               <p>
-                Already have an account? <Link to="/">Log in here</Link>
+                Already have an account?{" "}
+                <Link
+                  to="/"
+                  style={{ color: "rgb(88, 153, 214)", fontWeight: "600" }}
+                >
+                  Log in here
+                </Link>
               </p>
             </div>
           </div>

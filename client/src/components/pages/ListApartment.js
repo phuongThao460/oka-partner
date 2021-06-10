@@ -6,18 +6,20 @@ class ListApartment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idTk: document.location.pathname.substring(14),
+      idTk: 1, //document.location.pathname.substring(14),
       idTT: 0,
       idApart: 0,
+      idOrder: 0,
       lstApartment: [],
-      price: [],
+      lstInfor: [],
+      lstOrder: []
     };
     this.showApartment();
   }
   showApartment = () => {
     axios
       .post("http://localhost:33456/api/partner/showMainContact", {
-        idTk: this.state.idTk,
+        idTk: this.state.idTk.toString(),
       })
       .then((result) => {
         console.log(result.data[0].ID_TAIKHOAN);
