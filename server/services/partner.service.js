@@ -7,7 +7,7 @@
 //
 const { MoleculerError } = require("moleculer").Errors;
 const dbContext = require("../src/DBContext")();
-
+const { Op } = require("sequelize");
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context
  */
@@ -84,7 +84,7 @@ module.exports = {
 					},
 				});
 				if (checkUser == null) {
-					return "Không có người dùng này";
+					return "Username or Password not correct";
 				} else {
 					return checkUser.ID_TAIKHOAN;
 				}
@@ -133,7 +133,7 @@ module.exports = {
 					MASO_THUE: taxCode,
 					ID_TAIKHOAN: idTK,
 				});
-				return createUser;
+				return createUser.ID_TT_CHUHO;
 			},
 		},
 		showApartment: {
@@ -156,10 +156,108 @@ module.exports = {
 				return show;
 			},
 		},
-		showMainContact: {
+		showListApartmentStatus1: {
 			rest: {
 				method: "POST",
-				path: "/showMainContact",
+				path: "/showListApartmentStatus1",
+			},
+			params: {
+				idTk: { type: "string" },
+				idStatus: {type: "string"}
+			},
+			async handler({ action, params, meta, ...ctx }) {
+				const { idTk, idStatus } = params;
+				const intId = parseInt(idTk);
+				if(idStatus === "1"){
+					const status1 = dbContext.TAIKHOAN.findAll({
+						attributes: ["ID_TAIKHOAN"],
+						required: false,
+						where: {
+							ID_TAIKHOAN: intId,
+						},
+						include: [
+							{
+								model: dbContext.THONGTINCHUHO,
+								as: "THONGTINCHUHOs",
+								attributes: ["TEN_CHUHO"],
+								required: false,
+								include: [
+									{
+										model: dbContext.NHA,
+										required: false,
+										as: "NHAs",
+										where: {
+											ID_TRANGTHAI_NHA: "1",
+										},
+									},
+								],
+							},
+						],
+					});
+					return status1;
+				}
+				else if(idStatus === "2"){
+					const status1 = dbContext.TAIKHOAN.findAll({
+						attributes: ["ID_TAIKHOAN"],
+						required: false,
+						where: {
+							ID_TAIKHOAN: intId,
+						},
+						include: [
+							{
+								model: dbContext.THONGTINCHUHO,
+								as: "THONGTINCHUHOs",
+								attributes: ["TEN_CHUHO"],
+								required: false,
+								include: [
+									{
+										model: dbContext.NHA,
+										required: false,
+										as: "NHAs",
+										where: {
+											ID_TRANGTHAI_NHA: "2",
+										},
+									},
+								],
+							},
+						],
+					});
+					return status1;
+				}
+				else {
+					const status1 = dbContext.TAIKHOAN.findAll({
+						attributes: ["ID_TAIKHOAN"],
+						required: false,
+						where: {
+							ID_TAIKHOAN: intId,
+						},
+						include: [
+							{
+								model: dbContext.THONGTINCHUHO,
+								as: "THONGTINCHUHOs",
+								attributes: ["TEN_CHUHO"],
+								required: false,
+								include: [
+									{
+										model: dbContext.NHA,
+										required: false,
+										as: "NHAs",
+										where: {
+											ID_TRANGTHAI_NHA: "",
+										},
+									},
+								],
+							},
+						],
+					});
+					return status1;
+				}
+			},
+		},
+		showListApartmentStatus2: {
+			rest: {
+				method: "POST",
+				path: "/showListApartmentStatus2",
 			},
 			params: {
 				idTk: { type: "string" },
@@ -170,6 +268,7 @@ module.exports = {
 
 				const showTK = await dbContext.TAIKHOAN.findAll({
 					attributes: ["ID_TAIKHOAN"],
+					required: false,
 					where: {
 						ID_TAIKHOAN: intId,
 					},
@@ -178,7 +277,57 @@ module.exports = {
 							model: dbContext.THONGTINCHUHO,
 							as: "THONGTINCHUHOs",
 							attributes: ["TEN_CHUHO"],
-							include: ["NHAs"],
+							required: false,
+							include: [
+								{
+									model: dbContext.NHA,
+									as: "NHAs",
+									required: false,
+									where: {
+										ID_TRANGTHAI_NHA: "2",
+									},
+								},
+							],
+						},
+					],
+				});
+				return showTK;
+			},
+		},
+		showListApartmentStatus3: {
+			rest: {
+				method: "POST",
+				path: "/showListApartmentStatus3",
+			},
+			params: {
+				idTk: { type: "string" },
+			},
+			async handler({ action, params, meta, ...ctx }) {
+				const { idTk } = params;
+				const intId = parseInt(idTk);
+
+				const showTK = await dbContext.TAIKHOAN.findAll({
+					attributes: ["ID_TAIKHOAN"],
+					required: false,
+					where: {
+						ID_TAIKHOAN: intId,
+					},
+					include: [
+						{
+							model: dbContext.THONGTINCHUHO,
+							as: "THONGTINCHUHOs",
+							attributes: ["TEN_CHUHO"],
+							required: false,
+							include: [
+								{
+									model: dbContext.NHA,
+									as: "NHAs",
+									required: false,
+									where: {
+										ID_TRANGTHAI_NHA: "3",
+									},
+								},
+							],
 						},
 					],
 				});
@@ -191,32 +340,29 @@ module.exports = {
 				path: "/register",
 			},
 			params: {
-				username: { type: "string", min: 3 },
-				password: { type: "string", min: 6 },
+				username: { type: "string" },
+				password: { type: "string" },
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const { username, password } = params;
-				if (!username && !password) {
-					throw new MoleculerError(
-						"Username and Password is incorrect"
-					);
-				}
-				const check = dbContext.TAIKHOAN.findOne({
+				const check = await dbContext.TAIKHOAN.count({
 					where: {
-						TEN_TAIKHOAN: username,
+						TEN_TAIKHOAN: {
+							[Op.like]: username,
+						},
+						MATKHAU: password,
 					},
 				});
-				if (check != null) {
-					return "Username is exits";
+				if (check > 0) {
+					return "Username exited";
+				} else {
+					const createAccount = await dbContext.TAIKHOAN.create({
+						TEN_TAIKHOAN: username,
+						MATKHAU: password,
+						ROLE_TAIKHOAN: "Partner",
+					});
+					return createAccount.ID_TAIKHOAN;
 				}
-				const createUser = await dbContext.TAIKHOAN.create({
-					TEN_TAIKHOAN: username,
-					MATKHAU: password,
-					ROLE_TAIKHOAN: "Partner",
-				});
-				return createUser;
-
-				//http://localhost:3000/api/partner/sigin/signin?username=b@gmail.com&password=1111111
 			},
 		},
 		getListStyle: {
@@ -600,10 +746,10 @@ module.exports = {
 				return getListOrder;
 			},
 		},
-		changeStatus: {
+		changeActive: {
 			rest: {
 				method: "POST",
-				path: "/changeStatus",
+				path: "/changeActive",
 			},
 			params: {
 				idNha: { type: "string" },
@@ -615,12 +761,49 @@ module.exports = {
 						ID_NHA: idNha,
 					},
 				});
-				getApat.ID_TRANGTHAI_NHA = "3";
+				getApat.ID_TRANGTHAI_NHA = "2";
 				const change = await getApat.save({
 					fields: ["ID_TRANGTHAI_NHA"],
 				});
 
 				return change;
+			},
+		},
+		changeUnactive: {
+			rest: {
+				method: "POST",
+				path: "/changeActive",
+			},
+			params: {
+				idNha: { type: "string" },
+			},
+			async handler({ action, params, meta, ...ctx }) {
+				const { idNha } = params;
+				const getApat = await dbContext.NHA.findOne({
+					where: {
+						ID_NHA: idNha,
+					},
+				});
+				getApat.ID_TRANGTHAI_NHA = "1";
+				const change = await getApat.save({
+					fields: ["ID_TRANGTHAI_NHA"],
+				});
+
+				return change;
+			},
+		},
+		findApartByStatus: {
+			rest: {
+				method: "POST",
+				path: "/findApartByStatus",
+			},
+			async handler({ action, params, meta, ...ctx }) {
+				const find = await dbContext.NHA.findAll({
+					where: {
+						ID_TRANGTHAI_NHA: "1",
+					},
+				});
+				return find;
 			},
 		},
 		/**

@@ -38,10 +38,10 @@ class MainContact extends React.Component {
         idTK: this.state.idTk.toString(),
       }
     ).then((response) => {
-      // this.state.idTT = response.data;
-      // this.setState(this);
-      console.log(this.state.idTk);
-      this.props.history.push("/registrationDetail/generationInformation/" + this.state.idTk);
+      this.state.idTT = response.data;
+      this.setState(this);
+      console.log(this.state.idTT);
+      this.props.history.push("/registrationDetail/generationInformation/" + this.state.idTT);
     }).catch(err => console.log(err.response));
   };
   setName = (e) => {
@@ -510,30 +510,6 @@ class MainContact extends React.Component {
                             <span className="label-required">*</span>
                           </label>
                         </div>
-                        <div className="box-column css-bxcol2">
-                          <div className="input-group css-inp">
-                            <div className="input-group__inner">
-                              <div className="input control-container css-radio-gr">
-                                <div className="__inner">
-                                  <div className="__padder">
-                                    <input
-                                      ref={this.gender}
-                                      touched="true"
-                                      type="text"
-                                      className="css-txt -control"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <ul className="css-error --simple">
-                              <li>
-                                <span>This section must be filled.</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      {/*
                         <div
                           className="c-column css-bxcol2"
                           style={{ marginTop: "-4px" }}
@@ -548,7 +524,7 @@ class MainContact extends React.Component {
                                 name="mainContact,previousNameBoolean"
                                 ref={this.gender}
                                 type="radio"
-                                value="Female"
+                                value="1"
                                 id="radio-9"
                               />
                               <label className="" htmlFor="radio-9">
@@ -563,7 +539,7 @@ class MainContact extends React.Component {
                                 name="mainContact,previousNameBoolean"
                                 ref={this.gender}
                                 type="radio"
-                                value="Male"
+                                value="0"
                                 id="radio-10"
                               />
                               <label className="" htmlFor="radio-10">
@@ -571,7 +547,7 @@ class MainContact extends React.Component {
                               </label>
                             </div>
                           </div>
-                        </div> */}
+                        </div>
                       </div>
                       <div
                         className="line css-line"

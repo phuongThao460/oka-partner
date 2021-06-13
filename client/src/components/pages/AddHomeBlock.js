@@ -1,6 +1,5 @@
 /* eslint-disable react/no-direct-mutation-state */
 import React from "react";
-import { Link } from "react-router-dom";
 import "../../style/pages/AddHomeBlock.css";
 import Navbar from "../paner-form/Navbar";
 
@@ -8,18 +7,22 @@ class AddHomeBlock extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			idtk: 0,
+			idTk: document.location.pathname.substring(14),
 		}
 	}
 	
 	handleSubmit = () => {
-		this.state.idtk = document.location.pathname.substring(14);
 		this.setState(this);
 		if(this.state.idtk !== "0"){
-			this.props.history.push("/registrationDetail/mainContact/" + this.state.idtk); 
-			//this.props.history.push("/lstApartment/" + this.state.idTk); 
+			this.props.history.push("/registrationDetail/mainContact/" + this.state.idtk);  
 		}
 	};
+	showList = () => {
+		this.setState(this);
+		if(this.state.idtk !== "0"){ 
+			this.props.history.push("/lstApartment/" + this.state.idTk); 
+		}
+	}
 	render(){
 		return (
 			<div>
@@ -43,8 +46,8 @@ class AddHomeBlock extends React.Component {
 								</div>
 								<div className="c-block css-btn-edit">
 									<div className="c-flexbox css-1bvc4cc">
-										<Link to="/ListHome">
 											<button
+												onClick={() => this.showList()}
 												type="button"
 												className="c-btn c-btn--theme-tera c-btn--variant-default c-btn--size-sm c-btn--has-icon css-7mp1uz btn btn--primary btn--small "
 											>
@@ -56,7 +59,6 @@ class AddHomeBlock extends React.Component {
 													<span>Your Apartments</span>
 												</span>
 											</button>
-										</Link>
 									</div>
 								</div>
 							</div>
