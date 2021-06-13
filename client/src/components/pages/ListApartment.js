@@ -16,7 +16,7 @@ class ListApartment extends React.Component {
       idTT: 0,
       idApart: 0,
       idOrder: 0,
-      idStatus1: ["1", "2" ,"3"],
+      idStatus1: ["1", "2", "3"],
       // idStatus2: "2",
       // idStatus3: "3",
       lstApartmentS1: [],
@@ -26,10 +26,10 @@ class ListApartment extends React.Component {
     };
     this.state.idStatus1.forEach((item) => {
       bodyFormData.append("idStatus1[]", item);
-    })
-    this.showApartmentStatus1(this.state.bodyFormData);
-    //this.showApartmentStatus1(this.state.idStatus2);
-    //this.showApartmentStatus1(this.state.idStatus3);
+    });
+    this.showApartmentStatus1();
+    this.showApartmentStatus2();
+    this.showApartmentStatus3();
   }
   onChange = (e) => {
     this.setState({ size: e.target.value });
@@ -38,23 +38,12 @@ class ListApartment extends React.Component {
     axios
       .post("http://localhost:33456/api/partner/showListApartmentStatus1", {
         idTk: this.state.idTk.toString(),
-        idStatus: bodyFormData
+        idStatus: bodyFormData,
       })
       .then((result) => {
         console.log(result.data[0].ID_TAIKHOAN);
-        if(this.state.idStatus1[0]){
-          console.log(this.state.idStatus1[0]);
-          this.state.lstApartmentS1 = result.data[0].THONGTINCHUHOs[0].NHAs;
-          this.setState(this);
-        }
-        if(this.state.idStatus1[1]){
-          this.state.lstApartmentS2 = result.data[0].THONGTINCHUHOs[0].NHAs;
-          this.setState(this);
-        }
-        if(this.state.idStatus1[2]){
-          this.state.lstApartmentS3 = result.data[0].THONGTINCHUHOs[0].NHAs;
-          this.setState(this);
-        }
+        this.state.lstApartmentS1 = result.data[0].THONGTINCHUHOs[0].NHAs;
+        this.setState(this);
       });
   };
   showApartmentStatus2 = () => {
@@ -65,7 +54,6 @@ class ListApartment extends React.Component {
       .then((result) => {
         console.log(result.data[0].ID_TAIKHOAN);
         this.state.lstApartmentS2 = result.data[0].THONGTINCHUHOs[0].NHAs;
-        
         this.setState(this);
       });
   };
@@ -81,26 +69,41 @@ class ListApartment extends React.Component {
       });
   };
   changeActive = (idNha) => {
-    axios.post("http://localhost:33456/api/partner/changeActive",{
-      idNha: idNha.toString()
-    }).then((result) => {
-      console.log(result.data);
-    }).catch((err) => console.log(err.result));
-  }
+    axios
+      .post("http://localhost:33456/api/partner/changeActive", {
+        idNha: idNha.toString(),
+      })
+      .then((result) => {
+        console.log(result.data);
+      })
+      .catch((err) => console.log(err.result));
+  };
   changeUnactive = (idNha) => {
-    axios.post("http://localhost:33456/api/partner/changeUnactive",{
-      idNha: idNha.toString()
-    }).then((result) => {
-      console.log(result.data);
-    }).catch((err) => console.log(err.result));
-  }
+    axios
+      .post("http://localhost:33456/api/partner/changeUnactive", {
+        idNha: idNha.toString(),
+      })
+      .then((result) => {
+        console.log(result.data);
+      })
+      .catch((err) => console.log(err.result));
+  };
   render() {
     const { size } = this.state;
     return (
       <>
         <Navbar />
-        <Tabs defaultActiveKey="1" type="card" size={size} style={{justifyContent: "center",paddingLeft: "185px",paddingTop: "20px"}}>
-          <TabPane tab="Unactive" key={this.state.idStatus1[0]}>
+        <Tabs
+          defaultActiveKey="1"
+          type="card"
+          size={size}
+          style={{
+            justifyContent: "center",
+            paddingLeft: "185px",
+            paddingTop: "20px",
+          }}
+        >
+          <TabPane tab="Unactive" key="1">
             <div key={this.state.idTk}>
               {this.state.lstApartmentS1.map((item) => (
                 <div key={item.ID_TAIKHOAN}>
@@ -109,16 +112,17 @@ class ListApartment extends React.Component {
                       <p>ma nha: {item.ID_NHA}</p>
                       <p>loai nha: {item.ID_LOAINHA}</p>
                       <p>ten nha: {item.TEN_NHA}</p>
-                      <button onClick={() => this.changeActive(item.ID_NHA)}>Active</button>
+                      <button onClick={() => this.changeActive(item.ID_NHA)}>
+                        Active
+                      </button>
                       <p>------------------------------------------------</p>
                     </div>
                   </div>
                 </div>
               ))}
-              
             </div>
           </TabPane>
-          <TabPane tab="Active" key={this.state.idStatus1[1]}>
+          <TabPane tab="Active" key="2">
             <div key={this.state.idTk}>
               {this.state.lstApartmentS2.map((item) => (
                 <div key={item.ID_TAIKHOAN}>
@@ -127,7 +131,9 @@ class ListApartment extends React.Component {
                       <p>ma nha: {item.ID_NHA}</p>
                       <p>loai nha: {item.ID_LOAINHA}</p>
                       <p>ten nha: {item.TEN_NHA}</p>
-                      <button onClick={() => this.changeUnactive(item.ID_NHA)}>Unactive</button>
+                      <button onClick={() => this.changeUnactive(item.ID_NHA)}>
+                        Unactive
+                      </button>
                       <p>------------------------------------------------</p>
                     </div>
                   </div>
@@ -135,7 +141,7 @@ class ListApartment extends React.Component {
               ))}
             </div>
           </TabPane>
-          <TabPane tab="Hired" key={this.state.idStatus1[2]}>
+          <TabPane tab="Hired" key="3">
             <div key={this.state.idTk}>
               {this.state.lstApartmentS3.map((item) => (
                 <div key={item.ID_TAIKHOAN}>

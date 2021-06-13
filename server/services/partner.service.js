@@ -163,95 +163,36 @@ module.exports = {
 			},
 			params: {
 				idTk: { type: "string" },
-				idStatus: {type: "string"}
 			},
 			async handler({ action, params, meta, ...ctx }) {
-				const { idTk, idStatus } = params;
+				const { idTk } = params;
 				const intId = parseInt(idTk);
-				if(idStatus === "1"){
-					const status1 = dbContext.TAIKHOAN.findAll({
-						attributes: ["ID_TAIKHOAN"],
-						required: false,
-						where: {
-							ID_TAIKHOAN: intId,
-						},
-						include: [
-							{
-								model: dbContext.THONGTINCHUHO,
-								as: "THONGTINCHUHOs",
-								attributes: ["TEN_CHUHO"],
-								required: false,
-								include: [
-									{
-										model: dbContext.NHA,
-										required: false,
-										as: "NHAs",
-										where: {
-											ID_TRANGTHAI_NHA: "1",
-										},
+				const status1 = dbContext.TAIKHOAN.findAll({
+					attributes: ["ID_TAIKHOAN"],
+					required: false,
+					where: {
+						ID_TAIKHOAN: intId,
+					},
+					include: [
+						{
+							model: dbContext.THONGTINCHUHO,
+							as: "THONGTINCHUHOs",
+							attributes: ["TEN_CHUHO"],
+							required: false,
+							include: [
+								{
+									model: dbContext.NHA,
+									required: false,
+									as: "NHAs",
+									where: {
+										ID_TRANGTHAI_NHA: "1",
 									},
-								],
-							},
-						],
-					});
-					return status1;
-				}
-				else if(idStatus === "2"){
-					const status1 = dbContext.TAIKHOAN.findAll({
-						attributes: ["ID_TAIKHOAN"],
-						required: false,
-						where: {
-							ID_TAIKHOAN: intId,
+								},
+							],
 						},
-						include: [
-							{
-								model: dbContext.THONGTINCHUHO,
-								as: "THONGTINCHUHOs",
-								attributes: ["TEN_CHUHO"],
-								required: false,
-								include: [
-									{
-										model: dbContext.NHA,
-										required: false,
-										as: "NHAs",
-										where: {
-											ID_TRANGTHAI_NHA: "2",
-										},
-									},
-								],
-							},
-						],
-					});
-					return status1;
-				}
-				else {
-					const status1 = dbContext.TAIKHOAN.findAll({
-						attributes: ["ID_TAIKHOAN"],
-						required: false,
-						where: {
-							ID_TAIKHOAN: intId,
-						},
-						include: [
-							{
-								model: dbContext.THONGTINCHUHO,
-								as: "THONGTINCHUHOs",
-								attributes: ["TEN_CHUHO"],
-								required: false,
-								include: [
-									{
-										model: dbContext.NHA,
-										required: false,
-										as: "NHAs",
-										where: {
-											ID_TRANGTHAI_NHA: "",
-										},
-									},
-								],
-							},
-						],
-					});
-					return status1;
-				}
+					],
+				});
+				return status1;
 			},
 		},
 		showListApartmentStatus2: {
@@ -721,9 +662,29 @@ module.exports = {
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
 				const intId = parseInt(idTk);
-
+				// const getIDAccount = await dbContext.TAIKHOAN.findOne({
+				// 	where:
+				// 		{ ID_TAIKHOAN: intId },
+				// });
+				// const getIDPartner = await dbContext.THONGTINCHUHO.findAll({
+				// 	where: {
+				// 		ID_TAIKHOAN: getIDAccount.ID_TAIKHOAN,
+				// 	},
+				// });
+				// const getIDNha = await dbContext.NHA.findOne({
+				// 	where: {
+				// 		ID_TT_CHUHO: getIDPartner.ID_TT_CHUHO
+				// 	},
+				// });
+				// const getListOrder = await dbContext.DATCANHO.findAll({
+				// 	where: {
+				// 		ID_NHA: getIDNha.ID_NHA
+				// 	}
+				// });
+				// return getListOrder;
 				const getListOrder = await dbContext.TAIKHOAN.findAll({
 					attributes: ["ID_TAIKHOAN"],
+					required: false,
 					where: {
 						ID_TAIKHOAN: intId,
 					},
@@ -732,11 +693,13 @@ module.exports = {
 							model: dbContext.THONGTINCHUHO,
 							as: "THONGTINCHUHOs",
 							attributes: ["TEN_CHUHO"],
+							required: false,
 							include: [
 								{
 									model: dbContext.NHA,
 									as: "NHAs",
 									attributes: ["ID_NHA"],
+									required: false,
 									include: ["DATCANHOs"],
 								},
 							],

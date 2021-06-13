@@ -23,13 +23,13 @@ class Order extends React.Component {
       }).catch(err => console.log(err));
     }
   render(){
+    const { lstOrder } = this.state;
     return (
-      <div key={this.state.idTk}>
-        {this.state.lstOrder.map((item) =>(
-          <div value={item.ID_TAIKHOAN}>
+      <div>
+        { lstOrder.map((item) =>(
+          <div key={item.ID_TAIKHOAN}>
             <div value={item.ID_TT_CHUHO}>
-              {item.TEN_CHUHO}
-              <div value={item.THUTU_NHA}>
+              <div value={item.ID_NHA}>
                 <div value={item.ID_DATCANHO}>
                   <p>ID_DATCANHO: {item.ID_DATCANHO}</p>
                   <p>ID_TT_KHACHHANG: {item.ID_TT_KHACHHANG}</p>
