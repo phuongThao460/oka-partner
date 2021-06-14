@@ -34,11 +34,10 @@ class ListApartment extends React.Component {
   onChange = (e) => {
     this.setState({ size: e.target.value });
   };
-  showApartmentStatus1 = (bodyFormData) => {
+  showApartmentStatus1 = () => {
     axios
       .post("http://localhost:33456/api/partner/showListApartmentStatus1", {
         idTk: this.state.idTk.toString(),
-        idStatus: bodyFormData,
       })
       .then((result) => {
         console.log(result.data[0].ID_TAIKHOAN);

@@ -662,51 +662,29 @@ module.exports = {
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
 				const intId = parseInt(idTk);
-				// const getIDAccount = await dbContext.TAIKHOAN.findOne({
-				// 	where:
-				// 		{ ID_TAIKHOAN: intId },
-				// });
-				// const getIDPartner = await dbContext.THONGTINCHUHO.findAll({
-				// 	where: {
-				// 		ID_TAIKHOAN: getIDAccount.ID_TAIKHOAN,
-				// 	},
-				// });
-				// const getIDNha = await dbContext.NHA.findOne({
-				// 	where: {
-				// 		ID_TT_CHUHO: getIDPartner.ID_TT_CHUHO
-				// 	},
-				// });
-				// const getListOrder = await dbContext.DATCANHO.findAll({
-				// 	where: {
-				// 		ID_NHA: getIDNha.ID_NHA
-				// 	}
-				// });
-				// return getListOrder;
-				const getListOrder = await dbContext.TAIKHOAN.findAll({
-					attributes: ["ID_TAIKHOAN"],
-					required: false,
-					where: {
-						ID_TAIKHOAN: intId,
-					},
-					include: [
-						{
-							model: dbContext.THONGTINCHUHO,
-							as: "THONGTINCHUHOs",
-							attributes: ["TEN_CHUHO"],
-							required: false,
-							include: [
-								{
-									model: dbContext.NHA,
-									as: "NHAs",
-									attributes: ["ID_NHA"],
-									required: false,
-									include: ["DATCANHOs"],
-								},
-							],
-						},
-					],
+				const getIDAccount = await dbContext.TAIKHOAN.findOne({
+					where:
+						{ ID_TAIKHOAN: intId },
 				});
-				return getListOrder;
+				const getIDPartner = await dbContext.THONGTINCHUHO.findAll({
+					attributes: ["ID_TT_CHUHO"],
+					where: {
+						ID_TAIKHOAN: getIDAccount.ID_TAIKHOAN,
+					},
+					include:[{
+						model: dbContext.NHA,
+						as: "NHAs",
+						attributes: ["THUTU_NHA"],
+						required: false,
+						include:[{
+							model: dbContext.DATCANHO,
+							as: "DATCANHOs",
+							required: false,
+							attributes: ["ID_DATCANHO","ID_TT_KHACHHANG","NGAYDAT","CHECKIN","TONGTIEN_GIUONGPHU"]
+						}]
+					}]
+				});				
+				return getIDPartner;
 			},
 		},
 		changeActive: {
