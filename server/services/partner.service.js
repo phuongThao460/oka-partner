@@ -136,6 +136,25 @@ module.exports = {
 				return createUser.ID_TT_CHUHO;
 			},
 		},
+		checkContactExist: {
+			rest: {
+				method: "POST",
+				path: "/checkContactExist"
+			},
+			params:{
+				idTk: {type: "string"}
+			},
+			async handler({action,params,meta, ...ctx}){
+				const { idTk } = params;
+				const intId = idTk;
+				const checkID = await dbContext.THONGTINCHUHO.findOne({
+					where:{
+						ID_TAIKHOAN: intId,
+					}
+				});
+				return checkID.ID_TT_CHUHO;
+			}
+		},
 		showApartment: {
 			rest: {
 				method: "POST",

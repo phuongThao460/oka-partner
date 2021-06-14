@@ -11,6 +11,4 @@ function StatusContent() {
         </div>
     )
 }
-
-
-export default StatusContent
+export default StatusContent;

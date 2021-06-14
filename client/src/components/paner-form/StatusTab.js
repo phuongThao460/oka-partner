@@ -2,7 +2,7 @@ import { useState } from "react";
 import '../../style/pages/Status.css'
 import Cards from "../paner-form/TabCardsHome";
 
-function Tabs() {
+function StatusTab() {
   const [toggleState, setToggleState] = useState(1);
 
   const toggleTab = (index) => {
@@ -62,5 +62,4 @@ function Tabs() {
     </div>
   );
 }
-
-export default Tabs;
+export default StatusTab;

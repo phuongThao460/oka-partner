@@ -7,7 +7,6 @@ import "antd/dist/antd.css";
 import { Tabs } from "antd";
 
 const { TabPane } = Tabs;
-const bodyFormData = new FormData();
 class ListApartment extends React.Component {
   constructor(props) {
     super(props);
@@ -16,17 +15,11 @@ class ListApartment extends React.Component {
       idTT: 0,
       idApart: 0,
       idOrder: 0,
-      idStatus1: ["1", "2", "3"],
-      // idStatus2: "2",
-      // idStatus3: "3",
       lstApartmentS1: [],
       lstApartmentS2: [],
       lstApartmentS3: [],
       size: "small",
     };
-    this.state.idStatus1.forEach((item) => {
-      bodyFormData.append("idStatus1[]", item);
-    });
     this.showApartmentStatus1();
     this.showApartmentStatus2();
     this.showApartmentStatus3();
