@@ -46,6 +46,10 @@ class AddHomeBlock extends React.Component {
 								</div>
 								<div className="c-block css-btn-edit">
 									<div className="c-flexbox css-1bvc4cc">
+<<<<<<< HEAD
+=======
+										<Link to="/StatusContent">
+>>>>>>> c280375f8b29d1d56fb7e19d515dcaa690b2c378
 											<button
 												onClick={() => this.showList()}
 												type="button"
