@@ -699,7 +699,7 @@ module.exports = {
 							model: dbContext.DATCANHO,
 							as: "DATCANHOs",
 							required: false,
-							attributes: ["ID_DATCANHO","ID_TT_KHACHHANG","NGAYDAT","CHECKIN","TONGTIEN_GIUONGPHU"]
+							attributes: ["ID_DATCANHO","ID_TT_KHACHHANG","NGAYDAT","CHECKIN","TONGTIEN_GIUONGPHU","ID_NHA"]
 						}]
 					}]
 				});				
@@ -732,7 +732,7 @@ module.exports = {
 		changeUnactive: {
 			rest: {
 				method: "POST",
-				path: "/changeActive",
+				path: "/changeUnactive",
 			},
 			params: {
 				idNha: { type: "string" },
@@ -752,18 +752,27 @@ module.exports = {
 				return change;
 			},
 		},
-		findApartByStatus: {
+		changeHired: {
 			rest: {
 				method: "POST",
-				path: "/findApartByStatus",
+				path: "/changeHired",
+			},
+			params: {
+				idNha: { type: "string" },
 			},
 			async handler({ action, params, meta, ...ctx }) {
-				const find = await dbContext.NHA.findAll({
+				const { idNha } = params;
+				const getApat = await dbContext.NHA.findOne({
 					where: {
-						ID_TRANGTHAI_NHA: "1",
+						ID_NHA: idNha,
 					},
 				});
-				return find;
+				getApat.ID_TRANGTHAI_NHA = "3";
+				const change = await getApat.save({
+					fields: ["ID_TRANGTHAI_NHA"],
+				});
+
+				return change;
 			},
 		},
 		/**

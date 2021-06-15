@@ -1,5 +1,5 @@
 import { useState } from "react";
-import '../../style/pages/Status.css'
+//import '../../style/pages/Status.css'
 import Cards from "../paner-form/TabCardsHome";
 
 function StatusTab() {

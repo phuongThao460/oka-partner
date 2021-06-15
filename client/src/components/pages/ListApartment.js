@@ -60,6 +60,10 @@ class ListApartment extends React.Component {
         this.setState(this);
       });
   };
+  getOrder = () => {
+    this.setState(this);
+    this.props.history.push("/lstOrder/" + this.state.idTk);
+  }
   changeActive = (idNha) => {
     axios
       .post("http://localhost:33456/api/partner/changeActive", {
@@ -85,6 +89,7 @@ class ListApartment extends React.Component {
     return (
       <>
         <Navbar />
+        <button onClick={() => this.getOrder()}>Order</button>
         <Tabs
           defaultActiveKey="1"
           type="card"

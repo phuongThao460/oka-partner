@@ -5,7 +5,7 @@ class Order extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idTk: 1,
+      idTk: document.location.pathname.substring(10),
       idOrder: 0,
       lstOrder: [],
     };
@@ -18,28 +18,40 @@ class Order extends React.Component {
       })
       .then((result) => {
         console.log(result.data[0].ID_TT_CHUHO);
-        this.state.lstOrder = result.data[0].NHAs[0].DATCANHOs;
+        this.state.lstOrder = result.data[0].NHAs;
         this.setState(this);
       })
       .catch((err) => console.log(err));
+  };
+  changeHired = (idNha) => {
+    axios
+      .post("http://localhost:33456/api/partner/changeHired", {
+        idNha: idNha.toString(),
+      })
+      .then((result) => {
+        console.log(result.data);
+      })
+      .catch((err) => console.log(err.result));
   };
   render() {
     const { lstOrder } = this.state;
     return (
       <div>
-        {lstOrder.map(item => (
-          <div>
-            <div key={item.ID_TT_CHUHO}>
-              <div value={item.THUTU_NHA}>
-                <div value={item.ID_DATCANHO}>
-                  <p>ID_DATCANHO: {item.ID_DATCANHO}</p>
-                  <p>ID_TT_KHACHHANG: {item.ID_TT_KHACHHANG}</p>
-                  <p>NGAYDAT: {item.NGAYDAT}</p>
-                  <p>CHECKIN: {item.CHECKIN}</p>
-                  <p>TONGTIEN_GIUONGPHU: {item.TONGTIEN_GIUONGPHU}</p>
+        {lstOrder.map((item) => (
+          <div key={item.ID_TT_CHUHO}>
+            <div value={item.THUTU_NHA}>
+              {item["DATCANHOs"].map((index) => (
+                <div key={index.ID_DATCANHO}>
+                  <p>ID_DATCANHO: {index.ID_DATCANHO}</p>
+                  <p>ID_TT_KHACHHANG: {index.ID_TT_KHACHHANG}</p>
+                  <p>ID_NHA: {index.ID_NHA}</p>
+                  <p>NGAYDAT: {index.NGAYDAT}</p>
+                  <p>CHECKIN: {index.CHECKIN}</p>
+                  <p>TONGTIEN_GIUONGPHU: {index.TONGTIEN_GIUONGPHU}</p>
+                  <button onClick={() => this.changeHired(index.ID_NHA)}>Submit</button>
                   <p>------------------------------------------------</p>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         ))}
