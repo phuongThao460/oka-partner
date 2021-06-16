@@ -1,24 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "../../style/paner-form/Navbar.css";
 import { Button, ButtonLogIn } from "../paner-form/Button";
-function Navbar() {
-  const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
+class Navbar extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      click: false,
+      logged: false,
+    }
+  }
+  handleClick = () => this.setState(!this.state.click);
+  closeMobileMenu = () => this.setState(false);
+  render(){
     return (
       <>
         <nav className="navbar">
           <div className="navbar-container">
-            <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+            <Link to="/" className="navbar-logo" onClick={this.handleClick}>
               OKA Tera <i className="fab fa-typo3" />
             </Link>
-            <div className="menu-icon" onClick={handleClick}>
-              <i className={click ? "fas fa-times" : "fas fa-bars"} />
+            <div className="menu-icon" onClick={this.handleClick}>
+              <i className={this.state.click ? "fas fa-times" : "fas fa-bars"} />
             </div>
-            <ul className={click ? "nav-menu active" : "nav-menu"}>
+            <ul className={this.state.click ? "nav-menu active" : "nav-menu"}>
               <li className="nav-item">
-                <Link to="/home" className="nav-links" onClick={closeMobileMenu}>
+                <Link to="/home" className="nav-links" onClick={this.closeMobileMenu}>
                   Home
                 </Link>
               </li>
@@ -26,7 +33,7 @@ function Navbar() {
                 <Link
                   to="/services"
                   className="nav-links"
-                  onClick={closeMobileMenu}
+                  onClick={this.closeMobileMenu}
                 >
                   Services
                 </Link>
@@ -35,7 +42,7 @@ function Navbar() {
                 <Link
                   to="/products"
                   className="nav-links"
-                  onClick={closeMobileMenu}
+                  onClick={this.closeMobileMenu}
                 >
                   Products
                 </Link>
@@ -44,19 +51,31 @@ function Navbar() {
                 <Link
                   to="/sign-up"
                   className="nav-links-mobile"
-                  onClick={closeMobileMenu}
+                  onClick={this.closeMobileMenu}
                 >
                   Sign Up
                 </Link>
               </li>
             </ul>
             <div className="verticalLine"></div>
-            <ButtonLogIn buttonStype="btn--secondary">Log In</ButtonLogIn>
-            <Button buttonStype="btn--outline">Register Your Accommodation</Button>
+            {!this.state.logged && this.props.isLogged ? (
+              <>
+                Hi
+              </>
+            ) : (
+              <>
+                <ButtonLogIn buttonStype="btn--secondary">Log In</ButtonLogIn>
+                <Button buttonStype="btn--outline">
+                  Register Your Accommodation
+                </Button>
+              </>
+            )}
           </div>
         </nav>
       </>
     );
+  }
+  
 }
 
 export default Navbar;

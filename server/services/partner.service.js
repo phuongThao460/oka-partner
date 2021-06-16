@@ -775,6 +775,27 @@ module.exports = {
 				return change;
 			},
 		},
+		getDetailOrder:{
+			rest:{
+				method: "POST",
+				path: "/getDetailOrder"
+			},
+			params: {
+				idOrder: {type: "string"}
+			},
+			async handler({action, params, meta, ...ctx}){
+				const { idOrder } = params;
+				const intId = idOrder;
+
+				const cusinfo = await dbContext.DATCANHO.findOne({
+					where: {
+						ID_DATCANHO: intId,
+					},
+					include:["ID_TT_KHACHHANG_THONGTINKHACHHANG"]
+				});
+				return cusinfo;
+			}
+		},
 		/**
 		 * Welcome, a username
 		 *
