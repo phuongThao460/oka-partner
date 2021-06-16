@@ -33,7 +33,7 @@ class OrderDetail extends React.Component {
       })
       .then((result) => {
         console.log(result.data);
-        this.props.history.push("/lstApartment/");
+        this.props.history.push("/lstApartment/" + localStorage.getItem("idTk"));
       })
       .catch((err) => console.log(err.result));
   };

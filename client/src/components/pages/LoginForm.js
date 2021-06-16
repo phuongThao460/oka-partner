@@ -21,7 +21,8 @@ class LoginForm extends Component {
       })
       .then((result) => {
         this.state.idTk = result.data;
-        localStorage.setItem("idTk", result.data);
+        window.localStorage.setItem("idTk", result.data);
+        window.localStorage.setItem("username", this.loginNameRef.current.value);
         this.setState(this);
         if(this.state.id !== "0"){
           this.props.history.push("/AddHomeBlock/" + this.state.idTk); 
