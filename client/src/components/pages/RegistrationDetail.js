@@ -3,9 +3,6 @@ import React from "react";
 import "../../RegistrationDetail.css";
 import Navbar from "../paner-form/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
-import ListHome from "../pages/ListHome";
-
 import MainContact from "../pages/MainContact";
 import GenerationInformation from "../pages/GenerationInformation";
 import PropertyFacilities from "../pages/PropertyFacilities";

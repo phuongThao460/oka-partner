@@ -12,7 +12,7 @@ import RegistrationDetail from "./components/pages/RegistrationDetail";
 import ListApartment from "./components/pages/ListApartment";
 import Order from "./components/pages/Order";
 
-import StatusContent from "./components/pages/StatusContent";
+//import StatusContent from "./components/pages/StatusContent";
 import OrderDetail from "./components/pages/OrderDetail";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";

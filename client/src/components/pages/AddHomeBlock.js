@@ -8,14 +8,13 @@ class AddHomeBlock extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idTk: document.location.pathname.substring(14),
+      idTk: localStorage.getItem("idTk"),
 			idTT: 0,
     };
-  }
-
+  } 
   handleSubmit = () => {
     axios.post("http://localhost:33456/api/partner/checkContactExist",{
-			idTk: this.state.idTk.toString(),
+			idTk: this.state.idTk,
 		}).then((response) => {
 			console.log(response.data);
 			this.state.idTT = response.data;
@@ -26,9 +25,9 @@ class AddHomeBlock extends React.Component {
         );
       } else {
         this.setState(this);
-        if (this.state.idtk !== "0") {
+        if (this.state.idTk !== "0") {
           this.props.history.push(
-            "/registrationDetail/mainContact/" + this.state.idtk
+            "/registrationDetail/mainContact/" + this.state.idTk
           );
         }
       }

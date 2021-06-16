@@ -7,7 +7,6 @@ class Order extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idTk: 1, //document.location.pathname.substring(10),
       idOrder: 0,
       lstOrder: [],
     };
@@ -17,7 +16,7 @@ class Order extends React.Component {
   getListOrder = () => {
     axios
       .post("http://localhost:33456/api/partner/getListOrder", {
-        idTk: this.state.idTk.toString(),
+        idTk: localStorage.getItem("idTk"),
       })
       .then((result) => {
         console.log(result.data[0].ID_TT_CHUHO);

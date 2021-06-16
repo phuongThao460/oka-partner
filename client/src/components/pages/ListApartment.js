@@ -11,7 +11,6 @@ class ListApartment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idTk: document.location.pathname.substring(14),
       idTT: 0,
       idApart: 0,
       idOrder: 0,
@@ -30,7 +29,7 @@ class ListApartment extends React.Component {
   showApartmentStatus1 = () => {
     axios
       .post("http://localhost:33456/api/partner/showListApartmentStatus1", {
-        idTk: this.state.idTk.toString(),
+        idTk: localStorage.getItem("idTk"),
       })
       .then((result) => {
         console.log(result.data[0].ID_TAIKHOAN);
@@ -41,7 +40,7 @@ class ListApartment extends React.Component {
   showApartmentStatus2 = () => {
     axios
       .post("http://localhost:33456/api/partner/showListApartmentStatus2", {
-        idTk: this.state.idTk.toString(),
+        idTk: localStorage.getItem("idTk"),
       })
       .then((result) => {
         console.log(result.data[0].ID_TAIKHOAN);
@@ -52,7 +51,7 @@ class ListApartment extends React.Component {
   showApartmentStatus3 = () => {
     axios
       .post("http://localhost:33456/api/partner/showListApartmentStatus3", {
-        idTk: this.state.idTk.toString(),
+        idTk: localStorage.getItem("idTk"),
       })
       .then((result) => {
         console.log(result.data[0].ID_TAIKHOAN);

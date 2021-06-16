@@ -21,6 +21,7 @@ class LoginForm extends Component {
       })
       .then((result) => {
         this.state.idTk = result.data;
+        localStorage.setItem("idTk", result.data);
         this.setState(this);
         if(this.state.id !== "0"){
           this.props.history.push("/AddHomeBlock/" + this.state.idTk); 
@@ -53,16 +54,7 @@ class LoginForm extends Component {
                   type="email"
                   placeholder="Enter your email address here"
                   ref={this.loginNameRef}
-                  rules={[
-                    {
-                      type: "email",
-                      message: "The input is not valid E-mail!",
-                    },
-                    {
-                      required: true,
-                      message: "Please input your E-mail!",
-                    },
-                  ]}
+                  
                 ></input>
 
                 <span className="form-label">Your password</span>
