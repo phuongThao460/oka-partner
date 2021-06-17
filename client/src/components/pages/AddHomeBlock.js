@@ -27,7 +27,7 @@ class AddHomeBlock extends React.Component {
         this.setState(this);
         if (this.state.idTk !== "0") {
           this.props.history.push(
-            "/registrationDetail/mainContact/" + this.state.idTk
+            "/registrationDetail/mainContact/" + localStorage.getItem("idTk")
           );
         }
       }
@@ -36,7 +36,7 @@ class AddHomeBlock extends React.Component {
   showList = () => {
     this.setState(this);
     if (this.state.idtk !== "0") {
-      this.props.history.push("/lstApartment/" + this.state.idTk);
+      this.props.history.push("/lstApartment/" + localStorage.getItem("idTk"));
     }
   };
   render() {

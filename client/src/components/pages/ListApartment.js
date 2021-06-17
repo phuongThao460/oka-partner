@@ -61,7 +61,7 @@ class ListApartment extends React.Component {
   };
   getOrder = () => {
     this.setState(this);
-    this.props.history.push("/lstOrder/" + this.state.idTk);
+    this.props.history.push("/lstOrder/" + localStorage.getItem("idTk"));
   }
   changeActive = (idNha) => {
     axios

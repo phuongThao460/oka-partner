@@ -13,6 +13,9 @@ class LoginForm extends Component {
     this.loginNameRef = createRef();
     this.loginPWRef = createRef();
   }
+  componentDidMount(){
+    
+}
   confirmLogin = () => {
     axios
       .post("http://localhost:33456/api/partner/signin", {
@@ -20,6 +23,7 @@ class LoginForm extends Component {
         password: this.loginPWRef.current.value,
       })
       .then((result) => {
+        
         this.state.idTk = result.data;
         window.localStorage.setItem("idTk", result.data);
         window.localStorage.setItem("username", this.loginNameRef.current.value);
@@ -101,5 +105,4 @@ class LoginForm extends Component {
     );
   }
 }
-
 export default LoginForm;

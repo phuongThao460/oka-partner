@@ -12,18 +12,19 @@ class Navbar extends React.Component {
       logged: false,
     };
   }
-  handleClick = () => this.setState(!this.state.click);
-  closeMobileMenu = () => this.setState(false);
+  handleClick = () => {
+      window.localStorage.clear()
+  };
   render() {
     const { idUser, username } = this.state;
     return (
       <>
         <nav className="navbar">
           <div className="navbar-container">
-            <Link to="/" className="navbar-logo" onClick={this.handleClick}>
+            <Link to="/" className="navbar-logo"  >
               OKA Tera <i className="fab fa-typo3" />
             </Link>
-            <div className="menu-icon" onClick={this.handleClick}>
+            <div className="menu-icon">
               <i
                 className={this.state.click ? "fas fa-times" : "fas fa-bars"}
               />
@@ -33,7 +34,6 @@ class Navbar extends React.Component {
                 <Link
                   to="/home"
                   className="nav-links"
-                  onClick={this.closeMobileMenu}
                 >
                   Home
                 </Link>
@@ -42,27 +42,16 @@ class Navbar extends React.Component {
                 <Link
                   to="/services"
                   className="nav-links"
-                  onClick={this.closeMobileMenu}
                 >
                   Services
                 </Link>
               </li>
               <li className="nav-item">
                 <Link
-                  to="/products"
+                  to={"/AddHomeBlock/" + localStorage.getItem("idTk")}
                   className="nav-links"
-                  onClick={this.closeMobileMenu}
                 >
                   Products
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  to="/sign-up"
-                  className="nav-links-mobile"
-                  onClick={this.closeMobileMenu}
-                >
-                  Sign Up
                 </Link>
               </li>
             </ul>
@@ -80,13 +69,13 @@ class Navbar extends React.Component {
                     <b class="caret"></b>
                   </div>
                 </a>
-                <div class="dropdown-menu">
-                  <Link to="/detailAndEditProfile" class="dropdown-item">
-                    <i class="fa fa-user-o"></i> Profile
+                <div className="dropdown-menu">
+                  <Link to="/detailAndEditProfile" className="dropdown-item">
+                    <i className="fa fa-user-o"></i> Profile
                   </Link>
                   <div class="divider dropdown-divider"></div>
-                  <Link to={"/"} class="dropdown-item">
-                    <i class="material-icons">&#xE8AC;</i> Logout
+                  <Link to="/" onClick={this.handleClick} className="dropdown-item">
+                    <i className="material-icons">&#xE8AC;</i> Logout
                   </Link>
                 </div>
               </div>

@@ -2,6 +2,7 @@
 import React from "react";
 import axios from "axios";
 import Navbar from "../paner-form/Navbar";
+import { Link } from "react-router-dom";
 class OrderDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -9,8 +10,10 @@ class OrderDetail extends React.Component {
       idOrder: document.location.pathname.substring(13),
       lstOrder: {},
       lstCustom: {},
+      freeCancel: "",
     };
     this.getDetailOrder(this.state.idOrder);
+    this.checkOrderCancel(this.state.idOrder);
   }
   getDetailOrder = (idCustomer) => {
     axios
@@ -26,18 +29,59 @@ class OrderDetail extends React.Component {
       })
       .catch((err) => console.log(err.result));
   };
-  changeHired = (idNha) => {
+  changeHiredAction = (idNha, idOrder) => {
     axios
       .post("http://localhost:33456/api/partner/changeHired", {
         idNha: idNha.toString(),
       })
       .then((result) => {
         console.log(result.data);
-        this.props.history.push("/lstApartment/" + localStorage.getItem("idTk"));
+        this.props.history.push("/lstOrder/" + localStorage.getItem("idTk"));
+      })
+      .catch((err) => console.log(err.result));
+    axios
+      .post("http://localhost:33456/api/partner/changeStatusAction", {
+        idOrder: idOrder.toString(),
+      })
+      .then((result) => {
+        console.log(result.data);
       })
       .catch((err) => console.log(err.result));
   };
-
+  changeCancelled = (idOrder) => {
+    axios
+      .post("http://localhost:33456/api/partner/changeStatusCancelled", {
+        idOrder: idOrder.toString(),
+      })
+      .then((result) => {
+        console.log(result.data);
+        this.props.history.push("/lstOrder/" + localStorage.getItem("idTk"));
+      })
+      .catch((err) => console.log(err.result));
+  };
+  changeFinished = (idOrder) => {
+    axios
+      .post("http://localhost:33456/api/partner/changeStatusFinished", {
+        idOrder: idOrder.toString(),
+      })
+      .then((result) => {
+        console.log(result.data);
+        this.props.history.push("/lstOrder/" + localStorage.getItem("idTk"));
+      })
+      .catch((err) => console.log(err.result));
+  };
+  checkOrderCancel = (idOrder) => {
+    axios
+      .post("http://localhost:33456/api/partner/checkOrderCancel", {
+        idOrder: idOrder.toString(),
+      })
+      .then((result) => {
+        console.log(result.data);
+        this.state.freeCancel = result.data;
+        this.setState(this);
+      })
+      .catch((err) => console.log(err.result));
+  };
   render() {
     const { lstOrder, lstCustom } = this.state;
     return (
@@ -68,9 +112,82 @@ class OrderDetail extends React.Component {
         <p>loai giay to tuy than: {lstCustom.LOAI_GIAYTOTUYTHAN}</p>
         <p>quoc tich: {lstCustom.QUOCTICH}</p>
         <p>gioi tinh: {lstCustom.GIOITINH ? "Nữ" : "Nam"}</p>
-        <button onClick={() => this.changeHired(lstOrder.ID_NHA)}>
-          Submit
-        </button>
+        {this.state.freeCancel ? (
+          lstOrder.ID_TT_DCH === 1 ? (
+            <>
+              <button
+                className="btn btn-success"
+                onClick={() =>
+                  this.changeHiredAction(lstOrder.ID_NHA, lstOrder.ID_DATCANHO)
+                }
+              >
+                Action
+              </button>
+              <button
+                button
+                className="btn btn-danger"
+                onClick={() => this.changeCancelled(lstOrder.ID_DATCANHO)}
+              >
+                Cancel
+              </button>
+              <Link to={"/lstOrder/" + localStorage.getItem("idTk")}>
+                Back to list
+              </Link>
+            </>
+          ) : lstOrder.ID_TT_DCH === 2 ? (
+            <>
+              <button
+                className="btn btn-success"
+                onClick={() => this.changeFinished(lstOrder.ID_DATCANHO)}
+              >
+                Finished
+              </button>
+              <button
+                className="btn btn-danger"
+                onClick={() => this.changeCancelled(lstOrder.ID_DATCANHO)}
+              >
+                Cancel
+              </button>
+              <Link to={"/lstOrder/" + localStorage.getItem("idTk")}>
+                Back to list
+              </Link>
+            </>
+          ) : (
+            <Link to={"/lstOrder/" + localStorage.getItem("idTk")}>
+              Back to list
+            </Link>
+          )
+        ) : lstOrder.ID_TT_DCH === 1 ? (
+          <>
+            <button
+              className="btn btn-success"
+              onClick={() =>
+                this.changeHiredAction(lstOrder.ID_NHA, lstOrder.ID_DATCANHO)
+              }
+            >
+              Action
+            </button>
+            <Link to={"/lstOrder/" + localStorage.getItem("idTk")}>
+              Back to list
+            </Link>
+          </>
+        ) : lstOrder.ID_TT_DCH === 2 ? (
+          <>
+            <button
+              className="btn btn-success"
+              onClick={() => this.changeHiredAction(lstOrder.ID_DATCANHO)}
+            >
+              Finished
+            </button>
+            <Link to={"/lstOrder/" + localStorage.getItem("idTk")}>
+              Back to list
+            </Link>
+          </>
+        ) : (
+          <Link to={"/lstOrder/" + localStorage.getItem("idTk")}>
+            Back to list
+          </Link>
+        )}
       </>
     );
   }
