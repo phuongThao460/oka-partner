@@ -67,7 +67,7 @@ class OrderDetail extends React.Component {
         <p>ma giay to tuy than: {lstCustom.MA_GIAYTOTUYTHAN}</p>
         <p>loai giay to tuy than: {lstCustom.LOAI_GIAYTOTUYTHAN}</p>
         <p>quoc tich: {lstCustom.QUOCTICH}</p>
-        <p>gioi tinh: {lstCustom.GIOITINH ? "Nũ" : "Nam"}</p>
+        <p>gioi tinh: {lstCustom.GIOITINH ? "Nữ" : "Nam"}</p>
         <button onClick={() => this.changeHired(lstOrder.ID_NHA)}>
           Submit
         </button>

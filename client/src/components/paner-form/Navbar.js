@@ -15,7 +15,7 @@ class Navbar extends React.Component {
   handleClick = () => this.setState(!this.state.click);
   closeMobileMenu = () => this.setState(false);
   render() {
-    const {idUser, username } = this.state;
+    const { idUser, username } = this.state;
     return (
       <>
         <nav className="navbar">
@@ -79,16 +79,14 @@ class Navbar extends React.Component {
                     <p>{username}</p>
                     <b class="caret"></b>
                   </div>
-                  
                 </a>
                 <div class="dropdown-menu">
-                  <a href="/#" class="dropdown-item">
+                  <Link to="/detailAndEditProfile" class="dropdown-item">
                     <i class="fa fa-user-o"></i> Profile
-                  </a>
+                  </Link>
                   <div class="divider dropdown-divider"></div>
                   <Link to={"/"} class="dropdown-item">
                     <i class="material-icons">&#xE8AC;</i> Logout
-
                   </Link>
                 </div>
               </div>

@@ -155,24 +155,72 @@ module.exports = {
 				return checkID.ID_TT_CHUHO;
 			}
 		},
-		showApartment: {
+		showContact: {
 			rest: {
 				method: "POST",
-				path: "/showApartment",
+				path: "/showContact",
 			},
 			params: {
-				idChuHo: { type: "string" },
+				idTk: { type: "string" },
 			},
 			async handler({ action, params, meta, ...ctx }) {
-				const { idChuHo } = params;
-				const show = await dbContext.THONGTINCHUHO.findAll({
-					attributes: ["TEN_CHUHO"],
+				const { idTk } = params;
+				const intId = parseInt(idTk);
+				const show = await dbContext.THONGTINCHUHO.findOne({
 					where: {
-						ID_TT_CHUHO: idChuHo,
+						ID_TAIKHOAN: intId,
 					},
-					include: ["NHAs"],
 				});
 				return show;
+			},
+		},
+		updateContact: {
+			rest: {
+				method: "POST",
+				path: "/updateContact"
+			},
+			params: {
+				idTT: { type: "string" },
+				fullName: { type: "string" },
+				email: { type: "string" },
+				phoneNumber: { type: "string" },
+				idenCode: { type: "string" },
+				idenType: { type: "string" },
+				country: { type: "string" },
+				gender: { type: "string" },
+				address: { type: "string" },
+				taxCode: { type: "string" },
+			},
+			async handler({ action, params, meta, ...ctx }) {
+				const {
+					idTT,
+					fullName,
+					email,
+					phoneNumber,
+					idenCode,
+					idenType,
+					country,
+					gender,
+					address,
+					taxCode,
+				} = params;
+				const intId = parseInt(idTT);
+				const update = await dbContext.THONGTINCHUHO.update({
+					TEN_CHUHO: fullName,
+					EMAIL: email,
+					PHONE_NUMBER: phoneNumber,
+					MA_GIAYTOTUYTHAN: idenCode,
+					LOAI_GIAYTOTUYTHAN: idenType,
+					QUOCTICH: country,
+					GIOITINH: gender,
+					DIACHI: address,
+					MASO_THUE: taxCode,
+				},{
+					where: {
+						ID_TT_CHUHO: intId
+					}
+				});
+				return update;
 			},
 		},
 		showListApartmentStatus1: {
