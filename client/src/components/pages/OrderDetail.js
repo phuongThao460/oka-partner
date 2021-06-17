@@ -59,7 +59,16 @@ class OrderDetail extends React.Component {
       })
       .catch((err) => console.log(err.result));
   };
-  changeFinished = (idOrder) => {
+  changeActiveFinished = (idNha,idOrder) => {
+    axios
+      .post("http://localhost:33456/api/partner/changeActive", {
+        idNha: idNha.toString(),
+      })
+      .then((result) => {
+        console.log(result.data);
+        this.props.history.push("/lstOrder/" + localStorage.getItem("idTk"));
+      })
+      .catch((err) => console.log(err.result));
     axios
       .post("http://localhost:33456/api/partner/changeStatusFinished", {
         idOrder: idOrder.toString(),
@@ -138,7 +147,7 @@ class OrderDetail extends React.Component {
             <>
               <button
                 className="btn btn-success"
-                onClick={() => this.changeFinished(lstOrder.ID_DATCANHO)}
+                onClick={() => this.changeActiveFinished(lstOrder.ID_NHA,lstOrder.ID_DATCANHO)}
               >
                 Finished
               </button>
@@ -175,7 +184,7 @@ class OrderDetail extends React.Component {
           <>
             <button
               className="btn btn-success"
-              onClick={() => this.changeHiredAction(lstOrder.ID_DATCANHO)}
+              onClick={() => this.changeActiveFinished(lstOrder.ID_NHA,lstOrder.ID_DATCANHO)}
             >
               Finished
             </button>
