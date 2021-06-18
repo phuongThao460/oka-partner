@@ -1,7 +1,7 @@
 /* eslint-disable react/no-direct-mutation-state */
 import axios from "axios";
 import React, { Component } from "react";
-
+import Navbar from "../paner-form/Navbar";
 class Modal extends Component {
   constructor(props) {
     super(props);
@@ -183,7 +183,6 @@ class Modal extends Component {
                     type="radio"
                     name="editContact,previousNameBoolean"
                     value={!this.state.gender}
-                    
                     onChange={(e) => this.genderHandler(e)}
                   />
                   <label className="" htmlFor="radio-9">
@@ -281,30 +280,89 @@ class DetailAndEditProfile extends Component {
   render() {
     const { mainContact } = this.state;
     return (
-      <div>
-        <div style={{ textAlign: "center" }}>
-          <h2>Your Profile</h2>
+      <>
+        <Navbar />
+        <div
+          style={{
+            textAlign: "center",
+            paddingBottom: "45px",
+          }}
+        >
+          <h1>Your Profile</h1>
         </div>
-        <div className="table table-striped">
-          <div>
-            <p>{mainContact.ID_TT_CHUHO}</p>
-            <p>{mainContact.TEN_CHUHO}</p>
-            <p>{mainContact.EMAIL}</p>
-            <p>{mainContact.PHONE_NUMBER}</p>
-            <p>{mainContact.MA_GIAYTOTUYTHAN}</p>
-            <p>{mainContact.LOAI_GIAYTOTUYTHAN}</p>
-            <p>{mainContact.QUOCTICH}</p>
-            <p>{mainContact.GIOITINH ? "Nữ" : "Nam"}</p>
-            <p>{mainContact.DIACHI}</p>
-            <p>{mainContact.MASO_THUE}</p>
-            <button
-              className="btn btn-primary"
-              data-toggle="modal"
-              data-target="#exampleModal"
-              onClick={() => this.replaceModalItem(mainContact.ID_TT_CHUHO)}
+        <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              paddingBottom: "100px",
+            }}
+          >
+            <table
+              className="table table-borderless"
+              style={{ width: "60%", fontSize: "20px", backgroundColor: "white" }}
             >
-              edit
-            </button>{" "}
+              <tbody>
+                <tr>
+                  <td className="span-name">Full Name</td>
+                  <td className="p-name">Thao{mainContact.TEN_CHUHO}</td>
+                </tr>
+                <tr>
+                  <td className="span-name">Email</td>
+                  <td className="p-name">Thao{mainContact.EMAIL}</td>
+                </tr>
+                <tr>
+                  <td className="span-name">Phone Number</td>
+                  <td className="p-name">Thao{mainContact.PHONE_NUMBER}</td>
+                </tr>
+                <tr>
+                  <td className="span-name">Identification Code</td>
+                  <td className="p-name">Thao{mainContact.MA_GIAYTOTUYTHAN}</td>
+                </tr>
+                <tr>
+                  <td className="span-name">Identification Type</td>
+                  <td className="p-name">
+                    Thao{mainContact.LOAI_GIAYTOTUYTHAN}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="span-name">Country</td>
+                  <td className="p-name">Thao{mainContact.QUOCTICH}</td>
+                </tr>
+                <tr>
+                  <td className="span-name">Gender</td>
+                  <td className="p-name">
+                    Thao{mainContact.GIOITINH ? "Nữ" : "Nam"}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="span-name">Address</td>
+                  <td className="p-name">Thao{mainContact.DIACHI}</td>
+                </tr>
+                <tr>
+                  <td className="span-name">Tax Code</td>
+                  <td className="p-name">Thao{mainContact.MASO_THUE}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td className="span-name"></td>
+                  <td style={{ padding: "0" }}>
+                    <button
+                      className="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                      onClick={() =>
+                        this.replaceModalItem(mainContact.ID_TT_CHUHO)
+                      }
+                      style={{ width: "176px", marginBottom: "20px" }}
+                    >
+                      edit
+                    </button>{" "}
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
           </div>
         </div>
         <Modal
@@ -320,7 +378,7 @@ class DetailAndEditProfile extends Component {
           taxCode={mainContact.MASO_THUE}
           saveModalDetails={this.saveModalDetails}
         />
-      </div>
+      </>
     );
   }
 }

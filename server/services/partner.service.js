@@ -342,6 +342,25 @@ module.exports = {
 				return showTK;
 			},
 		},
+		deleteApartment: {
+			rest: {
+				method: "POST",
+				path: "/deleteApartment"
+			},
+			params: {
+				idNha: {type: "string"}
+			},
+			async handler({action, params, meta, ...ctx}){
+				const {idNha} = params;
+				const deleteApart = await dbContext.NHA.destroy({
+					where: {
+						ID_NHA:idNha
+					},
+					force: true
+				});
+				return deleteApart;
+			}
+		},
 		register: {
 			rest: {
 				method: "POST",
@@ -381,28 +400,6 @@ module.exports = {
 			async handler() {
 				const getList = await dbContext.STYLE.findAll();
 				return getList;
-			},
-		},
-		getApartmentPrice: {
-			rest: {
-				method: "POST",
-				path: "/getApartmentPrice",
-			},
-			params: {
-				idPrice: { type: "string" },
-			},
-			async handler({ action, params, meta, ...ctx }) {
-				let { idPrice } = params;
-				const lsPrice = await dbContext.BANGGIA.findAll();
-				let output = 0;
-				for (let i = 0; i < lsPrice.length; i++) {
-					let element = lsPrice[i];
-					if (element.ID_BANGGIA == idPrice) {
-						output = element;
-						break;
-					}
-				}
-				return output;
 			},
 		},
 		getDetailApartment: {

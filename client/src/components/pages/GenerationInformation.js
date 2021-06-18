@@ -75,7 +75,9 @@ class GenerationInformation extends Component {
     )
       .then((response) => {
         console.log(response.data);
-        this.props.history.push("/registrationDetail/propertyFacilities/" + this.idNha.current.value);
+        this.props.history.push(
+          "/registrationDetail/propertyFacilities/" + this.idNha.current.value
+        );
       })
       .catch((err) => console.log(err.response));
   };
@@ -152,15 +154,6 @@ class GenerationInformation extends Component {
                     >
                       <div className="c-flexbox css-nb">
                         <span className="text css-nb-text">Main Contact</span>
-                        <span
-                          className="bagde__number bagde__color bagde__pill css-bagde"
-                          style={{
-                            paddingRight: "10px",
-                            paddingLeft: "10px",
-                          }}
-                        >
-                          7
-                        </span>
                       </div>
                     </Link>
                     <Link
@@ -171,15 +164,6 @@ class GenerationInformation extends Component {
                       <div className="c-flexbox css-nb">
                         <span className="text css-nb-text">
                           General Information
-                        </span>
-                        <span
-                          className="bagde__number bagde__color bagde__pill css-bagde"
-                          style={{
-                            paddingRight: "10px",
-                            paddingLeft: "10px",
-                          }}
-                        >
-                          7
                         </span>
                       </div>
                     </Link>
@@ -192,15 +176,6 @@ class GenerationInformation extends Component {
                         <span className="text css-nb-text">
                           Property Facilities
                         </span>
-                        <span
-                          className="bagde__number bagde__color bagde__pill css-bagde"
-                          style={{
-                            paddingRight: "10px",
-                            paddingLeft: "10px",
-                          }}
-                        >
-                          7
-                        </span>
                       </div>
                     </Link>
                     <Link
@@ -210,15 +185,6 @@ class GenerationInformation extends Component {
                     >
                       <div className="c-flexbox css-nb">
                         <span className="text css-nb-text">Rooms</span>
-                        <span
-                          className="bagde__number bagde__color bagde__pill css-bagde"
-                          style={{
-                            paddingRight: "10px",
-                            paddingLeft: "10px",
-                          }}
-                        >
-                          7
-                        </span>
                       </div>
                     </Link>
                     <Link
@@ -229,45 +195,6 @@ class GenerationInformation extends Component {
                       <div className="c-flexbox css-nb">
                         <span className="text css-nb-text">
                           Room Facilities
-                        </span>
-                        <span
-                          className="bagde__number bagde__color bagde__pill css-bagde"
-                          style={{
-                            paddingRight: "10px",
-                            paddingLeft: "10px",
-                          }}
-                        >
-                          7
-                        </span>
-                      </div>
-                    </Link>
-                    <Link key="6" to="" className="slidebar-item css-check">
-                      <div className="c-flexbox css-nb">
-                        <span className="text css-nb-text">Photos</span>
-                        <span
-                          className="bagde__number bagde__color bagde__pill css-bagde"
-                          style={{
-                            paddingRight: "10px",
-                            paddingLeft: "10px",
-                          }}
-                        >
-                          7
-                        </span>
-                      </div>
-                    </Link>
-                    <Link key="7" to="" className="slidebar-item css-check">
-                      <div className="c-flexbox css-nb">
-                        <span className="text css-nb-text">
-                          Payment Information
-                        </span>
-                        <span
-                          className="bagde__number bagde__color bagde__pill css-bagde"
-                          style={{
-                            paddingRight: "10px",
-                            paddingLeft: "10px",
-                          }}
-                        >
-                          7
                         </span>
                       </div>
                     </Link>
@@ -837,7 +764,10 @@ class GenerationInformation extends Component {
                                 className="input-group css-inp"
                                 style={{ display: "inline-block" }}
                               >
-                                <div className="input-group__inner" style={{width: "fit-content"}}>
+                                <div
+                                  className="input-group__inner"
+                                  style={{ width: "fit-content" }}
+                                >
                                   <div
                                     className="input control-container css-radio-gr"
                                     style={{ width: "130px" }}
@@ -1137,6 +1067,8 @@ class GenerationInformation extends Component {
                                           ref={this.gia}
                                           id="time"
                                           type="number"
+                                          min="100000"
+                                          max="100000000"
                                           defaultValue="07:30"
                                           className="-control css-txt"
                                         />
@@ -1179,6 +1111,8 @@ class GenerationInformation extends Component {
                                             style={{ width: "250px" }}
                                             ref={this.khuyenMai}
                                             type="number"
+                                            min="100000"
+                                            max="100000000"
                                             className="-control css-txt"
                                           />
                                         </div>
@@ -1189,7 +1123,7 @@ class GenerationInformation extends Component {
                               </div>
                             </div>
                           </div>
-                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1197,14 +1131,9 @@ class GenerationInformation extends Component {
               </div>
 
               <div className="block css-contact">
-                
-                  <button
-                    className="btn-contact"
-                    onClick={this.createApartment}
-                  >
-                    Save and Continues
-                  </button>
-              
+                <button className="btn-contact" onClick={this.createApartment}>
+                  Save and Continues
+                </button>
               </div>
             </div>
           </div>

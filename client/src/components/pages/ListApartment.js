@@ -83,6 +83,16 @@ class ListApartment extends React.Component {
       })
       .catch((err) => console.log(err.result));
   };
+  deleteApartment = (idNha) => {
+    axios
+      .post("http://localhost:33456/api/partner/deleteApartment", {
+        idNha: idNha.toString(),
+      })
+      .then((result) => {
+        console.log(result.data);
+      })
+      .catch((err) => console.log(err.result));
+  }
   render() {
     const { size } = this.state;
     return (
@@ -110,6 +120,9 @@ class ListApartment extends React.Component {
                       <p>ten nha: {item.TEN_NHA}</p>
                       <button onClick={() => this.changeActive(item.ID_NHA)}>
                         Active
+                      </button>
+                      <button onClick={() => this.deleteApartment(item.ID_NHA)}>
+                        Delete
                       </button>
                       <p>------------------------------------------------</p>
                     </div>

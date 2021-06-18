@@ -1227,7 +1227,19 @@ textarea {
 .sign-item {
   margin-right: 15px;
 }
-.dropdown-toggle::after{
+.dropdown-toggle::after {
   margin-left: 10px;
   margin-bottom: 10px;
+}
+.table tbody tr .span-name{
+  padding: 0;
+  width: 28%;
+  font-weight: 500;
+  color: #797373;
+  padding-bottom: 12px;
+  padding-left: 12px;
+}
+.table tbody tr .p-name{
+  padding: 0;
+  padding-bottom: 12px;
 }
