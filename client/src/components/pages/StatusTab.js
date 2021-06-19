@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 
 function StatusTab() {
   const [toggleState, setToggleState] = useState(1);
@@ -9,7 +8,7 @@ function StatusTab() {
   };
 
   return (
-    <div style={{paddingTop: "50px"}}>
+    <div className="container" style={{paddingTop: "50px"}}>
       <div className="bloc-tabs">
         <button
           className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
