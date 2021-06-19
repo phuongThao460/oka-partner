@@ -3,6 +3,7 @@
 import axios from "axios";
 import React from "react";
 import Navbar from "../paner-form/Navbar";
+import "../../RegistrationDetail.css";
 import "antd/dist/antd.css";
 import { Tabs } from "antd";
 
@@ -62,7 +63,7 @@ class ListApartment extends React.Component {
   getOrder = () => {
     this.setState(this);
     this.props.history.push("/lstOrder/" + localStorage.getItem("idTk"));
-  }
+  };
   changeActive = (idNha) => {
     axios
       .post("http://localhost:33456/api/partner/changeActive", {
@@ -92,13 +93,17 @@ class ListApartment extends React.Component {
         console.log(result.data);
       })
       .catch((err) => console.log(err.result));
-  }
+  };
   render() {
     const { size } = this.state;
     return (
       <>
         <Navbar />
-        <button onClick={() => this.getOrder()}>Order</button>
+        <div style={{float: "right",paddingRight: "200px",paddingTop: "20px"}}>
+          <button onClick={() => this.getOrder()} className="btn-order">
+            View Orders List
+          </button>
+        </div>
         <Tabs
           defaultActiveKey="1"
           type="card"
@@ -109,7 +114,7 @@ class ListApartment extends React.Component {
             paddingTop: "20px",
           }}
         >
-          <TabPane tab="Unactive" key="1">
+          <TabPane tab="Unactive" key="1" className="tab-apart">
             <div key={this.state.idTk}>
               {this.state.lstApartmentS1.map((item) => (
                 <div key={item.ID_TAIKHOAN}>

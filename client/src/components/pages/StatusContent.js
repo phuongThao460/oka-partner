@@ -1,5 +1,5 @@
 import React from 'react'
-//import '../../style/pages/Status.css'
+import "../../RegistrationDetail.css";
 import StatusTab from '../paner-form/StatusTab'
 import Navbar from "../paner-form/Navbar";
 

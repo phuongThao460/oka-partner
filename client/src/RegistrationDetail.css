@@ -1231,7 +1231,7 @@ textarea {
   margin-left: 10px;
   margin-bottom: 10px;
 }
-.table tbody tr .span-name{
+.table tbody tr .span-name {
   padding: 0;
   width: 28%;
   font-weight: 500;
@@ -1239,7 +1239,88 @@ textarea {
   padding-bottom: 12px;
   padding-left: 12px;
 }
-.table tbody tr .p-name{
+.table tbody tr .p-name {
   padding: 0;
   padding-bottom: 12px;
+}
+.btn-order {
+  width: 167px;
+  font-size: 15px;
+  border-radius: 4px;
+  border: none;
+  background-color: #007bffc7;
+  height: 35px;
+  font-weight: 500;
+  color: white;
+}
+.ant-tabs-nav .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-tab {
+  padding: 12px 25px;
+}
+
+.bloc-tabs {
+  display: flex;
+  width: 400px;
+}
+.tabs {
+  padding: 15px;
+  text-align: center;
+  width: 50%;
+  background: rgba(128, 128, 128, 0.075);
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+  box-sizing: content-box;
+  position: relative;
+  outline: none;
+}
+.tabs:not(:last-child) {
+  border-right: 1px solid rgba(0, 0, 0, 0.274);
+}
+
+.active-tabs {
+  background: white;
+  border-bottom: 1px solid transparent;
+}
+
+.active-tabs::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% + 2px);
+  height: 5px;
+  background: rgb(88, 147, 241);
+}
+
+button {
+  border: none;
+}
+.content-tabs {
+  flex-grow: 1;
+}
+.content {
+  background: white;
+  padding-top: 20px;
+  /*padding-left: 20px;*/
+  padding-bottom: 20px;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.content h2 {
+  padding: 0px 0 5px 0px;
+}
+.content hr {
+  width: 100px;
+  height: 2px;
+  background: #222;
+  margin-bottom: 5px;
+}
+.content p {
+  width: 100%;
+  height: 100%;
+}
+.active-content {
+  display: block;
 }

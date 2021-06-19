@@ -1045,6 +1045,24 @@ module.exports = {
 				return checkCancel.FREE_CANCEL;
 			}
 		},
+		checkInOrder: {
+			rest: {
+				method: "POST",
+				path: "/checkInOrder"
+			},
+			params: {
+				idNha: {type: "string"}
+			},
+			async handler({action, params, meta, ...ctx}){
+				const { idNha } = params;
+				const checkIn = await dbContext.DATCANHO.findOne({
+					where: {
+						ID_NHA: idNha
+					}
+				});
+				return checkIn.ID_NHA;
+			}
+		},
 		/**
 		 * Welcome, a username
 		 *

@@ -12,8 +12,7 @@ import RegistrationDetail from "./components/pages/RegistrationDetail";
 import ListApartment from "./components/pages/ListApartment";
 import Order from "./components/pages/Order";
 import DetailAndEditProfile from "./components/pages/DetailAndEditProfile"
-
-//import StatusContent from "./components/pages/StatusContent";
+import StatusContent from "./components/pages/StatusContent";
 import OrderDetail from "./components/pages/OrderDetail";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
@@ -50,7 +49,8 @@ class App extends React.Component {
             <Route path="/services" component={Services} />
             <Route path="/products/:id" component={Products} />
             <Route path="/registrationDetail" component={RegistrationDetail} />
-            <Route path="/lstApartment/:idTk" component={ListApartment} />
+            <Route path="/statusContent/:idTk" component={StatusContent}/>
+            {/* <Route path="/lstApartment/:idTk" component={ListApartment} /> */}
             <Route path="/lstOrder/:idTk" component={Order} />
             <Route path="/orderDetail/:idOrder" component={OrderDetail} />
             <Route path="/detailAndEditProfile" component={DetailAndEditProfile} />

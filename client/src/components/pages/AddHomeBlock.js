@@ -36,7 +36,7 @@ class AddHomeBlock extends React.Component {
   showList = () => {
     this.setState(this);
     if (this.state.idtk !== "0") {
-      this.props.history.push("/lstApartment/" + localStorage.getItem("idTk"));
+      this.props.history.push("/statusContent/" + localStorage.getItem("idTk"));
     }
   };
   render() {
