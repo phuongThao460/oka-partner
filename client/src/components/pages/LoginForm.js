@@ -30,7 +30,6 @@ class LoginForm extends Component {
         this.setState(this);
         if (this.state.id !== "0") {
           this.props.history.push("/AddHomeBlock/" + this.state.idTk);
-          //this.props.history.push("/lstApartment/" + this.state.idTk);
         }
       })
       .catch((error) => {
@@ -100,7 +99,7 @@ class LoginForm extends Component {
                   Forgot your password
                 </a>
 
-                <button onClick={() => this.confirmLogin2()} id="btn-login">
+                <button onClick={() => this.confirmLogin()} id="btn-login">
                   Log in
                 </button>
               </div>

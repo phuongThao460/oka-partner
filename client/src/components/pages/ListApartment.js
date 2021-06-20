@@ -86,11 +86,22 @@ class ListApartment extends React.Component {
   };
   deleteApartment = (idNha) => {
     axios
-      .post("http://localhost:33456/api/partner/deleteApartment", {
+      .post("http://localhost:33456/api/partner/checkInOrder", {
         idNha: idNha.toString(),
       })
       .then((result) => {
-        console.log(result.data);
+        if (result.data !== null) {
+          alert("Cannot delete this apartment");
+        } else {
+          axios
+            .post("http://localhost:33456/api/partner/deleteApartment", {
+              idNha: idNha.toString(),
+            })
+            .then((result) => {
+              console.log(result.data);
+            })
+            .catch((err) => console.log(err.result));
+        }
       })
       .catch((err) => console.log(err.result));
   };
@@ -99,7 +110,9 @@ class ListApartment extends React.Component {
     return (
       <>
         <Navbar />
-        <div style={{float: "right",paddingRight: "200px",paddingTop: "20px"}}>
+        <div
+          style={{ float: "right", paddingRight: "200px", paddingTop: "20px" }}
+        >
           <button onClick={() => this.getOrder()} className="btn-order">
             View Orders List
           </button>

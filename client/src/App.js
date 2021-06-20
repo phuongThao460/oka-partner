@@ -50,7 +50,7 @@ class App extends React.Component {
             <Route path="/products/:id" component={Products} />
             <Route path="/registrationDetail" component={RegistrationDetail} />
             <Route path="/statusContent/:idTk" component={StatusContent}/>
-            {/* <Route path="/lstApartment/:idTk" component={ListApartment} /> */}
+            <Route path="/lstApartment/:idTk" component={ListApartment} />
             <Route path="/lstOrder/:idTk" component={Order} />
             <Route path="/orderDetail/:idOrder" component={OrderDetail} />
             <Route path="/detailAndEditProfile" component={DetailAndEditProfile} />
