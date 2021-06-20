@@ -19,6 +19,7 @@ class ListApartment extends React.Component {
       lstApartmentS2: [],
       lstApartmentS3: [],
       size: "small",
+      status: 500
     };
     this.showApartmentStatus1();
     this.showApartmentStatus2();
@@ -95,7 +96,7 @@ class ListApartment extends React.Component {
         console.log(result.data);
         //window.location.reload();
       })
-      .catch((err) => console.log(err.result));
+      .catch((err) => alert(err.result));
     axios
       .post("http://localhost:33456/api/partner/deleteApartment", {
         idNha: idNha.toString(),
@@ -104,7 +105,12 @@ class ListApartment extends React.Component {
         console.log(result.data);
         //window.location.reload();
       })
-      .catch((err) => console.log(err.result));
+      .catch((err) => {
+          if(err.response.status === 500){
+            alert("Cannot delete apartment ");
+          }
+          console.log(err.response.status)
+      });
   };
   render() {
     const { size } = this.state;
@@ -172,7 +178,7 @@ class ListApartment extends React.Component {
           <TabPane tab="Hired" key="3">
             <div>
               {this.state.lstApartmentS3.map((item) => (
-                <div >
+                <div>
                   <div key={item.ID_TT_CHUHO}>
                     <div value={item.THUTU_NHA}>
                       <p>ma nha: {item.ID_NHA}</p>
