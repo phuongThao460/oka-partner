@@ -286,6 +286,7 @@ class DetailAndEditProfile extends Component {
           style={{
             textAlign: "center",
             paddingBottom: "45px",
+            backgroundColor: "white"
           }}
         >
           <h1>Your Profile</h1>
@@ -296,52 +297,53 @@ class DetailAndEditProfile extends Component {
               display: "flex",
               justifyContent: "center",
               paddingBottom: "100px",
+              backgroundColor: "white"
             }}
           >
             <table
               className="table table-borderless"
-              style={{ width: "60%", fontSize: "20px", backgroundColor: "white" }}
+              style={{ width: "60%", fontSize: "20px", backgroundColor: "wheat", borderRadius: "4px" }}
             >
               <tbody>
                 <tr>
                   <td className="span-name">Full Name</td>
-                  <td className="p-name">Thao{mainContact.TEN_CHUHO}</td>
+                  <td className="p-name">{mainContact.TEN_CHUHO}</td>
                 </tr>
                 <tr>
                   <td className="span-name">Email</td>
-                  <td className="p-name">Thao{mainContact.EMAIL}</td>
+                  <td className="p-name">{mainContact.EMAIL}</td>
                 </tr>
                 <tr>
                   <td className="span-name">Phone Number</td>
-                  <td className="p-name">Thao{mainContact.PHONE_NUMBER}</td>
+                  <td className="p-name">{mainContact.PHONE_NUMBER}</td>
                 </tr>
                 <tr>
                   <td className="span-name">Identification Code</td>
-                  <td className="p-name">Thao{mainContact.MA_GIAYTOTUYTHAN}</td>
+                  <td className="p-name">{mainContact.MA_GIAYTOTUYTHAN}</td>
                 </tr>
                 <tr>
                   <td className="span-name">Identification Type</td>
                   <td className="p-name">
-                    Thao{mainContact.LOAI_GIAYTOTUYTHAN}
+                    {mainContact.LOAI_GIAYTOTUYTHAN}
                   </td>
                 </tr>
                 <tr>
                   <td className="span-name">Country</td>
-                  <td className="p-name">Thao{mainContact.QUOCTICH}</td>
+                  <td className="p-name">{mainContact.QUOCTICH}</td>
                 </tr>
                 <tr>
                   <td className="span-name">Gender</td>
                   <td className="p-name">
-                    Thao{mainContact.GIOITINH ? "Nữ" : "Nam"}
+                    {mainContact.GIOITINH ? "Nữ" : "Nam"}
                   </td>
                 </tr>
                 <tr>
                   <td className="span-name">Address</td>
-                  <td className="p-name">Thao{mainContact.DIACHI}</td>
+                  <td className="p-name">{mainContact.DIACHI}</td>
                 </tr>
                 <tr>
                   <td className="span-name">Tax Code</td>
-                  <td className="p-name">Thao{mainContact.MASO_THUE}</td>
+                  <td className="p-name">{mainContact.MASO_THUE}</td>
                 </tr>
               </tbody>
               <tfoot>

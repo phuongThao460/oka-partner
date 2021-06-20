@@ -9,13 +9,11 @@ class LoginForm extends Component {
     super(props);
     this.state = {
       idTk: 0,
-    }
+      errorName: "",
+    };
     this.loginNameRef = createRef();
     this.loginPWRef = createRef();
   }
-  componentDidMount(){
-    
-}
   confirmLogin = () => {
     axios
       .post("http://localhost:33456/api/partner/signin", {
@@ -23,20 +21,50 @@ class LoginForm extends Component {
         password: this.loginPWRef.current.value,
       })
       .then((result) => {
-        
         this.state.idTk = result.data;
         window.localStorage.setItem("idTk", result.data);
-        window.localStorage.setItem("username", this.loginNameRef.current.value);
+        window.localStorage.setItem(
+          "username",
+          this.loginNameRef.current.value
+        );
         this.setState(this);
-        if(this.state.id !== "0"){
-          this.props.history.push("/AddHomeBlock/" + this.state.idTk); 
-          //this.props.history.push("/lstApartment/" + this.state.idTk); 
+        if (this.state.id !== "0") {
+          this.props.history.push("/AddHomeBlock/" + this.state.idTk);
+          //this.props.history.push("/lstApartment/" + this.state.idTk);
         }
-        
       })
       .catch((error) => {
         console.log(error.data);
       });
+  };
+  confirmLogin2 = () => {
+    if (
+      this.loginNameRef.current.value === "" ||
+      this.loginPWRef.current.value === ""
+    ) {
+      this.state.errorName = "Phải nhập tên đăng nhập và mật khẩu!";
+      this.setState(this);
+    } else {
+      axios.post("https://oka1kh.azurewebsites.net/api/partner/login", {
+        partnerUsername: this.loginNameRef.current.value,
+        partnerPass: this.loginPWRef.current.value,
+      }).then((response) => {
+        var username = response.data.data.partnerUsername;
+        axios.get("https://oka1kh.azurewebsites.net/api/partners").then(
+          (response2) => {
+            var lsPartner = response2.data.Partner;
+            lsPartner.forEach((item) => {
+              if (item.partnerUsername === username) {
+                alert("ID partner: " + item.partnerId);
+                window.localStorage.setItem("idTk", item.partnerId);
+                window.localStorage.setItem("username",this.loginNameRef.current.value);
+                this.props.history.push("/AddHomeBlock/" + item.partnerId);
+              }
+            });
+          }
+        );
+      });
+    }
   };
   render() {
     return (
@@ -59,7 +87,6 @@ class LoginForm extends Component {
                   type="email"
                   placeholder="Enter your email address here"
                   ref={this.loginNameRef}
-                  
                 ></input>
 
                 <span className="form-label">Your password</span>
@@ -72,16 +99,17 @@ class LoginForm extends Component {
                 <a className="login-form-forgot" href="/#">
                   Forgot your password
                 </a>
-                
-                  <button onClick={() => this.confirmLogin()} id="btn-login">Log in
-                  </button>
+
+                <button onClick={() => this.confirmLogin2()} id="btn-login">
+                  Log in
+                </button>
               </div>
               <div className="line-spacing"></div>
 
               <p>
                 Not yet a partner?{" "}
                 <Link
-                  to="/register"
+                  to="/home"
                   style={{ color: "#5899d6", fontWeight: "600" }}
                 >
                   Register here

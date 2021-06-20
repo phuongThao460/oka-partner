@@ -200,35 +200,6 @@ class GenerationInformation extends Component {
                     </Link>
                   </div>
                 </span>
-                <div
-                  className="table__block css-tbl-block"
-                  style={{ marginTop: "30px" }}
-                >
-                  <label className="block__label css-label">
-                    <span>Mandatory Fields Progress</span>
-                  </label>
-                  <div className="block__row css-row">
-                    <div className="block__column css-block-col">
-                      <div className="progress css-progress">
-                        <div
-                          className="progress__bar"
-                          role="progressbar"
-                          aria-valuenow="52"
-                          aria-valuemin="0"
-                          aria-valuemax="100"
-                          style={{ width: "52%" }}
-                        ></div>
-                      </div>
-                    </div>
-                    <div
-                      align="right"
-                      className="column css-col"
-                      style={{ paddingLeft: "0px" }}
-                    >
-                      <span className="text css-text">52%</span>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
