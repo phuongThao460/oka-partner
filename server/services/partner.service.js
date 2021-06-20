@@ -62,6 +62,7 @@ module.exports = {
 		 *
 		 * @returns
 		 */
+		//1
 		signin: {
 			rest: {
 				method: "POST",
@@ -90,6 +91,7 @@ module.exports = {
 				}
 			},
 		},
+		//2
 		contactRegistration: {
 			rest: {
 				method: "POST",
@@ -136,6 +138,7 @@ module.exports = {
 				return createUser.ID_TT_CHUHO;
 			},
 		},
+		//3
 		checkContactExist: {
 			rest: {
 				method: "POST",
@@ -155,6 +158,7 @@ module.exports = {
 				return checkID.ID_TT_CHUHO;
 			}
 		},
+		//4
 		showContact: {
 			rest: {
 				method: "POST",
@@ -174,6 +178,7 @@ module.exports = {
 				return show;
 			},
 		},
+		//5
 		updateContact: {
 			rest: {
 				method: "POST",
@@ -223,6 +228,7 @@ module.exports = {
 				return update;
 			},
 		},
+		//6
 		showListApartmentStatus1: {
 			rest: {
 				method: "POST",
@@ -234,34 +240,27 @@ module.exports = {
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
 				const intId = parseInt(idTk);
-				const status1 = dbContext.TAIKHOAN.findAll({
-					attributes: ["ID_TAIKHOAN"],
+				const status1 = dbContext.THONGTINCHUHO.findAll({
 					required: false,
+					attributes: ["TEN_CHUHO"],
 					where: {
 						ID_TAIKHOAN: intId,
 					},
 					include: [
 						{
-							model: dbContext.THONGTINCHUHO,
-							as: "THONGTINCHUHOs",
-							attributes: ["TEN_CHUHO"],
+							model: dbContext.NHA,
 							required: false,
-							include: [
-								{
-									model: dbContext.NHA,
-									required: false,
-									as: "NHAs",
-									where: {
-										ID_TRANGTHAI_NHA: "1",
-									},
-								},
-							],
+							as: "NHAs",
+							where: {
+								ID_TRANGTHAI_NHA: "1",
+							},
 						},
 					],
 				});
 				return status1;
 			},
 		},
+		//7
 		showListApartmentStatus2: {
 			rest: {
 				method: "POST",
@@ -274,34 +273,27 @@ module.exports = {
 				const { idTk } = params;
 				const intId = parseInt(idTk);
 
-				const showTK = await dbContext.TAIKHOAN.findAll({
-					attributes: ["ID_TAIKHOAN"],
+				const showTK = await dbContext.THONGTINCHUHO.findAll({
 					required: false,
+					attributes: ["TEN_CHUHO"],
 					where: {
 						ID_TAIKHOAN: intId,
 					},
 					include: [
 						{
-							model: dbContext.THONGTINCHUHO,
-							as: "THONGTINCHUHOs",
-							attributes: ["TEN_CHUHO"],
+							model: dbContext.NHA,
 							required: false,
-							include: [
-								{
-									model: dbContext.NHA,
-									as: "NHAs",
-									required: false,
-									where: {
-										ID_TRANGTHAI_NHA: "2",
-									},
-								},
-							],
+							as: "NHAs",
+							where: {
+								ID_TRANGTHAI_NHA: "2",
+							},
 						},
 					],
 				});
 				return showTK;
 			},
 		},
+		//8
 		showListApartmentStatus3: {
 			rest: {
 				method: "POST",
@@ -314,34 +306,27 @@ module.exports = {
 				const { idTk } = params;
 				const intId = parseInt(idTk);
 
-				const showTK = await dbContext.TAIKHOAN.findAll({
-					attributes: ["ID_TAIKHOAN"],
+				const showTK = await dbContext.THONGTINCHUHO.findAll({
 					required: false,
+					attributes: ["TEN_CHUHO"],
 					where: {
 						ID_TAIKHOAN: intId,
 					},
 					include: [
 						{
-							model: dbContext.THONGTINCHUHO,
-							as: "THONGTINCHUHOs",
-							attributes: ["TEN_CHUHO"],
+							model: dbContext.NHA,
 							required: false,
-							include: [
-								{
-									model: dbContext.NHA,
-									as: "NHAs",
-									required: false,
-									where: {
-										ID_TRANGTHAI_NHA: "3",
-									},
-								},
-							],
+							as: "NHAs",
+							where: {
+								ID_TRANGTHAI_NHA: "3",
+							},
 						},
 					],
 				});
 				return showTK;
 			},
 		},
+		//9
 		deleteApartment: {
 			rest: {
 				method: "POST",
@@ -361,6 +346,27 @@ module.exports = {
 				return deleteApart;
 			}
 		},
+		//10
+		deleteRoom: {
+			rest: {
+				method: "POST",
+				path: "/deleteRoom"
+			},
+			params: {
+				idNha: {type: "string"}
+			},
+			async handler({action, params, meta, ...ctx}){
+				const {idNha} = params;
+				const deleteRo = await dbContext.PHONG.destroy({
+					where: {
+						ID_NHA:idNha
+					},
+					force: true
+				});
+				return deleteRo;
+			}
+		},
+		//11
 		register: {
 			rest: {
 				method: "POST",
@@ -392,6 +398,7 @@ module.exports = {
 				}
 			},
 		},
+		//12
 		getListStyle: {
 			rest: {
 				method: "POST",
@@ -402,6 +409,7 @@ module.exports = {
 				return getList;
 			},
 		},
+		//13
 		getDetailApartment: {
 			rest: {
 				method: "GET",
@@ -420,6 +428,7 @@ module.exports = {
 				return checkDetail;
 			},
 		},
+		//14
 		getListPropFaci: {
 			rest: {
 				method: "POST",
@@ -432,6 +441,7 @@ module.exports = {
 				return getList;
 			},
 		},
+		//15
 		getListHouseFaci: {
 			rest: {
 				method: "POST",
@@ -442,6 +452,7 @@ module.exports = {
 				return getList;
 			},
 		},
+		//16
 		getListRoomFacility: {
 			rest: {
 				method: "POST",
@@ -454,6 +465,7 @@ module.exports = {
 				return getList;
 			},
 		},
+		//17
 		getListRoomType: {
 			rest: {
 				method: "POST",
@@ -464,6 +476,7 @@ module.exports = {
 				return getType;
 			},
 		},
+		//18
 		getListBedType: {
 			rest: {
 				method: "POST",
@@ -474,6 +487,7 @@ module.exports = {
 				return getType;
 			},
 		},
+		//19
 		getListApartType: {
 			rest: {
 				method: "POST",
@@ -484,6 +498,7 @@ module.exports = {
 				return listType;
 			},
 		},
+		//20
 		getTypeApart: {
 			rest: {
 				method: "POST",
@@ -502,6 +517,7 @@ module.exports = {
 				return type.TEN_LOAINHA;
 			},
 		},
+		//21
 		getListCountry: {
 			rest: {
 				method: "POST",
@@ -512,6 +528,7 @@ module.exports = {
 				return listCountry;
 			},
 		},
+		//22
 		getListCity: {
 			rest: {
 				method: "POST",
@@ -530,6 +547,7 @@ module.exports = {
 				return listCity;
 			},
 		},
+		//23
 		getListDistrict: {
 			rest: {
 				method: "POST",
@@ -548,6 +566,7 @@ module.exports = {
 				return checkCity;
 			},
 		},
+		//24
 		createApartment: {
 			rest: {
 				method: "POST",
@@ -620,6 +639,7 @@ module.exports = {
 				return createApartment;
 			},
 		},
+		//25
 		createRoom: {
 			rest: {
 				method: "POST",
@@ -672,6 +692,7 @@ module.exports = {
 				return create;
 			},
 		},
+		//26
 		getAddressApartment: {
 			rest: {
 				method: "POST",
@@ -715,6 +736,7 @@ module.exports = {
 				return output;
 			},
 		},
+		//27
 		getListOrderNew: {
 			rest: {
 				method: "POST",
@@ -726,14 +748,10 @@ module.exports = {
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
 				const intId = parseInt(idTk);
-				const getIDAccount = await dbContext.TAIKHOAN.findOne({
-					where:
-						{ ID_TAIKHOAN: intId },
-				});
 				const getIDPartner = await dbContext.THONGTINCHUHO.findAll({
 					attributes: ["ID_TT_CHUHO"],
 					where: {
-						ID_TAIKHOAN: getIDAccount.ID_TAIKHOAN,
+						ID_TAIKHOAN: intId,
 					},
 					include:[{
 						model: dbContext.NHA,
@@ -753,6 +771,7 @@ module.exports = {
 				return getIDPartner;
 			},
 		},
+		//28
 		getListOrderAction: {
 			rest: {
 				method: "POST",
@@ -764,14 +783,10 @@ module.exports = {
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
 				const intId = parseInt(idTk);
-				const getIDAccount = await dbContext.TAIKHOAN.findOne({
-					where:
-						{ ID_TAIKHOAN: intId },
-				});
 				const getIDPartner = await dbContext.THONGTINCHUHO.findAll({
 					attributes: ["ID_TT_CHUHO"],
 					where: {
-						ID_TAIKHOAN: getIDAccount.ID_TAIKHOAN,
+						ID_TAIKHOAN: intId,
 					},
 					include:[{
 						model: dbContext.NHA,
@@ -791,6 +806,7 @@ module.exports = {
 				return getIDPartner;
 			},
 		},
+		//29
 		getListOrderFinished: {
 			rest: {
 				method: "POST",
@@ -802,14 +818,10 @@ module.exports = {
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
 				const intId = parseInt(idTk);
-				const getIDAccount = await dbContext.TAIKHOAN.findOne({
-					where:
-						{ ID_TAIKHOAN: intId },
-				});
 				const getIDPartner = await dbContext.THONGTINCHUHO.findAll({
 					attributes: ["ID_TT_CHUHO"],
 					where: {
-						ID_TAIKHOAN: getIDAccount.ID_TAIKHOAN,
+						ID_TAIKHOAN: intId,
 					},
 					include:[{
 						model: dbContext.NHA,
@@ -829,6 +841,7 @@ module.exports = {
 				return getIDPartner;
 			},
 		},
+		//30
 		getListOrderCancelled: {
 			rest: {
 				method: "POST",
@@ -840,14 +853,11 @@ module.exports = {
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
 				const intId = parseInt(idTk);
-				const getIDAccount = await dbContext.TAIKHOAN.findOne({
-					where:
-						{ ID_TAIKHOAN: intId },
-				});
+				
 				const getIDPartner = await dbContext.THONGTINCHUHO.findAll({
 					attributes: ["ID_TT_CHUHO"],
 					where: {
-						ID_TAIKHOAN: getIDAccount.ID_TAIKHOAN,
+						ID_TAIKHOAN: intId,
 					},
 					include:[{
 						model: dbContext.NHA,
@@ -867,6 +877,7 @@ module.exports = {
 				return getIDPartner;
 			},
 		},
+		//31
 		changeActive: {
 			rest: {
 				method: "POST",
@@ -889,6 +900,7 @@ module.exports = {
 				return change;
 			},
 		},
+		//32
 		changeStatusAction: {
 			rest: {
 				method: "POST",
@@ -911,6 +923,7 @@ module.exports = {
 				return change;
 			},
 		},
+		//33
 		changeStatusFinished: {
 			rest: {
 				method: "POST",
@@ -933,6 +946,7 @@ module.exports = {
 				return change;
 			},
 		},
+		//34
 		changeStatusCancelled: {
 			rest: {
 				method: "POST",
@@ -955,6 +969,7 @@ module.exports = {
 				return change;
 			},
 		},
+		//35
 		changeUnactive: {
 			rest: {
 				method: "POST",
@@ -978,6 +993,7 @@ module.exports = {
 				return change;
 			},
 		},
+		//36
 		changeHired: {
 			rest: {
 				method: "POST",
@@ -1001,6 +1017,7 @@ module.exports = {
 				return change;
 			},
 		},
+		//37
 		getDetailOrder:{
 			rest:{
 				method: "POST",
@@ -1022,6 +1039,7 @@ module.exports = {
 				return cusinfo;
 			}
 		},
+		//38
 		checkOrderCancel: {
 			rest: {
 				method: "POST",
@@ -1043,24 +1061,6 @@ module.exports = {
 					},
 				});
 				return checkCancel.FREE_CANCEL;
-			}
-		},
-		checkInOrder: {
-			rest: {
-				method: "POST",
-				path: "/checkInOrder"
-			},
-			params: {
-				idNha: {type: "string"}
-			},
-			async handler({action, params, meta, ...ctx}){
-				const { idNha } = params;
-				const checkIn = await dbContext.DATCANHO.findOne({
-					where: {
-						ID_NHA: idNha
-					}
-				});
-				return checkIn.ID_NHA;
 			}
 		},
 		/**

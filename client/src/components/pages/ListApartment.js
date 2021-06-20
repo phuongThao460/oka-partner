@@ -33,8 +33,8 @@ class ListApartment extends React.Component {
         idTk: localStorage.getItem("idTk"),
       })
       .then((result) => {
-        console.log(result.data[0].ID_TAIKHOAN);
-        this.state.lstApartmentS1 = result.data[0].THONGTINCHUHOs[0].NHAs;
+        console.log(result.data[0]);
+        this.state.lstApartmentS1 = result.data[0].NHAs;
         this.setState(this);
       });
   };
@@ -44,8 +44,8 @@ class ListApartment extends React.Component {
         idTk: localStorage.getItem("idTk"),
       })
       .then((result) => {
-        console.log(result.data[0].ID_TAIKHOAN);
-        this.state.lstApartmentS2 = result.data[0].THONGTINCHUHOs[0].NHAs;
+        console.log(result.data[0].NHAs);
+        this.state.lstApartmentS2 = result.data[0].NHAs;
         this.setState(this);
       });
   };
@@ -55,8 +55,8 @@ class ListApartment extends React.Component {
         idTk: localStorage.getItem("idTk"),
       })
       .then((result) => {
-        console.log(result.data[0].ID_TAIKHOAN);
-        this.state.lstApartmentS3 = result.data[0].THONGTINCHUHOs[0].NHAs;
+        console.log(result.data);
+        this.state.lstApartmentS3 = result.data[0].NHAs;
         this.setState(this);
       });
   };
@@ -71,6 +71,7 @@ class ListApartment extends React.Component {
       })
       .then((result) => {
         console.log(result.data);
+        window.location.reload();
       })
       .catch((err) => console.log(err.result));
   };
@@ -81,27 +82,27 @@ class ListApartment extends React.Component {
       })
       .then((result) => {
         console.log(result.data);
+        window.location.reload();
       })
       .catch((err) => console.log(err.result));
   };
   deleteApartment = (idNha) => {
     axios
-      .post("http://localhost:33456/api/partner/checkInOrder", {
+      .post("http://localhost:33456/api/partner/deleteRoom", {
         idNha: idNha.toString(),
       })
       .then((result) => {
-        if (result.data !== null) {
-          alert("Cannot delete this apartment");
-        } else {
-          axios
-            .post("http://localhost:33456/api/partner/deleteApartment", {
-              idNha: idNha.toString(),
-            })
-            .then((result) => {
-              console.log(result.data);
-            })
-            .catch((err) => console.log(err.result));
-        }
+        console.log(result.data);
+        //window.location.reload();
+      })
+      .catch((err) => console.log(err.result));
+    axios
+      .post("http://localhost:33456/api/partner/deleteApartment", {
+        idNha: idNha.toString(),
+      })
+      .then((result) => {
+        console.log(result.data);
+        //window.location.reload();
       })
       .catch((err) => console.log(err.result));
   };
@@ -128,10 +129,10 @@ class ListApartment extends React.Component {
           }}
         >
           <TabPane tab="Unactive" key="1" className="tab-apart">
-            <div key={this.state.idTk}>
+            <div>
               {this.state.lstApartmentS1.map((item) => (
-                <div key={item.ID_TAIKHOAN}>
-                  <div value={item.ID_TT_CHUHO}>
+                <div>
+                  <div key={item.ID_TT_CHUHO}>
                     <div value={item.THUTU_NHA}>
                       <p>ma nha: {item.ID_NHA}</p>
                       <p>loai nha: {item.ID_LOAINHA}</p>
@@ -150,10 +151,10 @@ class ListApartment extends React.Component {
             </div>
           </TabPane>
           <TabPane tab="Active" key="2">
-            <div key={this.state.idTk}>
+            <div>
               {this.state.lstApartmentS2.map((item) => (
-                <div key={item.ID_TAIKHOAN}>
-                  <div value={item.ID_TT_CHUHO}>
+                <div>
+                  <div key={item.ID_TT_CHUHO}>
                     <div value={item.THUTU_NHA}>
                       <p>ma nha: {item.ID_NHA}</p>
                       <p>loai nha: {item.ID_LOAINHA}</p>
@@ -169,10 +170,10 @@ class ListApartment extends React.Component {
             </div>
           </TabPane>
           <TabPane tab="Hired" key="3">
-            <div key={this.state.idTk}>
+            <div>
               {this.state.lstApartmentS3.map((item) => (
-                <div key={item.ID_TAIKHOAN}>
-                  <div value={item.ID_TT_CHUHO}>
+                <div >
+                  <div key={item.ID_TT_CHUHO}>
                     <div value={item.THUTU_NHA}>
                       <p>ma nha: {item.ID_NHA}</p>
                       <p>loai nha: {item.ID_LOAINHA}</p>
