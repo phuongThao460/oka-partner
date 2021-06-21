@@ -15,6 +15,7 @@ import ListApartment from "./components/pages/ListApartment";
 import OrderDetail from "./components/pages/OrderDetail";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
+import ApartmentInfo from "./components/pages/ApartmentInfo";
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -50,6 +51,7 @@ class App extends React.Component {
             <Route path="/registrationDetail" component={RegistrationDetail} />
             <Route path="/lstApartment/:idTk" component={ListApartment} />
             <Route path="/lstOrder/:idTk" component={Order} />
+            <Route path="/apartmentInfo/:id" component={ApartmentInfo}/>
             <Route path="/orderDetail/:idOrder" component={OrderDetail} />
             <Route path="/detailAndEditProfile" component={DetailAndEditProfile} />
           </Switch>

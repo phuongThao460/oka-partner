@@ -266,7 +266,7 @@ module.exports = {
 						...x,
 						ID_NHA: p.ID_NHA,
 						TEN_NHA: p.TEN_NHA,
-						TEN_LOAINHA: p.ID_LOAINHA_LOAINHA.TEN_LOAINHA
+						TEN_LOAINHA: p.ID_LOAINHA_LOAINHA.TEN_LOAINHA,
 					}));
 					prev = prev.concat(mapped);
 					return prev;
@@ -310,7 +310,7 @@ module.exports = {
 						...x,
 						ID_NHA: p.ID_NHA,
 						TEN_NHA: p.TEN_NHA,
-						TEN_LOAINHA: p.ID_LOAINHA_LOAINHA.TEN_LOAINHA
+						TEN_LOAINHA: p.ID_LOAINHA_LOAINHA.TEN_LOAINHA,
 					}));
 					prev = prev.concat(mapped);
 					return prev;
@@ -361,14 +361,13 @@ module.exports = {
 						...x,
 						ID_NHA: p.ID_NHA,
 						TEN_NHA: p.TEN_NHA,
-						TEN_LOAINHA: p.ID_LOAINHA_LOAINHA.TEN_LOAINHA
+						TEN_LOAINHA: p.ID_LOAINHA_LOAINHA.TEN_LOAINHA,
 					}));
 					prev = prev.concat(mapped);
 					return prev;
 				}, []);
 				return r;
 			},
-
 		},
 		//9
 		deleteApartment: {
@@ -457,7 +456,7 @@ module.exports = {
 		getDetailApartment: {
 			rest: {
 				method: "GET",
-				path: "/registrationDetail/getDetailApartment",
+				path: "/getDetailApartment",
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const { id } = params;
@@ -473,6 +472,30 @@ module.exports = {
 			},
 		},
 		//14
+		getListRoom: {
+			rest: {
+				method: "POST",
+				path: "/getListRoom",
+			},
+			params: {
+				idApartment: { type: "string" },
+			},
+			async handler({ action, params, meta, ...ctx }) {
+				const { idApartment } = params;
+				const lsRoom = await dbContext.PHONG.findOne({
+					where: {
+						ID_NHA: idApartment,
+					},
+					include: [
+						"ID_LOAIPHONG_LOAIPHONG",
+						"ID_LOAIGIUONG_LOAIGIUONG",
+					],
+				});
+				
+				return lsRoom;
+			},
+		},
+		//15
 		getListPropFaci: {
 			rest: {
 				method: "POST",
@@ -485,7 +508,7 @@ module.exports = {
 				return getList;
 			},
 		},
-		//15
+		//16
 		getListHouseFaci: {
 			rest: {
 				method: "POST",
@@ -496,7 +519,7 @@ module.exports = {
 				return getList;
 			},
 		},
-		//16
+		//17
 		getListRoomFacility: {
 			rest: {
 				method: "POST",
@@ -509,7 +532,7 @@ module.exports = {
 				return getList;
 			},
 		},
-		//17
+		//18
 		getListRoomType: {
 			rest: {
 				method: "POST",
@@ -520,7 +543,7 @@ module.exports = {
 				return getType;
 			},
 		},
-		//18
+		//19
 		getListBedType: {
 			rest: {
 				method: "POST",

@@ -2,6 +2,7 @@
 import React from "react";
 import axios from "axios";
 import Navbar from "../paner-form/Navbar";
+import { Link } from "react-router-dom"
 class ListApartment extends React.Component {
   constructor(props) {
     super(props);
@@ -196,6 +197,7 @@ class ListApartment extends React.Component {
                         >
                           Delete
                         </button>
+                        <Link to={"/apartmentInfo/" + item.ID_NHA} className="btn btn-link">View</Link>
                       </td>
                     </tr>
                   ))}
