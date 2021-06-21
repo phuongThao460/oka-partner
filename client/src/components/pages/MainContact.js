@@ -83,18 +83,6 @@ class MainContact extends React.Component {
                       </div>
                     </Link>
                     <Link
-                      key="3"
-                      to="/registrationDetail/propertyFacilities"
-                      className="slidebar-item css-check"
-                    >
-                      <div className="c-flexbox css-nb">
-                        <span className="text css-nb-text">
-                          Property Facilities
-                        </span>
-                        
-                      </div>
-                    </Link>
-                    <Link
                       key="4"
                       to="/registrationDetail/rooms"
                       className="slidebar-item css-check"
@@ -104,19 +92,6 @@ class MainContact extends React.Component {
                         
                       </div>
                     </Link>
-                    <Link
-                      key="5"
-                      to="/registrationDetail/roomFacilities"
-                      className="slidebar-item css-check"
-                    >
-                      <div className="c-flexbox css-nb">
-                        <span className="text css-nb-text">
-                          Room Facilities
-                        </span>
-                        
-                      </div>
-                    </Link>
-                    
                   </div>
                 </span>
               </div>

@@ -48,7 +48,7 @@ class OrderDetail extends React.Component {
       })
       .catch((err) => console.log(err.result));
   };
-  changeCancelled = (idOrder) => {
+  changeCancelledActive = (idNha,idOrder) => {
     axios
       .post("http://localhost:33456/api/partner/changeStatusCancelled", {
         idOrder: idOrder.toString(),
@@ -56,6 +56,15 @@ class OrderDetail extends React.Component {
       .then((result) => {
         console.log(result.data);
         this.props.history.push("/lstOrder/" + localStorage.getItem("idTk"));
+      })
+      .catch((err) => console.log(err.result));
+      axios
+      .post("http://localhost:33456/api/partner/changeActive", {
+        idNha: idNha.toString(),
+      })
+      .then((result) => {
+        console.log(result.data);
+        window.location.reload();
       })
       .catch((err) => console.log(err.result));
   };
@@ -135,7 +144,7 @@ class OrderDetail extends React.Component {
               <button
                 button
                 className="btn btn-danger"
-                onClick={() => this.changeCancelled(lstOrder.ID_DATCANHO)}
+                onClick={() => this.changeCancelledActive(lstOrder.ID_NHA,lstOrder.ID_DATCANHO)}
               >
                 Cancel
               </button>
@@ -153,7 +162,7 @@ class OrderDetail extends React.Component {
               </button>
               <button
                 className="btn btn-danger"
-                onClick={() => this.changeCancelled(lstOrder.ID_DATCANHO)}
+                onClick={() => this.changeCancelledActive(lstOrder.ID_NHA,lstOrder.ID_DATCANHO)}
               >
                 Cancel
               </button>

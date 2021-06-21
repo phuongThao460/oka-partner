@@ -370,6 +370,7 @@ class DetailAndEditProfile extends Component {
     this.saveModalDetails = this.saveModalDetails.bind(this);
     this.state = {
       mainContact: {},
+      idTk: localStorage.getItem("idTk")
     };
     this.showMainContact();
   }
@@ -377,7 +378,7 @@ class DetailAndEditProfile extends Component {
   showMainContact = () => {
     axios
       .post("http://localhost:33456/api/partner/showContact", {
-        idTk: localStorage.getItem("idTk"),
+        idTk: this.state.idTk.toString(),
       })
       .then((result) => {
         console.log(result.data.ID_TT_CHUHO);

@@ -119,18 +119,6 @@ class Rooms extends Component {
                     </Link>
                     <Link
                       key="3"
-                      to="/registrationDetail/propertyFacilities"
-                      className="slidebar-item css-check"
-                    >
-                      <div className="c-flexbox css-nb">
-                        <span className="text css-nb-text">
-                          Property Facilities
-                        </span>
-                        
-                      </div>
-                    </Link>
-                    <Link
-                      key="4"
                       to="/registrationDetail/rooms"
                       className="slidebar-item slidebar-item--is-active css-check"
                     >
@@ -139,19 +127,6 @@ class Rooms extends Component {
                         
                       </div>
                     </Link>
-                    <Link
-                      key="5"
-                      to="/registrationDetail/roomFacilities"
-                      className="slidebar-item css-check"
-                    >
-                      <div className="c-flexbox css-nb">
-                        <span className="text css-nb-text">
-                          Room Facilities
-                        </span>
-                        
-                      </div>
-                    </Link>
-                    
                   </div>
                 </span>
               </div>
@@ -754,9 +729,9 @@ class Rooms extends Component {
                 </div>
               </div>
               <div className="block css-contact">
-                <Link to="/registrationDetail/roomFacilities">
-                  <button className="btn-contact" onClick={this.createRoom}>
-                    Save and Continues
+                <Link to={"/AddHomeBlock/" + localStorage.getItem("idTk")}>
+                  <button className="btn-success-save" onClick={this.createRoom}>
+                    Save and Go to apartments list
                   </button>
                 </Link>
               </div>

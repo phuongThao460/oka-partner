@@ -76,7 +76,7 @@ class GenerationInformation extends Component {
       .then((response) => {
         console.log(response.data);
         this.props.history.push(
-          "/registrationDetail/propertyFacilities/" + this.idNha.current.value
+          "/registrationDetail/rooms/" + this.idNha.current.value
         );
       })
       .catch((err) => console.log(err.response));
@@ -169,17 +169,6 @@ class GenerationInformation extends Component {
                     </Link>
                     <Link
                       key="3"
-                      to="/registrationDetail/propertyFacilities"
-                      className="slidebar-item css-check"
-                    >
-                      <div className="c-flexbox css-nb">
-                        <span className="text css-nb-text">
-                          Property Facilities
-                        </span>
-                      </div>
-                    </Link>
-                    <Link
-                      key="4"
                       to="/registrationDetail/rooms"
                       className="slidebar-item css-check"
                     >
