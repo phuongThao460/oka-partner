@@ -9,10 +9,9 @@ import Services from "./components/pages/Services";
 import Products from "./components/pages/Products";
 import AddHomeBlock from "./components/pages/AddHomeBlock";
 import RegistrationDetail from "./components/pages/RegistrationDetail";
-import ListApartment from "./components/pages/ListApartment";
 import Order from "./components/pages/Order";
 import DetailAndEditProfile from "./components/pages/DetailAndEditProfile"
-import StatusContent from "./components/pages/StatusContent";
+import ListApartment from "./components/pages/ListApartment";
 import OrderDetail from "./components/pages/OrderDetail";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
@@ -49,7 +48,6 @@ class App extends React.Component {
             <Route path="/services" component={Services} />
             <Route path="/products/:id" component={Products} />
             <Route path="/registrationDetail" component={RegistrationDetail} />
-            <Route path="/statusContent/:idTk" component={StatusContent}/>
             <Route path="/lstApartment/:idTk" component={ListApartment} />
             <Route path="/lstOrder/:idTk" component={Order} />
             <Route path="/orderDetail/:idOrder" component={OrderDetail} />

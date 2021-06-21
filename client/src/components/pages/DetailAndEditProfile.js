@@ -73,7 +73,7 @@ class Modal extends Component {
         idenCode: this.state.idenCode,
         idenType: this.state.idenType,
         country: this.state.country,
-        gender: this.state.gender,
+        gender: this.state.gender.toString(),
         address: this.state.address,
         taxCode: this.state.taxCode,
       })
@@ -98,7 +98,7 @@ class Modal extends Component {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
-                Edit Jewel
+                Edit Profile
               </h5>
               <button
                 type="button"
@@ -110,111 +110,233 @@ class Modal extends Component {
               </button>
             </div>
             <div className="modal-body">
-              <p>
-                <span className="modal-lable">Full Name:</span>
-                <input
-                  value={this.state.fullName}
-                  onChange={(e) => this.fullNameHandler(e)}
-                />
-              </p>
-              <p>
-                <span className="modal-lable">Email:</span>
-                <input
-                  value={this.state.email}
-                  onChange={(e) => this.emailHandler(e)}
-                />
-              </p>
-              <p>
-                <span className="modal-lable">Phone Number:</span>
-                <input
-                  value={this.state.phoneNumber}
-                  onChange={(e) => this.phoneNumberHandler(e)}
-                />
-              </p>
-              <p>
-                <span className="modal-lable">Identification Code:</span>
-                <input
-                  value={this.state.idenCode}
-                  onChange={(e) => this.idenCodeHandler(e)}
-                />
-              </p>
-              <p>
-                <span className="modal-lable">Identification Type:</span>
-                <input
-                  value={this.state.idenType}
-                  onChange={(e) => this.idenTypeHandler(e)}
-                />
-              </p>
-              <p>
-                <span className="modal-lable">Country:</span>
-                <input
-                  value={this.state.country}
-                  onChange={(e) => this.countryHandler(e)}
-                />
-              </p>
-
-              {this.state.gender ? (
-                <p>
-                  <span className="modal-lable">Gender:</span>
-                  <input
-                    type="radio"
-                    name="editContact,previousNameBoolean"
-                    value={this.state.gender}
-                    checked={this.state.gender}
-                    onChange={(e) => this.genderHandler(e)}
-                  />
-                  <label className="" htmlFor="radio-9">
-                    <span>Female</span>
+              <div className="form-horizontal">
+                <div class="form-group" style={{ display: "flex" }}>
+                  <label
+                    className="control-label col-md-4"
+                    style={{ maxWidth: "25.333333%" }}
+                  >
+                    Full Name:
                   </label>
-                  <input
-                    type="radio"
-                    name="editContact,previousNameBoolean"
-                    value={!this.state.gender}
-                    onChange={(e) => this.genderHandler(e)}
-                  />
-                  <label className="" htmlFor="radio-10">
-                    <span>Male</span>
+                  <div class="col-md-5">
+                    <input
+                      style={{ height: "25px" }}
+                      value={this.state.fullName}
+                      onChange={(e) => this.fullNameHandler(e)}
+                      className="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="form-group" style={{ display: "flex" }}>
+                  <label
+                    className="control-label col-md-4"
+                    style={{ maxWidth: "25.333333%" }}
+                  >
+                    Email
                   </label>
-                </p>
-              ) : (
-                <p>
-                  <span className="modal-lable">Gender:</span>
-                  <input
-                    type="radio"
-                    name="editContact,previousNameBoolean"
-                    value={!this.state.gender}
-                    onChange={(e) => this.genderHandler(e)}
-                  />
-                  <label className="" htmlFor="radio-9">
-                    <span>Female</span>
+                  <div class="col-md-5">
+                    <input
+                      style={{ height: "25px" }}
+                      value={this.state.email}
+                      onChange={(e) => this.emailHandler(e)}
+                      className="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="form-group" style={{ display: "flex" }}>
+                  <label
+                    className="control-label col-md-4"
+                    style={{ maxWidth: "25.333333%" }}
+                  >
+                    Phone Number
                   </label>
-                  <input
-                    type="radio"
-                    name="editContact,previousNameBoolean"
-                    value={this.state.gender}
-                    checked={this.state.gender === false}
-                    onChange={(e) => this.genderHandler(e)}
-                  />
-                  <label className="" htmlFor="radio-10">
-                    <span>Male</span>
+                  <div class="col-md-5">
+                    <input
+                      style={{ height: "25px" }}
+                      value={this.state.phoneNumber}
+                      onChange={(e) => this.phoneNumberHandler(e)}
+                      className="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="form-group" style={{ display: "flex" }}>
+                  <label
+                    className="control-label col-md-4"
+                    style={{ maxWidth: "25.333333%" }}
+                  >
+                    Identification Code
                   </label>
-                </p>
-              )}
-
-              <p>
-                <span className="modal-lable">Address:</span>
-                <input
-                  value={this.state.address}
-                  onChange={(e) => this.addressHandler(e)}
-                />
-              </p>
-              <p>
-                <span className="modal-lable">Tax Code:</span>
-                <input
-                  value={this.state.taxCode}
-                  onChange={(e) => this.taxCodeHandler(e)}
-                />
-              </p>
+                  <div class="col-md-5">
+                    <input
+                      style={{ height: "25px" }}
+                      value={this.state.idenCode}
+                      onChange={(e) => this.idenCodeHandler(e)}
+                      className="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="form-group" style={{ display: "flex" }}>
+                  <label
+                    className="control-label col-md-4"
+                    style={{ maxWidth: "25.333333%" }}
+                  >
+                    Identification Type
+                  </label>
+                  <div class="col-md-5">
+                    <input
+                      style={{ height: "25px" }}
+                      value={this.state.idenType}
+                      onChange={(e) => this.idenTypeHandler(e)}
+                      className="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="form-group" style={{ display: "flex" }}>
+                  <label
+                    className="control-label col-md-4"
+                    style={{ maxWidth: "25.333333%" }}
+                  >
+                    Country
+                  </label>
+                  <div class="col-md-5">
+                    <input
+                      style={{ height: "25px" }}
+                      value={this.state.country}
+                      onChange={(e) => this.countryHandler(e)}
+                      className="form-control"
+                    />
+                  </div>
+                </div>
+                {this.state.gender ? (
+                  <div class="form-group" style={{ display: "flex" }}>
+                    <label
+                      className="control-label col-md-4"
+                      style={{ maxWidth: "25.333333%" }}
+                    >
+                      Gender
+                    </label>
+                    <div className="col-md-5" style={{ display: "flex" }}>
+                      <input
+                        type="radio"
+                        className="form-control"
+                        id="radio-9"
+                        style={{ width: "19px", height: "19px" }}
+                        name="editContact,previousNameBoolean"
+                        value={this.state.gender.toString()}
+                        checked="true"
+                        onChange={(e) => this.genderHandler(e)}
+                      />
+                      <label
+                        className="control-label"
+                        htmlFor="radio-9"
+                        style={{ marginLeft: "3px" }}
+                      >
+                        Female
+                      </label>
+                      <input
+                        type="radio"
+                        className="form-control"
+                        id="radio-10"
+                        style={{
+                          width: "19px",
+                          height: "19px",
+                          marginLeft: "25px",
+                        }}
+                        name="editContact,previousNameBoolean"
+                        value={!this.state.gender.toString()}
+                        onChange={(e) => this.genderHandler(e)}
+                      />
+                      <label
+                        className="control-label"
+                        htmlFor="radio-10"
+                        style={{ marginLeft: "3px" }}
+                      >
+                        Male
+                      </label>
+                    </div>
+                  </div>
+                ) : (
+                  <div class="form-group" style={{ display: "flex" }}>
+                    <label
+                      className="control-label col-md-4"
+                      style={{ maxWidth: "25.333333%" }}
+                    >
+                      Gender
+                    </label>
+                    <div className="col-md-5" style={{ display: "flex" }}>
+                      <input
+                        type="radio"
+                        className="form-control"
+                        id="radio-9"
+                        style={{ width: "19px", height: "19px" }}
+                        name="editContact,previousNameBoolean"
+                        value={!this.state.gender.toString()}
+                        onChange={(e) => this.genderHandler(e)}
+                      />
+                      <label
+                        className="control-label"
+                        htmlFor="radio-9"
+                        style={{ marginLeft: "3px" }}
+                      >
+                        Female
+                      </label>
+                      <input
+                        type="radio"
+                        className="form-control"
+                        id="radio-10"
+                        style={{
+                          width: "19px",
+                          height: "19px",
+                          marginLeft: "25px",
+                        }}
+                        name="editContact,previousNameBoolean"
+                        value={this.state.gender}
+                        checked={this.state.gender === false}
+                        onChange={(e) => this.genderHandler(e)}
+                      />
+                      <label
+                        className="control-label"
+                        htmlFor="radio-10"
+                        style={{ marginLeft: "3px" }}
+                      >
+                        Male
+                      </label>
+                    </div>
+                  </div>
+                )}
+                <div class="form-group" style={{ display: "flex" }}>
+                  <label
+                    className="control-label col-md-4"
+                    style={{ maxWidth: "25.333333%" }}
+                  >
+                    Address
+                  </label>
+                  <div class="col-md-5">
+                    <input
+                      style={{ height: "25px" }}
+                      value={this.state.address}
+                      onChange={(e) => this.addressHandler(e)}
+                      className="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="form-group" style={{ display: "flex" }}>
+                  <label
+                    className="control-label col-md-4"
+                    style={{ maxWidth: "25.333333%" }}
+                  >
+                    Tax Code
+                  </label>
+                  <div class="col-md-5">
+                    <input
+                      style={{ height: "25px" }}
+                      value={this.state.taxCode}
+                      onChange={(e) => this.taxCodeHandler(e)}
+                      className="form-control"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="modal-footer">
               <button
@@ -286,7 +408,7 @@ class DetailAndEditProfile extends Component {
           style={{
             textAlign: "center",
             paddingBottom: "45px",
-            backgroundColor: "white"
+            backgroundColor: "white",
           }}
         >
           <h1>Your Profile</h1>
@@ -297,12 +419,17 @@ class DetailAndEditProfile extends Component {
               display: "flex",
               justifyContent: "center",
               paddingBottom: "100px",
-              backgroundColor: "white"
+              backgroundColor: "white",
             }}
           >
             <table
               className="table table-borderless"
-              style={{ width: "60%", fontSize: "20px", backgroundColor: "wheat", borderRadius: "4px" }}
+              style={{
+                width: "60%",
+                fontSize: "20px",
+                backgroundColor: "#f5deb38a",
+                borderRadius: "4px",
+              }}
             >
               <tbody>
                 <tr>
@@ -323,9 +450,7 @@ class DetailAndEditProfile extends Component {
                 </tr>
                 <tr>
                   <td className="span-name">Identification Type</td>
-                  <td className="p-name">
-                    {mainContact.LOAI_GIAYTOTUYTHAN}
-                  </td>
+                  <td className="p-name">{mainContact.LOAI_GIAYTOTUYTHAN}</td>
                 </tr>
                 <tr>
                   <td className="span-name">Country</td>
