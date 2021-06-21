@@ -731,7 +731,7 @@ class Rooms extends Component {
               <div className="block css-contact">
                 <Link to={"/AddHomeBlock/" + localStorage.getItem("idTk")}>
                   <button className="btn-success-save" onClick={this.createRoom}>
-                    Save and Go to apartments list
+                    Save and Go To Apartments List
                   </button>
                 </Link>
               </div>
