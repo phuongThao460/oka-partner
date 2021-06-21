@@ -142,21 +142,21 @@ module.exports = {
 		checkContactExist: {
 			rest: {
 				method: "POST",
-				path: "/checkContactExist"
+				path: "/checkContactExist",
 			},
-			params:{
-				idTk: {type: "string"}
+			params: {
+				idTk: { type: "string" },
 			},
-			async handler({action,params,meta, ...ctx}){
+			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
 				const intId = idTk;
 				const checkID = await dbContext.THONGTINCHUHO.findOne({
-					where:{
+					where: {
 						ID_TAIKHOAN: intId,
-					}
+					},
 				});
 				return checkID.ID_TT_CHUHO;
-			}
+			},
 		},
 		//4
 		showContact: {
@@ -182,7 +182,7 @@ module.exports = {
 		updateContact: {
 			rest: {
 				method: "POST",
-				path: "/updateContact"
+				path: "/updateContact",
 			},
 			params: {
 				idTT: { type: "string" },
@@ -210,21 +210,24 @@ module.exports = {
 					taxCode,
 				} = params;
 				const intId = parseInt(idTT);
-				const update = await dbContext.THONGTINCHUHO.update({
-					TEN_CHUHO: fullName,
-					EMAIL: email,
-					PHONE_NUMBER: phoneNumber,
-					MA_GIAYTOTUYTHAN: idenCode,
-					LOAI_GIAYTOTUYTHAN: idenType,
-					QUOCTICH: country,
-					GIOITINH: gender,
-					DIACHI: address,
-					MASO_THUE: taxCode,
-				},{
-					where: {
-						ID_TT_CHUHO: intId
+				const update = await dbContext.THONGTINCHUHO.update(
+					{
+						TEN_CHUHO: fullName,
+						EMAIL: email,
+						PHONE_NUMBER: phoneNumber,
+						MA_GIAYTOTUYTHAN: idenCode,
+						LOAI_GIAYTOTUYTHAN: idenType,
+						QUOCTICH: country,
+						GIOITINH: gender,
+						DIACHI: address,
+						MASO_THUE: taxCode,
+					},
+					{
+						where: {
+							ID_TT_CHUHO: intId,
+						},
 					}
-				});
+				);
 				return update;
 			},
 		},
@@ -240,7 +243,7 @@ module.exports = {
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
 				const intId = parseInt(idTk);
-				const status1 = dbContext.THONGTINCHUHO.findAll({
+				const status1 = await dbContext.THONGTINCHUHO.findAll({
 					required: false,
 					attributes: ["TEN_CHUHO"],
 					where: {
@@ -254,10 +257,21 @@ module.exports = {
 							where: {
 								ID_TRANGTHAI_NHA: "1",
 							},
+							include: ["ID_LOAINHA_LOAINHA"],
 						},
 					],
 				});
-				return status1;
+				const r = status1.reduce((prev, curr) => {
+					const mapped = curr.NHAs.map((p, x) => ({
+						...x,
+						ID_NHA: p.ID_NHA,
+						TEN_NHA: p.TEN_NHA,
+						TEN_LOAINHA: p.ID_LOAINHA_LOAINHA.TEN_LOAINHA
+					}));
+					prev = prev.concat(mapped);
+					return prev;
+				}, []);
+				return r;
 			},
 		},
 		//7
@@ -287,10 +301,21 @@ module.exports = {
 							where: {
 								ID_TRANGTHAI_NHA: "2",
 							},
+							include: ["ID_LOAINHA_LOAINHA"],
 						},
 					],
 				});
-				return showTK;
+				const r = showTK.reduce((prev, curr) => {
+					const mapped = curr.NHAs.map((p, x) => ({
+						...x,
+						ID_NHA: p.ID_NHA,
+						TEN_NHA: p.TEN_NHA,
+						TEN_LOAINHA: p.ID_LOAINHA_LOAINHA.TEN_LOAINHA
+					}));
+					prev = prev.concat(mapped);
+					return prev;
+				}, []);
+				return r;
 			},
 		},
 		//8
@@ -320,51 +345,70 @@ module.exports = {
 							where: {
 								ID_TRANGTHAI_NHA: "3",
 							},
+							include: [
+								{
+									model: dbContext.LOAINHA,
+									required: false,
+									as: "ID_LOAINHA_LOAINHA",
+								},
+							],
 						},
 					],
 				});
-				return showTK;
+				//return showTK;
+				const r = showTK.reduce((prev, curr) => {
+					const mapped = curr.NHAs.map((p, x) => ({
+						...x,
+						ID_NHA: p.ID_NHA,
+						TEN_NHA: p.TEN_NHA,
+						TEN_LOAINHA: p.ID_LOAINHA_LOAINHA.TEN_LOAINHA
+					}));
+					prev = prev.concat(mapped);
+					return prev;
+				}, []);
+				return r;
 			},
+
 		},
 		//9
 		deleteApartment: {
 			rest: {
 				method: "POST",
-				path: "/deleteApartment"
+				path: "/deleteApartment",
 			},
 			params: {
-				idNha: {type: "string"}
+				idNha: { type: "string" },
 			},
-			async handler({action, params, meta, ...ctx}){
-				const {idNha} = params;
+			async handler({ action, params, meta, ...ctx }) {
+				const { idNha } = params;
 				const deleteApart = await dbContext.NHA.destroy({
 					where: {
-						ID_NHA:idNha
+						ID_NHA: idNha,
 					},
-					force: true
+					force: true,
 				});
 				return deleteApart;
-			}
+			},
 		},
 		//10
 		deleteRoom: {
 			rest: {
 				method: "POST",
-				path: "/deleteRoom"
+				path: "/deleteRoom",
 			},
 			params: {
-				idNha: {type: "string"}
+				idNha: { type: "string" },
 			},
-			async handler({action, params, meta, ...ctx}){
-				const {idNha} = params;
+			async handler({ action, params, meta, ...ctx }) {
+				const { idNha } = params;
 				const deleteRo = await dbContext.PHONG.destroy({
 					where: {
-						ID_NHA:idNha
+						ID_NHA: idNha,
 					},
-					force: true
+					force: true,
 				});
 				return deleteRo;
-			}
+			},
 		},
 		//11
 		register: {
@@ -505,13 +549,14 @@ module.exports = {
 				path: "/getTypeApart",
 			},
 			params: {
-				id: { type: "string" },
+				idType: { type: "string" },
 			},
-			async handler(params, ...ctx) {
-				const { id } = params;
-				const type = dbContext.LOAINHA.findOne({
+			async handler({ action, params, meta, ...ctx }) {
+				const { idType } = params;
+				const intId = idType;
+				const type = await dbContext.LOAINHA.findOne({
 					where: {
-						ID_LOAINHA: id,
+						ID_LOAINHA: intId,
 					},
 				});
 				return type.TEN_LOAINHA;
@@ -753,21 +798,25 @@ module.exports = {
 					where: {
 						ID_TAIKHOAN: intId,
 					},
-					include:[{
-						model: dbContext.NHA,
-						as: "NHAs",
-						attributes: ["THUTU_NHA"],
-						required: false,
-						include:[{
-							model: dbContext.DATCANHO,
-							as: "DATCANHOs",
+					include: [
+						{
+							model: dbContext.NHA,
+							as: "NHAs",
+							attributes: ["THUTU_NHA"],
 							required: false,
-							where: {
-								ID_TT_DCH: "1"
-							}
-						}]
-					}]
-				});				
+							include: [
+								{
+									model: dbContext.DATCANHO,
+									as: "DATCANHOs",
+									required: false,
+									where: {
+										ID_TT_DCH: "1",
+									},
+								},
+							],
+						},
+					],
+				});
 				return getIDPartner;
 			},
 		},
@@ -788,21 +837,25 @@ module.exports = {
 					where: {
 						ID_TAIKHOAN: intId,
 					},
-					include:[{
-						model: dbContext.NHA,
-						as: "NHAs",
-						attributes: ["THUTU_NHA"],
-						required: false,
-						include:[{
-							model: dbContext.DATCANHO,
-							as: "DATCANHOs",
+					include: [
+						{
+							model: dbContext.NHA,
+							as: "NHAs",
+							attributes: ["THUTU_NHA"],
 							required: false,
-							where: {
-								ID_TT_DCH: "2"
-							}
-						}]
-					}]
-				});				
+							include: [
+								{
+									model: dbContext.DATCANHO,
+									as: "DATCANHOs",
+									required: false,
+									where: {
+										ID_TT_DCH: "2",
+									},
+								},
+							],
+						},
+					],
+				});
 				return getIDPartner;
 			},
 		},
@@ -823,21 +876,25 @@ module.exports = {
 					where: {
 						ID_TAIKHOAN: intId,
 					},
-					include:[{
-						model: dbContext.NHA,
-						as: "NHAs",
-						attributes: ["THUTU_NHA"],
-						required: false,
-						include:[{
-							model: dbContext.DATCANHO,
-							as: "DATCANHOs",
+					include: [
+						{
+							model: dbContext.NHA,
+							as: "NHAs",
+							attributes: ["THUTU_NHA"],
 							required: false,
-							where: {
-								ID_TT_DCH: "3"
-							}
-						}]
-					}]
-				});				
+							include: [
+								{
+									model: dbContext.DATCANHO,
+									as: "DATCANHOs",
+									required: false,
+									where: {
+										ID_TT_DCH: "3",
+									},
+								},
+							],
+						},
+					],
+				});
 				return getIDPartner;
 			},
 		},
@@ -853,27 +910,31 @@ module.exports = {
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
 				const intId = parseInt(idTk);
-				
+
 				const getIDPartner = await dbContext.THONGTINCHUHO.findAll({
 					attributes: ["ID_TT_CHUHO"],
 					where: {
 						ID_TAIKHOAN: intId,
 					},
-					include:[{
-						model: dbContext.NHA,
-						as: "NHAs",
-						attributes: ["THUTU_NHA"],
-						required: false,
-						include:[{
-							model: dbContext.DATCANHO,
-							as: "DATCANHOs",
+					include: [
+						{
+							model: dbContext.NHA,
+							as: "NHAs",
+							attributes: ["THUTU_NHA"],
 							required: false,
-							where: {
-								ID_TT_DCH: "4"
-							}
-						}]
-					}]
-				});				
+							include: [
+								{
+									model: dbContext.DATCANHO,
+									as: "DATCANHOs",
+									required: false,
+									where: {
+										ID_TT_DCH: "4",
+									},
+								},
+							],
+						},
+					],
+				});
 				return getIDPartner;
 			},
 		},
@@ -1018,15 +1079,15 @@ module.exports = {
 			},
 		},
 		//37
-		getDetailOrder:{
-			rest:{
+		getDetailOrder: {
+			rest: {
 				method: "POST",
-				path: "/getDetailOrder"
+				path: "/getDetailOrder",
 			},
 			params: {
-				idOrder: {type: "string"}
+				idOrder: { type: "string" },
 			},
-			async handler({action, params, meta, ...ctx}){
+			async handler({ action, params, meta, ...ctx }) {
 				const { idOrder } = params;
 				const intId = idOrder;
 
@@ -1034,26 +1095,26 @@ module.exports = {
 					where: {
 						ID_DATCANHO: intId,
 					},
-					include:["ID_TT_KHACHHANG_THONGTINKHACHHANG"]
+					include: ["ID_TT_KHACHHANG_THONGTINKHACHHANG"],
 				});
 				return cusinfo;
-			}
+			},
 		},
 		//38
 		checkOrderCancel: {
 			rest: {
 				method: "POST",
-				path: "/checkOrderCancel"
+				path: "/checkOrderCancel",
 			},
 			params: {
-				idOrder: {type: "string"}
+				idOrder: { type: "string" },
 			},
-			async handler({action,params,meta, ...ctx}){
+			async handler({ action, params, meta, ...ctx }) {
 				const { idOrder } = params;
 				const getOrder = await dbContext.DATCANHO.findOne({
 					where: {
 						ID_DATCANHO: idOrder,
-					}
+					},
 				});
 				const checkCancel = await dbContext.NHA.findOne({
 					where: {
@@ -1061,7 +1122,7 @@ module.exports = {
 					},
 				});
 				return checkCancel.FREE_CANCEL;
-			}
+			},
 		},
 		/**
 		 * Welcome, a username

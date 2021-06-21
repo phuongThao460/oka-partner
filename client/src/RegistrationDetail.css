@@ -1260,8 +1260,10 @@ textarea {
 }
 
 .bloc-tabs {
+  padding-left: 46px;
   display: flex;
   width: 400px;
+  font-size: 18px;
 }
 .tabs {
   padding: 15px;
@@ -1300,6 +1302,8 @@ button {
 }
 .content-tabs {
   flex-grow: 1;
+  padding-left: 46px;
+  width: 1000px;
 }
 .content {
   background: white;
@@ -1325,4 +1329,12 @@ button {
 }
 .active-content {
   display: block;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+.btn-back{
+  margin-top: 20px;
+  margin-left: 38px;
+  font-size: 17px;
+  color: #5893f1;
 }
