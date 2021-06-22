@@ -22,18 +22,22 @@ class LoginForm extends Component {
       })
       .then((result) => {
         this.state.idTk = result.data;
-        window.localStorage.setItem("idTk", result.data);
-        window.localStorage.setItem(
-          "username",
-          this.loginNameRef.current.value
-        );
-        this.setState(this);
-        if (this.state.id !== "0") {
-          this.props.history.push("/AddHomeBlock/" + this.state.idTk);
+        if (result.data === "Username or Password not correct") {
+          alert(result.data);
+        } else {
+          window.localStorage.setItem("idTk", result.data);
+          window.localStorage.setItem(
+            "username",
+            this.loginNameRef.current.value
+          );
+          this.setState(this);
+          if (this.state.id !== "0") {
+            this.props.history.push("/AddHomeBlock/" + this.state.idTk);
+          }
         }
       })
       .catch((error) => {
-        console.log(error.data);
+        alert(error.data);
       });
   };
   confirmLogin2 = () => {
@@ -56,7 +60,7 @@ class LoginForm extends Component {
               if (item.partnerUsername === username) {
                 alert("ID partner: " + item.partnerId);
                 window.localStorage.setItem("idTk", item.partnerId);
-                window.localStorage.setItem("username",this.loginNameRef.current.value);
+                window.localStorage.setItem("username", this.loginNameRef.current.value);
                 this.props.history.push("/AddHomeBlock/" + item.partnerId);
               }
             });

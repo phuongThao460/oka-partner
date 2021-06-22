@@ -2,6 +2,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import Navbar from "../paner-form/Navbar";
+import "../../RegistrationDetail.css";
 class Modal extends Component {
   constructor(props) {
     super(props);
@@ -403,79 +404,66 @@ class DetailAndEditProfile extends Component {
   render() {
     const { mainContact } = this.state;
     return (
-      <>
+      <div className="css-profile-body">
         <Navbar />
         <div
           style={{
             textAlign: "center",
-            paddingBottom: "45px",
-            backgroundColor: "white",
+            marginTop: "30px"
           }}
         >
           <h1>Your Profile</h1>
         </div>
         <div>
           <div
+          className="css-profile-table"
             style={{
               display: "flex",
               justifyContent: "center",
               paddingBottom: "100px",
-              backgroundColor: "white",
             }}
           >
-            <table
-              className="table table-borderless"
-              style={{
-                width: "60%",
-                fontSize: "20px",
-                backgroundColor: "#f5deb38a",
-                borderRadius: "4px",
-              }}
-            >
-              <tbody>
+            <table className="table table-borderless">
                 <tr>
-                  <td className="span-name">Full Name</td>
-                  <td className="p-name">{mainContact.TEN_CHUHO}</td>
+                  <td className="line-td span-name" style={{paddingLeft:"50px"}}>Full Name</td>
+                  <td className="line-td p-name">{mainContact.TEN_CHUHO}</td>
                 </tr>
                 <tr>
-                  <td className="span-name">Email</td>
+                  <td className="span-name" style={{paddingLeft:"50px"}}>Email</td>
                   <td className="p-name">{mainContact.EMAIL}</td>
                 </tr>
                 <tr>
-                  <td className="span-name">Phone Number</td>
+                  <td className="span-name" style={{paddingLeft:"50px"}}>Phone Number</td>
                   <td className="p-name">{mainContact.PHONE_NUMBER}</td>
                 </tr>
                 <tr>
-                  <td className="span-name">Identification Code</td>
+                  <td className="span-name" style={{paddingLeft:"50px"}}>Identification Code</td>
                   <td className="p-name">{mainContact.MA_GIAYTOTUYTHAN}</td>
                 </tr>
                 <tr>
-                  <td className="span-name">Identification Type</td>
+                  <td className="span-name" style={{paddingLeft:"50px"}}>Identification Type</td>
                   <td className="p-name">{mainContact.LOAI_GIAYTOTUYTHAN}</td>
                 </tr>
                 <tr>
-                  <td className="span-name">Country</td>
+                  <td className="span-name" style={{paddingLeft:"50px"}}>Country</td>
                   <td className="p-name">{mainContact.QUOCTICH}</td>
                 </tr>
                 <tr>
-                  <td className="span-name">Gender</td>
+                  <td className="span-name" style={{paddingLeft:"50px"}}>Gender</td>
                   <td className="p-name">
                     {mainContact.GIOITINH ? "Nữ" : "Nam"}
                   </td>
                 </tr>
                 <tr>
-                  <td className="span-name">Address</td>
+                  <td className="span-name" style={{paddingLeft:"50px"}}>Address</td>
                   <td className="p-name">{mainContact.DIACHI}</td>
                 </tr>
                 <tr>
-                  <td className="span-name">Tax Code</td>
+                  <td className="span-name" style={{paddingLeft:"50px"}}>Tax Code</td>
                   <td className="p-name">{mainContact.MASO_THUE}</td>
                 </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td className="span-name"></td>
-                  <td style={{ padding: "0" }}>
+                <tr style={{textAlign:"center"}}>
+                    <td colSpan="2">
                     <button
                       className="btn btn-primary"
                       data-toggle="modal"
@@ -487,9 +475,8 @@ class DetailAndEditProfile extends Component {
                     >
                       edit
                     </button>{" "}
-                  </td>
+                    </td>
                 </tr>
-              </tfoot>
             </table>
           </div>
         </div>
@@ -506,7 +493,7 @@ class DetailAndEditProfile extends Component {
           taxCode={mainContact.MASO_THUE}
           saveModalDetails={this.saveModalDetails}
         />
-      </>
+      </div>
     );
   }
 }
