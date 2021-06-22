@@ -117,7 +117,7 @@ class OrderDetail extends React.Component {
         </div>
         <div className="block-infor-order" style={{display: "flex"}}>
         <div className="table-detail">
-        <table>
+        <table className="table-order-detail">
           <tr className="css-title-orderDetail">ORDER INFORMATION</tr>
           <tr>
             <td>ID Order</td>
@@ -187,7 +187,7 @@ class OrderDetail extends React.Component {
         </div>
         {/* thông tin khách hàng */}
         <div className="info-customer">
-          <table>
+          <table className="table-order-detail">
           <tr className="css-title-orderDetail">CUSTOMER INFORMATION</tr>
           <tr>
             <td>Customer name</td>

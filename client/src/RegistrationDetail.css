@@ -1395,7 +1395,7 @@ input::-webkit-inner-spin-button {
   margin-top: 20px;
   margin-bottom: 50px;
 }
-table {
+.table-order-detail {
   margin: 20px;
   font-size: 15px;
   align-items: center;
@@ -1451,4 +1451,40 @@ td {
   margin-top: 20px;
   margin-left: 50px;
   font-size: 20px;
+}
+.container-view-apartment{
+  margin: 60px;
+  margin-top: 20px;
+  padding-bottom: 50px;
+}
+.img-content{
+  border-radius: 25px;
+  width: 600px;
+}
+.table-Aifo-detail{
+  margin: 30px;
+  width: 500px;
+}
+.header-table-info{
+  border: 1px solid #000;
+  border-radius: 15px;
+  display: flex;
+  width: 600px;
+  height: 335px;
+}
+.detail-apartment-wrap{
+  margin-top: 40px;
+}
+.img-apartment{
+  margin-right: 50px;
+}
+.content-info{
+  font-weight: bold;
+}
+.description-table{
+  width: 90%;
+}
+.Content-ul{
+  font-weight: bold;
+  font-size: 18px;
 }

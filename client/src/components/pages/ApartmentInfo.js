@@ -1,7 +1,9 @@
 /* eslint-disable react/no-direct-mutation-state */
 import axios from "axios";
 import React from "react";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Navbar from "../paner-form/Navbar";
+import "../../RegistrationDetail.css";
 class ApartmentInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -65,116 +67,132 @@ class ApartmentInfo extends React.Component {
   };
   render() {
     return (
-      <div className="detail-apartment-position">
-        <div className="detail-apartment-wrap">
-          <div className="header">
-            <table>
-              <tr>
-                <td className="header-left">
-                  <p className="nameApartment">
-                    {this.state.apartmentInfo.TEN_NHA}
-                  </p>
-                  <p className="sticker">Biệt thự</p>
-                  <p className="location">
-                    <span>
-                      <i class="fas fa-map-marker-alt mrg5"></i>
-                    </span>
-                    {this.state.address}
-                  </p>
-                </td>
-                <td className="header-right">
-                </td>
-              </tr>
-            </table>
-          </div>
-          <hr />
-          <div className="images">
-            <table>
-              <tr>
-                <td className="header-left" rowSpan="4"></td>
-              </tr>
-            </table>
-          </div>
-          <div className="booking">
-            <table>
-              <tr>
-                <td className="header-right">
-                  <p>Giá mỗi đêm từ</p>
-                  <p className="priceRental">
-                    {this.state.apartmentInfo.GIA -
-                      this.state.apartmentInfo.KHUYENMAI}{" "}
-                    VND
-                  </p>
-                </td>
-              </tr>
-            </table>
-          </div>
+      <div className="detail-apartment-position" style={{backgroundColor:"#fff"}}>
+        <Navbar/>
+        <div className="btn-back">
+          <Link
+            to={"/lstApartment/" + localStorage.getItem("idTk")}
+            className="back-list"
+          >
+            <i class="fa fa-arrow-left" aria-hidden="true" style={{display: "flex"}}>
+              <p style={{marginLeft: "8px"}}>Back to apartments list</p>
+            </i>
+          </Link>
         </div>
-        <div className="detail-apartment-wrap">
-          <div className="roomzone-wrap">
-            <table>
-              <tr>
-                <th colSpan="2">
-                  <h3>{this.state.lsRoom.TEN_PHONG}</h3>
-                </th>
-              </tr>
-              <tr>
-                <td>{this.state.lsRoom.MOTA}</td>
-              </tr>
-              <tr>
-                <td className="contain">
-                  <ul>
-                    <li>
-                      Diện tích:{" "}
+        <div className="container-view-apartment">
+          <div className="detail-apartment-wrap">
+            <div className="img-apartment" style={{display: "flex",float:"left"}}>
+              <img src='../../images/Home.jpg' className="img-content"/>
+            </div>
+            <div className="header-table-info">
+              <table className="table-Aifo-detail">
+                <tr className="css-title-Ainfo">
+                  <th colSpan="2" style={{textAlign:"center", borderBottomStyle:"double"}}>
+                    <h2>Information Apartment</h2>
+                  </th>
+                </tr>
+                <tr>
+                  <td className="content-info">Apartment Name</td>
+                  <td className="value-Ainfo">
+                    <p className="nameApartment">
+                      {this.state.apartmentInfo.TEN_NHA}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="content-info">Kinds of apartment</td>
+                  <td>
+                    <p className="sticker">Villa</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="content-info">Address</td>
+                  <td>
+                    <p className="location">
                       <span>
-                      </span>{" "}
-                      {this.state.lsRoom.CHIEUDAI_PHONG *
-                        this.state.lsRoom.CHIEURONG_PHONG}{" "}
-                      m2 ({this.state.lsRoom.CHIEUDAI_PHONG} x{" "}
-                      {this.state.lsRoom.CHIEURONG_PHONG})
-                    </li>
-                    <li>
-                      Loại phòng: {this.state.room.TEN_LOAIPHONG}
-                      ({this.state.lsRoom.SONGUOITOIDA} người)
-                    </li>
-                    <li>
-                      Loại giường:{" "}
-                      {this.state.bed.TEN_LOAIGIUONG}
-                    </li>
-                    <li>Số giường phụ: {this.state.lsRoom.SOGIUONG_PHU}</li>
-                  </ul>
+                        <i class="fas fa-map-marker-alt mrg5" style={{marginRight:"10px"}}></i>
+                      </span>
+                      {this.state.address}
+                    </p>
+                  </td>
+                  </tr>
+                  <tr>
+                    <td className="content-info">Price per night</td>
+                    <td>
+                      <p className="priceRental">
+                        {this.state.apartmentInfo.GIA -
+                          this.state.apartmentInfo.KHUYENMAI}{" "}
+                        VND
+                      </p>
+                    </td>
+                  </tr>
+              </table>
+            </div>
+          </div>
+            <hr />
+          <div className="else-wrap">
+            <table className="description-table">
+              <tr>
+                <th colSpan="2" style={{textAlign:"center", borderBottomStyle:"double"}}><h2>GENERAL DESCRIPTION</h2></th>
+                <th colSpan="2" style={{textAlign:"center", borderBottomStyle:"double"}}><h2>{this.state.lsRoom.TEN_PHONG}</h2></th>
+              </tr>
+              <tr>
+                <td colSpan="2" className="Content-ul">
+                  <i className="fas fa-circle" style={{fontSize:"5px", marginRight:"5px"}}/>
+                  Location
                 </td>
+                <td colSpan="2" className="Content-ul">
+                  <i className="fas fa-circle" style={{fontSize:"5px", marginRight:"5px"}}/>
+                  Room for 2 people
+                </td>
+              </tr>
+              <tr>
+                <td className="content-info">Address</td>
+                <td>{this.state.address}</td>
+                <td className="content-info">Acreage</td>
+                <td>
+                {this.state.lsRoom.CHIEUDAI_PHONG *
+                          this.state.lsRoom.CHIEURONG_PHONG}{" "}
+                        m2 ({this.state.lsRoom.CHIEUDAI_PHONG} x{" "}
+                        {this.state.lsRoom.CHIEURONG_PHONG})
+                </td>
+              </tr>
+              <tr>
+                <td className="content-info">Apartment area</td>
+                <td>{this.state.apartmentInfo.DIENTICH} m2</td>
+                <td className="content-info">Kind of room</td>
+                <td>{this.state.room.TEN_LOAIPHONG}
+                    ({this.state.lsRoom.SONGUOITOIDA} người)
+                  </td>
+              </tr>
+              <tr>
+                <td className="content-info">Distance to city center</td>
+                <td>{this.state.apartmentInfo.KHOANGCACH_TRUNGTAMTP}</td>
+                <td className="content-info">Bed type</td>
+                <td>{this.state.bed.TEN_LOAIGIUONG}</td>
+              </tr>
+              <tr>
+                <td colSpan="2" className="Content-ul">
+                  <i className="fas fa-circle" style={{fontSize:"5px", marginRight:"5px"}}/>
+                  Check-in and check-out time
+                </td>
+                <td className="content-info">Number of extra beds</td>
+                <td>{this.state.lsRoom.SOGIUONG_PHU}</td>
+              </tr>
+              <tr>
+                <td className="content-info">Check-in</td>
+                <td>{this.state.apartmentInfo.CHECKIN}</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td className="content-info">Check-Out</td>
+                <td>{this.state.apartmentInfo.CHECKOUT}</td>
+                <td></td>
+                <td></td>
               </tr>
             </table>
           </div>
-        </div>
-
-        <div className="else-wrap">
-          <table>
-            <tr>
-              <th className="title">Mô tả chung</th>
-              <td>
-                <ul>
-                  <li>
-                    <b>Vị trí</b>
-                  </li>
-                  <li>Địa chỉ: {this.state.address}</li>
-                  <li>Diện tích: {this.state.apartmentInfo.DIENTICH} m2</li>
-                  <li>
-                    Khoảng cách đến trung tâm thành phố:{" "}
-                    {this.state.apartmentInfo.KHOANGCACH_TRUNGTAMTP}
-                  </li>
-                </ul>
-                <ul>
-                  <li>
-                    <b>Giờ nhận phòng và trả phòng</b>
-                  </li>
-                  <li>Giờ nhận phòng: {this.state.apartmentInfo.CHECKIN}</li>
-                  <li>Giờ trả phòng: {this.state.apartmentInfo.CHECKOUT}</li>
-                </ul>
-              </td>
-            </tr>
-          </table>
         </div>
       </div>
     );

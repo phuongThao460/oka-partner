@@ -21,7 +21,7 @@ class Navbar extends React.Component {
       <>
         <nav className="navbar">
           <div className="navbar-container">
-            <Link to="/AddHomeBlock/:idTk" className="navbar-logo"  >
+            <Link to="/home" className="navbar-logo"  >
               OKA Tera <i className="fab fa-typo3" />
             </Link>
             <div className="menu-icon">
