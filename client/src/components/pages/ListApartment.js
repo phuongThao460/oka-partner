@@ -126,6 +126,17 @@ class ListApartment extends React.Component {
     return (
       <>
         <Navbar />
+        <div className="btn-backlist">
+        <Link
+            to={"/AddHomeBlock/" + localStorage.getItem("idTk")}
+            className="back-list-order"
+            style={{marginLeft:"25  0px"}}
+          >
+            <i class="far fa-arrow-alt-circle-left" aria-hidden="true" style={{display: "flex"}}>
+              <p style={{marginLeft: "8px"}}>Turn Back</p>
+            </i>
+          </Link>
+        </div>
         <div className="container" style={{ paddingTop: "50px" }}>
           <div style={{ float: "right", paddingRight: "3px" }}>
             <button onClick={() => this.getOrder()} className="btn-order">

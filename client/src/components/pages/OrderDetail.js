@@ -105,18 +105,17 @@ class OrderDetail extends React.Component {
     return (
       <>
         <Navbar />
-        <div className="btn-backlist">
-          <button className="btn-turn-backlist">
-            <Link
-                to={"/lstOrder/" + localStorage.getItem("idTk")}
-                className="back-list"
-                >
-                <i class="far fa-arrow-alt-circle-left" aria-hidden="true" style={{display: "flex"}}>
-                <p style={{marginLeft: "8px", color:"#fff"}}>Back to list</p>
-                </i>
-              </Link>
-          </button>
+        <div className="btn-back">
+          <Link
+            to={"/lstOrder/" + localStorage.getItem("idTk")}
+            className="back-list-order"
+          >
+            <i class="far fa-arrow-alt-circle-left" aria-hidden="true" style={{display: "flex"}}>
+              <p style={{marginLeft: "8px"}}>Back to list</p>
+            </i>
+          </Link>
         </div>
+        <div className="block-infor-order" style={{display: "flex"}}>
         <div className="table-detail">
         <table>
           <tr className="css-title-orderDetail">ORDER INFORMATION</tr>
@@ -219,8 +218,7 @@ class OrderDetail extends React.Component {
             <td className="value-orderDetail">{lstCustom.GIOITINH ? "Nữ" : "Nam"}</td>
           </tr>
           </table>
-        </div>
-        <div className="form-btn-status">
+          <div className="form-btn-status">
         {this.state.freeCancel ? (
           lstOrder.ID_TT_DCH === 1 ? (
             <>
@@ -235,6 +233,7 @@ class OrderDetail extends React.Component {
               <button
                 button
                 className="btn btn-danger"
+                style={{marginLeft:"50px"}}
                 onClick={() => this.changeCancelledActive(lstOrder.ID_NHA,lstOrder.ID_DATCANHO)}
               >
                 Cancel
@@ -250,13 +249,14 @@ class OrderDetail extends React.Component {
               </button>
               <button
                 className="btn btn-danger"
+                style={{marginLeft:"50px"}}
                 onClick={() => this.changeCancelledActive(lstOrder.ID_NHA,lstOrder.ID_DATCANHO)}
               >
                 Cancel
               </button>
             </>
           ) : (
-            <Link to={"/lstOrder/" + localStorage.getItem("idTk")}>
+            <Link to={"/lstOrder/" + localStorage.getItem("idTk")} style={{color:"#f5f5f5"}}>
               Back to list
             </Link>
           )
@@ -282,11 +282,18 @@ class OrderDetail extends React.Component {
             </button>
           </>
         ) : (
-          <Link to={"/lstOrder/" + localStorage.getItem("idTk")}>
-            Back to list
-          </Link>
+          <button className="link-back">
+            <Link to={"/lstOrder/" + localStorage.getItem("idTk")} >
+              Back to list
+            </Link>
+          </button>
         )}
         </div>
+        
+        </div>
+        
+        </div>
+        
         
       </>
     );
