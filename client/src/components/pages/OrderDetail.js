@@ -224,6 +224,7 @@ class OrderDetail extends React.Component {
             <>
               <button
                 className="btn btn-success"
+                
                 onClick={() =>
                   this.changeHiredAction(lstOrder.ID_NHA, lstOrder.ID_DATCANHO)
                 }

@@ -1362,8 +1362,6 @@ input::-webkit-inner-spin-button {
 }
 
 
-.btn-turn-backlist{
-  background-color: #6699FF;}
 
 .btn-turn-backlist {
   background-color: #6699ff;
@@ -1378,9 +1376,6 @@ input::-webkit-inner-spin-button {
 .fa-arrow-alt-circle-left{
   color: #66ccff;}
 
-.fa-arrow-alt-circle-left {
-  color: #fff;
-}
 .css-title-orderDetail {
   text-align: center;
   font-style: italic;
@@ -1425,13 +1420,8 @@ td {
   height: fit-content;
 }
 
-.form-btn-status{
-  width: 650px;
-  margin-left: 230px;
-}
 .form-btn-status {
-  margin-left: 50px;
-
+  margin-left: 220px;
   width: 300px;
   margin-top: 50px;
   height: 300px;
@@ -1452,8 +1442,6 @@ td {
   width: 50%;
 }
 
-.span-name{
-  width: 50%;}
 .link-back{
   color: #f5f5f5;
 }
