@@ -37,7 +37,7 @@ class LoginForm extends Component {
         }
       })
       .catch((error) => {
-        console.log(error.data);
+        alert(error.data);
       });
   };
   confirmLogin2 = () => {
@@ -60,7 +60,7 @@ class LoginForm extends Component {
               if (item.partnerUsername === username) {
                 alert("ID partner: " + item.partnerId);
                 window.localStorage.setItem("idTk", item.partnerId);
-                window.localStorage.setItem("username",this.loginNameRef.current.value);
+                window.localStorage.setItem("username", this.loginNameRef.current.value);
                 this.props.history.push("/AddHomeBlock/" + item.partnerId);
               }
             });

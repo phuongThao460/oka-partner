@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../style/paner-form/Navbar.css";
 import { Button, ButtonLogIn } from "../paner-form/Button";
-class Navbar extends React.Component {
+class NavbarRegister extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +21,7 @@ class Navbar extends React.Component {
       <>
         <nav className="navbar">
           <div className="navbar-container">
-            <Link to="/AddHomeBlock/:idTk" className="navbar-logo"  >
+            <Link to="/" className="navbar-logo"  >
               OKA Tera <i className="fab fa-typo3" />
             </Link>
             <div className="menu-icon">
@@ -94,4 +94,4 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar;
+export default NavbarRegister;
