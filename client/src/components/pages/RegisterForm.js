@@ -83,7 +83,7 @@ class RegisterForm extends Component {
                   placeholder="Enter your password here"
                   ref={this.loginPWRef}
                 ></input>
-                <button onClick={this.confirmRegister2} id="btn-next">
+                <button onClick={this.confirmRegister} id="btn-next">
                   Register
                 </button>
               </div>

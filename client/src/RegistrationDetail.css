@@ -1354,3 +1354,8 @@ button {
   background-color: rgb(228, 148, 36);
   border: 1px solid rgb(228, 148, 36);
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

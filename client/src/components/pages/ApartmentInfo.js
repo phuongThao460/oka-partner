@@ -1,7 +1,7 @@
 /* eslint-disable react/no-direct-mutation-state */
 import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 class ApartmentInfo extends React.Component {
   constructor(props) {
     super(props);
