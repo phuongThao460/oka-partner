@@ -554,7 +554,7 @@ module.exports = {
 				return getType;
 			},
 		},
-		//19
+		//20
 		getListApartType: {
 			rest: {
 				method: "POST",
@@ -565,7 +565,7 @@ module.exports = {
 				return listType;
 			},
 		},
-		//20
+		//21
 		getTypeApart: {
 			rest: {
 				method: "POST",
@@ -585,7 +585,7 @@ module.exports = {
 				return type.TEN_LOAINHA;
 			},
 		},
-		//21
+		//22
 		getListCountry: {
 			rest: {
 				method: "POST",
@@ -596,7 +596,7 @@ module.exports = {
 				return listCountry;
 			},
 		},
-		//22
+		//23
 		getListCity: {
 			rest: {
 				method: "POST",
@@ -615,7 +615,7 @@ module.exports = {
 				return listCity;
 			},
 		},
-		//23
+		//24
 		getListDistrict: {
 			rest: {
 				method: "POST",
@@ -634,7 +634,7 @@ module.exports = {
 				return checkCity;
 			},
 		},
-		//24
+		//25
 		createApartment: {
 			rest: {
 				method: "POST",
@@ -656,6 +656,7 @@ module.exports = {
 				dienTich: { type: "string" },
 				idQuan: { type: "string" },
 				soNguoi: { type: "string" },
+				giaGiuong: {type: "string"},
 				soGiuongPhu: { type: "string" },
 				gia: { type: "string" },
 				khuyenMai: { type: "string" },
@@ -678,11 +679,16 @@ module.exports = {
 					dienTich,
 					idQuan,
 					soNguoi,
+					giaGiuong,
 					soGiuongPhu,
 					gia,
 					khuyenMai,
 					trangThai,
 				} = params;
+				const buasang = parseFloat(buaSang);
+				const khuyenmai = parseFloat(khuyenMai);
+				const giaPhong = parseFloat(gia);
+				const giagiuong =parseFloat(giaGiuong);
 				const createApartment = await dbContext.NHA.create({
 					ID_NHA: idNha,
 					ID_TT_CHUHO: idChuHo,
@@ -693,21 +699,22 @@ module.exports = {
 					CHECKOUT: checkOut,
 					KHOANGCACH_TRUNGTAMTP: khoangCachTT,
 					SOTANG: soTang,
-					PHUPHI_BUASANG: buaSang,
+					PHUPHI_BUASANG: buasang,
+					PHUPHI_GIUONGPHU: giagiuong,
 					SONHA: soNha,
 					TEN_DUONG: tenDuong,
 					DIENTICH: dienTich,
 					ID_QUAN: idQuan,
 					SO_NGUOI: soNguoi,
 					SO_GIUONGPHU: soGiuongPhu,
-					GIA: gia,
-					KHUYENMAI: khuyenMai,
+					GIA: giaPhong,
+					KHUYENMAI: khuyenmai,
 					ID_TRANGTHAI_NHA: trangThai,
 				});
 				return createApartment;
 			},
 		},
-		//25
+		//26
 		createRoom: {
 			rest: {
 				method: "POST",
@@ -721,7 +728,6 @@ module.exports = {
 				numberBed: { type: "string" },
 				maxPer: { type: "string" },
 				maxExtraBed: { type: "string" },
-				priceExtra: { type: "string" },
 				width: { type: "string" },
 				height: { type: "string" },
 				numberRooms: { type: "string" },
@@ -736,13 +742,12 @@ module.exports = {
 					numberBed,
 					maxPer,
 					maxExtraBed,
-					priceExtra,
 					width,
 					height,
 					numberRooms,
 					descript,
 				} = params;
-
+				//const price = parseFloat(priceExtra);
 				const create = await dbContext.PHONG.create({
 					ID_NHA: idApart,
 					TEN_PHONG: roomName,
@@ -751,7 +756,6 @@ module.exports = {
 					SOGIUONG: numberBed,
 					SONGUOITOIDA: maxPer,
 					SOGIUONG_PHU: maxExtraBed,
-					GIAGIUONG_PHU: priceExtra,
 					CHIEUDAI_PHONG: width,
 					CHIEURONG_PHONG: height,
 					SOLUONG: numberRooms,
@@ -760,7 +764,7 @@ module.exports = {
 				return create;
 			},
 		},
-		//26
+		//27
 		getAddressApartment: {
 			rest: {
 				method: "POST",
@@ -804,7 +808,7 @@ module.exports = {
 				return output;
 			},
 		},
-		//27
+		//28
 		getListOrderNew: {
 			rest: {
 				method: "POST",
@@ -843,7 +847,7 @@ module.exports = {
 				return getIDPartner;
 			},
 		},
-		//28
+		//29
 		getListOrderAction: {
 			rest: {
 				method: "POST",
@@ -882,7 +886,7 @@ module.exports = {
 				return getIDPartner;
 			},
 		},
-		//29
+		//30
 		getListOrderFinished: {
 			rest: {
 				method: "POST",
@@ -921,7 +925,7 @@ module.exports = {
 				return getIDPartner;
 			},
 		},
-		//30
+		//31
 		getListOrderCancelled: {
 			rest: {
 				method: "POST",
@@ -961,7 +965,7 @@ module.exports = {
 				return getIDPartner;
 			},
 		},
-		//31
+		//32
 		changeActive: {
 			rest: {
 				method: "POST",
@@ -984,7 +988,7 @@ module.exports = {
 				return change;
 			},
 		},
-		//32
+		//33
 		changeStatusAction: {
 			rest: {
 				method: "POST",
@@ -1007,7 +1011,7 @@ module.exports = {
 				return change;
 			},
 		},
-		//33
+		//34
 		changeStatusFinished: {
 			rest: {
 				method: "POST",
@@ -1030,7 +1034,7 @@ module.exports = {
 				return change;
 			},
 		},
-		//34
+		//35
 		changeStatusCancelled: {
 			rest: {
 				method: "POST",
@@ -1053,7 +1057,7 @@ module.exports = {
 				return change;
 			},
 		},
-		//35
+		//36
 		changeUnactive: {
 			rest: {
 				method: "POST",
@@ -1077,7 +1081,7 @@ module.exports = {
 				return change;
 			},
 		},
-		//36
+		//37
 		changeHired: {
 			rest: {
 				method: "POST",
@@ -1101,7 +1105,7 @@ module.exports = {
 				return change;
 			},
 		},
-		//37
+		//38
 		getDetailOrder: {
 			rest: {
 				method: "POST",
@@ -1123,7 +1127,7 @@ module.exports = {
 				return cusinfo;
 			},
 		},
-		//38
+		//39
 		checkOrderCancel: {
 			rest: {
 				method: "POST",

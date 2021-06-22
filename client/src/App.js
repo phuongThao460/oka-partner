@@ -16,6 +16,7 @@ import OrderDetail from "./components/pages/OrderDetail";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
 import ApartmentInfo from "./components/pages/ApartmentInfo";
+
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -56,6 +57,7 @@ class App extends React.Component {
             <Route path="/detailAndEditProfile" component={DetailAndEditProfile} />
           </Switch>
         </Router>
+        
       </>
     );
   }
