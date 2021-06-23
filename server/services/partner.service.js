@@ -688,7 +688,7 @@ module.exports = {
 				const buasang = parseFloat(buaSang);
 				const khuyenmai = parseFloat(khuyenMai);
 				const giaPhong = parseFloat(gia);
-				const giagiuong =parseFloat(giaGiuong);
+				const giagiuong = parseFloat(giaGiuong);
 				const createApartment = await dbContext.NHA.create({
 					ID_NHA: idNha,
 					ID_TT_CHUHO: idChuHo,

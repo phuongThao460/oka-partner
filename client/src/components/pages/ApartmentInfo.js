@@ -25,7 +25,7 @@ class ApartmentInfo extends React.Component {
         this.state.apartmentInfo = response.data[0];
         console.log(response.data[0]);
         this.setState(this, () => {
-          this.getType(this.state.apartmentInfo.ID_LOAINHA.toString());
+          this.getType(this.state.apartmentInfo.ID_LOAINHA);
           this.getAddress(this.state.apartmentInfo.ID_NHA);
           this.getListRoom(this.state.apartmentInfo.ID_NHA);
         });
@@ -35,10 +35,11 @@ class ApartmentInfo extends React.Component {
     console.log(this.state.apartmentInfo.ID_LOAINHA);
     axios
       .post("http://localhost:33456/api/partner/getTypeApart", {
-        idType: idLoaiNha,
+        idType: idLoaiNha.toString(),
       })
       .then((response) => {
         this.state.typeApartment = response.data;
+        console.log(response.data);
         this.setState(this);
       });
   };
@@ -82,7 +83,7 @@ class ApartmentInfo extends React.Component {
         <div className="container-view-apartment">
           <div className="detail-apartment-wrap">
             <div className="img-apartment" style={{display: "flex",float:"left"}}>
-              <img src='../../images/Home.jpg' className="img-content"/>
+              <img src='../../images/Home.jpg' className="img-content" alt=""/>
             </div>
             <div className="header-table-info">
               <table className="table-Aifo-detail">
@@ -102,10 +103,9 @@ class ApartmentInfo extends React.Component {
                 <tr>
                   <td className="content-info">Kinds of apartment</td>
                   <td>
-                    <p className="sticker">Villa</p>
+                    <p className="sticker">{this.state.typeApartment}</p>
                   </td>
-                </tr>
-                <tr>
+                </tr><tr>
                   <td className="content-info">Address</td>
                   <td>
                     <p className="location">
@@ -147,8 +147,8 @@ class ApartmentInfo extends React.Component {
                 </td>
               </tr>
               <tr>
-                <td className="content-info">Address</td>
-                <td>{this.state.address}</td>
+                <td className="content-info">Free Cancel</td>
+                <td>{this.state.apartmentInfo.FREE_CANCEL === "true" ? "Yes" : "No"}</td>
                 <td className="content-info">Acreage</td>
                 <td>
                 {this.state.lsRoom.CHIEUDAI_PHONG *

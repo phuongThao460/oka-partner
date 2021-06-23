@@ -14,7 +14,7 @@ class AddHomeBlock extends React.Component {
   } 
   handleSubmit = () => {
     axios.post("http://localhost:33456/api/partner/checkContactExist",{
-			idTk: this.state.idTk,
+			idTk: this.state.idTk.toString(),
 		}).then((response) => {
 			console.log(response.data);
 			this.state.idTT = response.data;
@@ -23,13 +23,10 @@ class AddHomeBlock extends React.Component {
         this.props.history.push(
           "/registrationDetail/generationInformation/" + this.state.idTT
         );
-      } else {
-        this.setState(this);
-        if (this.state.idTk !== "0") {
-          this.props.history.push(
-            "/registrationDetail/mainContact/" + localStorage.getItem("idTk")
-          );
-        }
+      } else if(response.status === 500){
+        this.props.history.push(
+          "/registrationDetail/mainContact/" + localStorage.getItem("idTk")
+        );
       }
     });
   };

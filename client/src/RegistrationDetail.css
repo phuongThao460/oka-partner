@@ -1474,6 +1474,7 @@ td {
 }
 .detail-apartment-wrap{
   margin-top: 40px;
+  display: flex;
 }
 .img-apartment{
   margin-right: 50px;

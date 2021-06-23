@@ -1,9 +1,9 @@
 /* eslint-disable react/no-direct-mutation-state */
-import React, { Component, createRef } from "react";
-import "../../RegistrationDetail.css";
-import Axios from "axios";
-import { Link } from "react-router-dom";
-import NumberFormat from "react-number-format";
+import React, {Component, createRef} from 'react';
+import '../../RegistrationDetail.css';
+import Axios from 'axios';
+import {Link} from 'react-router-dom';
+import NumberFormat from 'react-number-format';
 class GenerationInformation extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +16,7 @@ class GenerationInformation extends Component {
       lstCountry: [],
       lstCity: [],
       lstDistrict: [],
-      trangThai: "1",
+      trangThai: '1',
       MAX_VAL: 1400,
       MIN_VAL: 0,
       idMain: document.location.pathname.substring(42),
@@ -51,13 +51,13 @@ class GenerationInformation extends Component {
     this.getListStyle();
   }
   withValueCap = (inputObj) => {
-    const { value } = inputObj;
+    const {value} = inputObj;
     if (value <= this.state.MAX_VAL && value >= this.state.MIN_VAL) return true;
     return false;
   };
   createApartment = () => {
     Axios.post(
-      "http://localhost:33456/api/partner/registrationDetail/createApartment",
+      'http://localhost:33456/api/partner/registrationDetail/createApartment',
       {
         idNha: this.idNha.current.value,
         idChuHo: this.state.idMain.toString(),
@@ -78,20 +78,20 @@ class GenerationInformation extends Component {
         soGiuongPhu: this.soGiuongPhu.current.value,
         gia: this.gia.current.value,
         khuyenMai: this.khuyenMai.current.value,
-        trangThai: "1",
+        trangThai: '1',
       }
     )
       .then((response) => {
         console.log(response.data);
         this.props.history.push(
-          "/registrationDetail/rooms/" + this.idNha.current.value
+          '/registrationDetail/rooms/' + this.idNha.current.value
         );
       })
       .catch((err) => console.log(err.response));
   };
   getListStyle = () => {
     Axios.post(
-      "http://localhost:33456/api/partner/registrationDetail/getListApartType",
+      'http://localhost:33456/api/partner/registrationDetail/getListApartType',
       {}
     ).then((response) => {
       this.state.lstStyle = response.data;
@@ -100,7 +100,7 @@ class GenerationInformation extends Component {
   };
   getListCountry = () => {
     Axios.post(
-      "http://localhost:33456/api/partner/registrationDetail/getListCountry",
+      'http://localhost:33456/api/partner/registrationDetail/getListCountry',
       {}
     ).then((response) => {
       this.state.lstCountry = response.data;
@@ -109,8 +109,8 @@ class GenerationInformation extends Component {
   };
   getListCity = () => {
     Axios.post(
-      "http://localhost:33456/api/partner/registrationDetail/getListCity",
-      { countryId: this.state.idCountry }
+      'http://localhost:33456/api/partner/registrationDetail/getListCity',
+      {countryId: this.state.idCountry}
     ).then((response) => {
       this.state.lstCity = response.data;
       this.setState(this);
@@ -118,8 +118,8 @@ class GenerationInformation extends Component {
   };
   getListDistrict = () => {
     Axios.post(
-      "http://localhost:33456/api/partner/registrationDetail/getListDistrict",
-      { cityId: this.state.idCity }
+      'http://localhost:33456/api/partner/registrationDetail/getListDistrict',
+      {cityId: this.state.idCity}
     ).then((response) => {
       this.state.lstDistrict = response.data;
       this.setState(this);
@@ -150,7 +150,7 @@ class GenerationInformation extends Component {
           <div className="table-row css-row">
             <div
               className="table__column css-column"
-              style={{ marginTop: "58px" }}
+              style={{marginTop: '58px'}}
             >
               <div className="table__detail css-detail">
                 <span>
@@ -190,10 +190,7 @@ class GenerationInformation extends Component {
             </div>
 
             <div className="table__column__2 css-column-2">
-              <div
-                className="table-row css-row"
-                style={{ marginBottom: "16px" }}
-              >
+              <div className="table-row css-row" style={{marginBottom: '16px'}}>
                 <div className="column2 css-col">
                   <div className="text2 css-text-2">
                     <h2>Generation Information</h2>
@@ -204,7 +201,7 @@ class GenerationInformation extends Component {
                 <div className="detail__column css-col">
                   <div
                     className="box__detail css-bx-dtl"
-                    style={{ marginBottom: "16px" }}
+                    style={{marginBottom: '16px'}}
                   >
                     <div className="box__detail__section header clearfix css-section">
                       <span>Property Detail</span>
@@ -214,15 +211,15 @@ class GenerationInformation extends Component {
                       <div className="box-row css-row">
                         <div
                           className="box-column css-box-col"
-                          style={{ marginTop: "8px" }}
+                          style={{marginTop: '8px'}}
                         >
                           <label className="box-label css-label">
                             <span>ID Property</span>
                             <span
                               className="label-required"
                               style={{
-                                marginLeft: "3px",
-                                color: "rgb(87, 167, 237)",
+                                marginLeft: '3px',
+                                color: 'rgb(87, 167, 237)',
                               }}
                             >
                               *
@@ -256,21 +253,21 @@ class GenerationInformation extends Component {
                       </div>
                       <div
                         className="line css-line"
-                        style={{ marginTop: "0px" }}
+                        style={{marginTop: '0px'}}
                       ></div>
                       {/* Property Name */}
                       <div className="box-row css-row">
                         <div
                           className="box-column css-box-col"
-                          style={{ marginTop: "8px" }}
+                          style={{marginTop: '8px'}}
                         >
                           <label className="box-label css-label">
                             <span>Property Name</span>
                             <span
                               className="label-required"
                               style={{
-                                marginLeft: "3px",
-                                color: "rgb(87, 167, 237)",
+                                marginLeft: '3px',
+                                color: 'rgb(87, 167, 237)',
                               }}
                             >
                               *
@@ -304,13 +301,13 @@ class GenerationInformation extends Component {
                       </div>
                       <div
                         className="line css-line"
-                        style={{ marginTop: "0px" }}
+                        style={{marginTop: '0px'}}
                       ></div>
                       {/* Property Type */}
                       <div className="box-row css-row">
                         <div
                           className="box-column css-box-col"
-                          style={{ marginTop: "8px" }}
+                          style={{marginTop: '8px'}}
                         >
                           <label className="box-label css-label">
                             <span>Property Type</span>
@@ -321,7 +318,7 @@ class GenerationInformation extends Component {
                             <div className="c-block">
                               <div
                                 className="block-select control-container css-select css-radio-gr"
-                                style={{ width: "250px" }}
+                                style={{width: '250px'}}
                               >
                                 <div className="select control-container css-select css-radio-gr">
                                   <div className="select has-value">
@@ -356,23 +353,20 @@ class GenerationInformation extends Component {
                       </div>
                       <div
                         className="line css-line"
-                        style={{ marginTop: "0px" }}
+                        style={{marginTop: '0px'}}
                       ></div>
                       {/* Property Address */}
                       <div className="box-row css-row">
                         <div
                           className="box-column css-box-col"
-                          style={{ marginTop: "8px" }}
+                          style={{marginTop: '8px'}}
                         >
                           <label className="box-label css-label">
                             <span>Property Address</span>
                           </label>
                         </div>
                         <div className="c-column css-col">
-                          <div
-                            className="c-block"
-                            style={{ marginTop: "16px" }}
-                          >
+                          <div className="c-block" style={{marginTop: '16px'}}>
                             <label className="c-label css-label">
                               <span>Apartment Number</span>
                               <span className="label-required">*</span>
@@ -388,8 +382,8 @@ class GenerationInformation extends Component {
                                         type="text"
                                         className="-control css-txt"
                                         style={{
-                                          resize: "vertical",
-                                          width: "332px",
+                                          resize: 'vertical',
+                                          width: '332px',
                                         }}
                                       />
                                     </div>
@@ -398,10 +392,7 @@ class GenerationInformation extends Component {
                               </div>
                             </div>
                           </div>
-                          <div
-                            className="c-block"
-                            style={{ marginTop: "16px" }}
-                          >
+                          <div className="c-block" style={{marginTop: '16px'}}>
                             <label className="c-label css-label">
                               <span>Street Address</span>
                               <span className="label-required">*</span>
@@ -417,7 +408,7 @@ class GenerationInformation extends Component {
                                         type="text"
                                         className="-control css-textarea"
                                         rows="3"
-                                        style={{ resize: "vertical" }}
+                                        style={{resize: 'vertical'}}
                                       />
                                     </div>
                                     <span>
@@ -431,8 +422,8 @@ class GenerationInformation extends Component {
                                             viewBox="0 0 24 24"
                                             preserveAspectRatio="xMidYMid meet"
                                             style={{
-                                              height: "20.02px",
-                                              width: "20.02px",
+                                              height: '20.02px',
+                                              width: '20.02px',
                                             }}
                                           >
                                             <g id="info-circle-outline">
@@ -447,17 +438,14 @@ class GenerationInformation extends Component {
                               </div>
                             </div>
                           </div>
-                          <div
-                            className="c-block"
-                            style={{ marginTop: "16px" }}
-                          >
+                          <div className="c-block" style={{marginTop: '16px'}}>
                             <label className="c-label css-label">
                               <span>Country</span>
                               <span className="label-required">*</span>
                             </label>
                             <div
                               className="select control-container css-select css-radio-gr"
-                              style={{ width: "250px" }}
+                              style={{width: '250px'}}
                             >
                               <div className="select has-value">
                                 <select
@@ -480,17 +468,14 @@ class GenerationInformation extends Component {
                               </div>
                             </div>
                           </div>
-                          <div
-                            className="c-block"
-                            style={{ marginTop: "16px" }}
-                          >
+                          <div className="c-block" style={{marginTop: '16px'}}>
                             <label className="c-label css-label">
                               <span>City</span>
                               <span className="label-required">*</span>
                             </label>
                             <div
                               className="select control-container css-select css-radio-gr"
-                              style={{ width: "250px" }}
+                              style={{width: '250px'}}
                             >
                               <div className="select has-value">
                                 <select
@@ -510,17 +495,14 @@ class GenerationInformation extends Component {
                               </div>
                             </div>
                           </div>
-                          <div
-                            className="c-block"
-                            style={{ marginTop: "16px" }}
-                          >
+                          <div className="c-block" style={{marginTop: '16px'}}>
                             <label className="c-label css-label">
                               <span>District</span>
                               <span className="label-required">*</span>
                             </label>
                             <div
                               className="select control-container css-select css-radio-gr"
-                              style={{ width: "250px" }}
+                              style={{width: '250px'}}
                             >
                               <div className="select has-value">
                                 <select
@@ -551,13 +533,13 @@ class GenerationInformation extends Component {
                       </div>
                       <div
                         className="line css-line"
-                        style={{ marginTop: "0px" }}
+                        style={{marginTop: '0px'}}
                       ></div>
                       {/* Area */}
                       <div className="box-row css-row">
                         <div
                           className="box-column css-box-col"
-                          style={{ marginTop: "8px" }}
+                          style={{marginTop: '8px'}}
                         >
                           <label className="box-label css-label">
                             <span>Area</span>
@@ -566,13 +548,19 @@ class GenerationInformation extends Component {
                         <div className="box-column css-column">
                           <div
                             className="input-group css-inp"
-                            style={{ width: "220px" }}
+                            style={{width: '220px'}}
                           >
                             <div className="input-group__inner">
                               <div className="input control-container css-radio-gr">
                                 <div className="__inner">
                                   <div className="__padder">
-                                  <NumberFormat className="css-txt -control" getInputRef={this.dienTich} isAllowed={this.withValueCap} allowNegative={false} allowEmptyFormatting={false}/>
+                                    <NumberFormat
+                                      className="css-txt -control"
+                                      getInputRef={this.dienTich}
+                                      isAllowed={this.withValueCap}
+                                      allowNegative={false}
+                                      allowEmptyFormatting={false}
+                                    />
                                     {/* <input
                                       ref={this.dienTich}
                                       touched="true"
@@ -595,7 +583,7 @@ class GenerationInformation extends Component {
                     <div className="detail__column css-col">
                       <div
                         className="box__detail css-bx-dtl"
-                        style={{ marginBottom: "30px" }}
+                        style={{marginBottom: '30px'}}
                       >
                         <div className="box__detail__section header clearfix css-section">
                           <span>Property Details</span>
@@ -610,15 +598,15 @@ class GenerationInformation extends Component {
                             </div>
                             <div
                               className="box-column css-column"
-                              style={{ marginRight: "20px" }}
+                              style={{marginRight: '20px'}}
                             >
                               <label className="box-label css-label">
                                 <span>from</span>
                                 <span
                                   className="label-required"
                                   style={{
-                                    marginLeft: "3px",
-                                    color: "rgb(87, 167, 237)",
+                                    marginLeft: '3px',
+                                    color: 'rgb(87, 167, 237)',
                                   }}
                                 >
                                   *
@@ -632,7 +620,7 @@ class GenerationInformation extends Component {
                                         <div
                                           className="time-clock"
                                           noValidate
-                                          style={{ position: "relative" }}
+                                          style={{position: 'relative'}}
                                         >
                                           <input
                                             ref={this.checkIn}
@@ -657,15 +645,15 @@ class GenerationInformation extends Component {
                             </div>
                             <div
                               className="box-column css-column"
-                              style={{ marginRight: "20px" }}
+                              style={{marginRight: '20px'}}
                             >
                               <label className="box-label css-label">
                                 <span>latest at</span>
                                 <span
                                   className="label-required"
                                   style={{
-                                    marginLeft: "3px",
-                                    color: "rgb(87, 167, 237)",
+                                    marginLeft: '3px',
+                                    color: 'rgb(87, 167, 237)',
                                   }}
                                 >
                                   *
@@ -679,7 +667,7 @@ class GenerationInformation extends Component {
                                         <div
                                           className="time-clock"
                                           noValidate
-                                          style={{ position: "relative" }}
+                                          style={{position: 'relative'}}
                                         >
                                           <input
                                             ref={this.checkOut}
@@ -698,21 +686,21 @@ class GenerationInformation extends Component {
                           </div>
                           <div
                             className="line css-line"
-                            style={{ marginTop: "0px" }}
+                            style={{marginTop: '0px'}}
                           ></div>
                           {/* Distance to City Center */}
                           <div className="box-row css-row">
                             <div
                               className="box-column css-box-col"
-                              style={{ marginTop: "8px" }}
+                              style={{marginTop: '8px'}}
                             >
                               <label className="box-label css-label">
                                 <span>Distance to City Center</span>
                                 <span
                                   className="label-required"
                                   style={{
-                                    marginLeft: "3px",
-                                    color: "rgb(87, 167, 237)",
+                                    marginLeft: '3px',
+                                    color: 'rgb(87, 167, 237)',
                                   }}
                                 >
                                   *
@@ -722,19 +710,25 @@ class GenerationInformation extends Component {
                             <div className="box-column css-box-col">
                               <div
                                 className="input-group css-inp"
-                                style={{ display: "inline-block" }}
+                                style={{display: 'inline-block'}}
                               >
                                 <div
                                   className="input-group__inner"
-                                  style={{ width: "fit-content" }}
+                                  style={{width: 'fit-content'}}
                                 >
                                   <div
                                     className="input control-container css-radio-gr"
-                                    style={{ width: "130px" }}
+                                    style={{width: '130px'}}
                                   >
                                     <div className="__inner">
                                       <div className="__padder">
-                                      <NumberFormat className="css-txt -control" getInputRef={this.khoangCachTT} isAllowed={this.withValueCap} allowNegative={false} allowEmptyFormatting={false} />
+                                        <NumberFormat
+                                          className="css-txt -control"
+                                          getInputRef={this.khoangCachTT}
+                                          isAllowed={this.withValueCap}
+                                          allowNegative={false}
+                                          allowEmptyFormatting={false}
+                                        />
                                         {/* <input
                                           ref={this.khoangCachTT}
                                           touched="true"
@@ -758,13 +752,13 @@ class GenerationInformation extends Component {
                           </div>
                           <div
                             className="line css-line"
-                            style={{ marginTop: "0px" }}
+                            style={{marginTop: '0px'}}
                           ></div>
                           {/* Number of Floors */}
                           <div className="box-row css-row">
                             <div
                               className="box-column css-box-col"
-                              style={{ marginTop: "8px" }}
+                              style={{marginTop: '8px'}}
                             >
                               <label className="box-label css-label">
                                 <span>Number of Floors</span>
@@ -776,7 +770,13 @@ class GenerationInformation extends Component {
                                   <div className="input control-container css-radio-gr">
                                     <div className="__inner">
                                       <div className="__padder">
-                                      <NumberFormat allowNegative={false} allowEmptyFormatting={false} className="css-txt -control" getInputRef={this.soTang} isAllowed={this.withValueCap} />
+                                        <NumberFormat
+                                          allowNegative={false}
+                                          allowEmptyFormatting={false}
+                                          className="css-txt -control"
+                                          getInputRef={this.soTang}
+                                          isAllowed={this.withValueCap}
+                                        />
                                         {/* <input
                                           ref={this.soTang}
                                           touched="true"
@@ -795,13 +795,13 @@ class GenerationInformation extends Component {
                           </div>
                           <div
                             className="line css-line"
-                            style={{ marginTop: "0px" }}
+                            style={{marginTop: '0px'}}
                           ></div>
                           {/* Number of Persons */}
                           <div className="box-row css-row">
                             <div
                               className="box-column css-box-col"
-                              style={{ marginTop: "8px" }}
+                              style={{marginTop: '8px'}}
                             >
                               <label className="box-label css-label">
                                 <span>Number of Persons</span>
@@ -813,7 +813,13 @@ class GenerationInformation extends Component {
                                   <div className="input control-container css-radio-gr">
                                     <div className="__inner">
                                       <div className="__padder">
-                                      <NumberFormat allowNegative={false} allowEmptyFormatting={false} className="css-txt -control" getInputRef={this.soNguoi} isAllowed={this.withValueCap} />
+                                        <NumberFormat
+                                          allowNegative={false}
+                                          allowEmptyFormatting={false}
+                                          className="css-txt -control"
+                                          getInputRef={this.soNguoi}
+                                          isAllowed={this.withValueCap}
+                                        />
                                         {/* <input
                                           ref={this.soNguoi}
                                           touched="true"
@@ -832,13 +838,13 @@ class GenerationInformation extends Component {
                           </div>
                           <div
                             className="line css-line"
-                            style={{ marginTop: "0px" }}
+                            style={{marginTop: '0px'}}
                           ></div>
                           {/* Extra Bed */}
                           <div className="box-row css-row">
                             <div
                               className="box-column css-box-col"
-                              style={{ marginTop: "8px" }}
+                              style={{marginTop: '8px'}}
                             >
                               <label className="box-label css-label">
                                 <span>Extra Bed</span>
@@ -850,7 +856,13 @@ class GenerationInformation extends Component {
                                   <div className="input control-container css-radio-gr">
                                     <div className="__inner">
                                       <div className="__padder">
-                                      <NumberFormat allowNegative={false} allowEmptyFormatting={false} className="css-txt -control" getInputRef={this.soGiuongPhu} isAllowed={this.withValueCap} />
+                                        <NumberFormat
+                                          allowNegative={false}
+                                          allowEmptyFormatting={false}
+                                          className="css-txt -control"
+                                          getInputRef={this.soGiuongPhu}
+                                          isAllowed={this.withValueCap}
+                                        />
                                         {/* <input
                                           ref={this.soGiuongPhu}
                                           touched="true"
@@ -866,18 +878,16 @@ class GenerationInformation extends Component {
                           </div>
                           <div
                             className="line css-line"
-                            style={{ marginTop: "0px" }}
+                            style={{marginTop: '0px'}}
                           ></div>
                           {/*  Additional Breakfast Charge */}
                           <div className="box-row css-row">
                             <div
                               className="box-column css-box-col"
-                              style={{ marginTop: "8px" }}
+                              style={{marginTop: '8px'}}
                             >
                               <label className="box-label css-label">
-                                <span>
-                                  Price of Extra Bed
-                                </span>
+                                <span>Price of Extra Bed</span>
                               </label>
                             </div>
                             <div className="box-column css-column">
@@ -889,8 +899,12 @@ class GenerationInformation extends Component {
                                   <div className="input control-container css-radio-gr">
                                     <div className="__inner">
                                       <div className="__padder">
-                                      <NumberFormat allowNegative={false} allowEmptyFormatting={false} thousandSeparator={true} className="css-txt-2 -control" style={{ width: "170px" }}
-                                            getInputRef ={this.giaGiuong}/>
+                                        <input
+                                          ref={this.giaGiuong}
+                                          touched="true"
+                                          type="number"
+                                          className="css-txt-2 -control"
+                                        />
                                       </div>
                                     </div>
                                   </div>
@@ -900,13 +914,13 @@ class GenerationInformation extends Component {
                           </div>
                           <div
                             className="line css-line"
-                            style={{ marginTop: "0px" }}
+                            style={{marginTop: '0px'}}
                           ></div>
                           {/*  Additional Breakfast Charge */}
                           <div className="box-row css-row">
                             <div
                               className="box-column css-box-col"
-                              style={{ marginTop: "8px" }}
+                              style={{marginTop: '8px'}}
                             >
                               <label className="box-label css-label">
                                 <span>
@@ -924,14 +938,12 @@ class GenerationInformation extends Component {
                                   <div className="input control-container css-radio-gr">
                                     <div className="__inner">
                                       <div className="__padder">
-                                      <NumberFormat allowNegative={false} allowEmptyFormatting={false} thousandSeparator={true} className="css-txt-2 -control" style={{ width: "170px" }}
-                                            getInputRef ={this.buaSang}/>
-                                        {/* <input
+                                        <input
                                           ref={this.buaSang}
                                           touched="true"
-                                          type="text"
+                                          type="number"
                                           className="css-txt-2 -control"
-                                        /> */}
+                                        />
                                       </div>
                                     </div>
                                   </div>
@@ -947,15 +959,15 @@ class GenerationInformation extends Component {
                     <div className="detail__column css-col">
                       <div
                         className="box__detail css-bx-dtl"
-                        style={{ marginBottom: "30px" }}
+                        style={{marginBottom: '30px'}}
                       >
                         <div className="box__detail__section header clearfix css-section">
                           <span>Property Cancellation Policy</span>
                           <span
                             className="label-required"
                             style={{
-                              marginLeft: "3px",
-                              color: "rgb(87, 167, 237)",
+                              marginLeft: '3px',
+                              color: 'rgb(87, 167, 237)',
                             }}
                           >
                             *
@@ -966,7 +978,7 @@ class GenerationInformation extends Component {
                           <div className="box-row css-row">
                             <div
                               className="box-column css-box-col"
-                              style={{ marginTop: "8px" }}
+                              style={{marginTop: '8px'}}
                             >
                               <label className="box-label css-label">
                                 <span>Cancellation Policy</span>
@@ -974,7 +986,7 @@ class GenerationInformation extends Component {
                             </div>
                             <div
                               className="c-column css-bxcol2"
-                              style={{ marginTop: "-4px" }}
+                              style={{marginTop: '-4px'}}
                             >
                               <div
                                 touched="true"
@@ -995,7 +1007,7 @@ class GenerationInformation extends Component {
                                 </div>
                                 <div
                                   className="radio c-radio--is-inline css-btn-radio"
-                                  style={{ marginTop: "16px" }}
+                                  style={{marginTop: '16px'}}
                                 >
                                   <input
                                     ref={this.huyPhong}
@@ -1019,15 +1031,15 @@ class GenerationInformation extends Component {
                     <div className="detail__column css-col">
                       <div
                         className="box__detail css-bx-dtl"
-                        style={{ marginBottom: "30px" }}
+                        style={{marginBottom: '30px'}}
                       >
                         <div className="box__detail__section header clearfix css-section">
                           <span>Prices Details</span>
                           <span
                             className="label-required"
                             style={{
-                              marginLeft: "3px",
-                              color: "rgb(87, 167, 237)",
+                              marginLeft: '3px',
+                              color: 'rgb(87, 167, 237)',
                             }}
                           >
                             *
@@ -1043,15 +1055,15 @@ class GenerationInformation extends Component {
                             </div>
                             <div
                               className="box-column css-column"
-                              style={{ marginRight: "20px" }}
+                              style={{marginRight: '20px'}}
                             >
                               <label className="box-label css-label">
                                 <span>Basic Price</span>
                                 <span
                                   className="label-required"
                                   style={{
-                                    marginLeft: "3px",
-                                    color: "rgb(87, 167, 237)",
+                                    marginLeft: '3px',
+                                    color: 'rgb(87, 167, 237)',
                                   }}
                                 >
                                   *
@@ -1059,23 +1071,21 @@ class GenerationInformation extends Component {
                               </label>
                               <div className="input-group css-inp">
                                 <div className="input-group__inner">
-                                <div className="input-group-addon css-number-2">
+                                  <div className="input-group-addon css-number-2">
                                     <span>VND</span>
                                   </div>
                                   <div className="timepicker control-container css-radio-gr">
                                     <div className="__inner">
                                       <div className="__padder">
-                                      <NumberFormat allowNegative={false} allowEmptyFormatting={false} thousandSeparator={true} className="-control css-txt-2" style={{ width: "170px" }}
-                                            getInputRef ={this.gia}/>
-                                        {/* <input
-                                          style={{ width: "250px" }}
+                                        <input
+                                          style={{width: '250px'}}
                                           ref={this.gia}
                                           id="gia"
                                           type="number"
                                           min="100000"
                                           max="100000000"
                                           className="-control css-txt"
-                                        /> */}
+                                        />
                                       </div>
                                     </div>
                                   </div>
@@ -1087,15 +1097,15 @@ class GenerationInformation extends Component {
                             <div className="box-column css-box-col"></div>
                             <div
                               className="box-column css-column"
-                              style={{ marginRight: "20px" }}
+                              style={{marginRight: '20px'}}
                             >
                               <label className="box-label css-label">
                                 <span>Discount</span>
                                 <span
                                   className="label-required"
                                   style={{
-                                    marginLeft: "3px",
-                                    color: "rgb(87, 167, 237)",
+                                    marginLeft: '3px',
+                                    color: 'rgb(87, 167, 237)',
                                   }}
                                 >
                                   *
@@ -1103,7 +1113,7 @@ class GenerationInformation extends Component {
                               </label>
                               <div className="input-group css-inp">
                                 <div className="input-group__inner">
-                                <div className="input-group-addon css-number-2">
+                                  <div className="input-group-addon css-number-2">
                                     <span>VND</span>
                                   </div>
                                   <div className="timepicker control-container css-radio-gr">
@@ -1111,21 +1121,17 @@ class GenerationInformation extends Component {
                                       <div className="__padder">
                                         <div
                                           className="time-clock"
-                                          style={{ position: "relative" }}
+                                          style={{position: 'relative'}}
                                         >
-                                          <NumberFormat allowNegative={false} allowEmptyFormatting={false} thousandSeparator={true} className="-control css-txt-2" style={{ width: "170px" }}
-                                            getInputRef ={this.khuyenMai}/>
-                                          {/* <input
-                                            thousandSeparator={true} 
-                                            prefix={'$'}
-                                            style={{ width: "250px" }}
+                                          <input
+                                            style={{width: '250px'}}
                                             ref={this.khuyenMai}
                                             type="number"
                                             step="1000"
                                             min="100000"
                                             max="100000000"
                                             className="-control css-txt"
-                                          /> */}
+                                          />
                                         </div>
                                       </div>
                                     </div>
