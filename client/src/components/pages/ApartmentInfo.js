@@ -130,7 +130,50 @@ class ApartmentInfo extends React.Component {
             </div>
           </div>
             <hr />
-          <div className="else-wrap">
+            {(this.state.lsRoom === null && this.state.bed === null && this.state.room === null) ? (<div className="else-wrap">
+        <table className="description-table">
+          <tr>
+            <th colSpan="2" style={{textAlign:"center", borderBottomStyle:"double"}}><h2>GENERAL DESCRIPTION</h2></th>
+          </tr>
+          <tr>
+            <td colSpan="2" className="Content-ul">
+              <i className="fas fa-circle" style={{fontSize:"5px", marginRight:"5px"}}/>
+              Location
+            </td>
+          </tr>
+          <tr>
+            <td className="content-info">Free Cancel</td>
+            <td>{this.state.apartmentInfo.FREE_CANCEL === "true" ? "Yes" : "No"}</td>
+          </tr>
+          <tr>
+            <td className="content-info">Apartment area</td>
+            <td>{this.state.apartmentInfo.DIENTICH} m2</td>
+          </tr>
+          <tr>
+            <td className="content-info">Distance to city center</td>
+            <td>{this.state.apartmentInfo.KHOANGCACH_TRUNGTAMTP}</td>
+          </tr>
+          <tr>
+            <td colSpan="2" className="Content-ul">
+              <i className="fas fa-circle" style={{fontSize:"5px", marginRight:"5px"}}/>
+              Check-in and check-out time
+            </td>
+          </tr>
+          <tr>
+            <td className="content-info">Check-in</td>
+            <td>{this.state.apartmentInfo.CHECKIN}</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td className="content-info">Check-Out</td>
+            <td>{this.state.apartmentInfo.CHECKOUT}</td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    ):(<div className="else-wrap">
             <table className="description-table">
               <tr>
                 <th colSpan="2" style={{textAlign:"center", borderBottomStyle:"double"}}><h2>GENERAL DESCRIPTION</h2></th>
@@ -143,7 +186,7 @@ class ApartmentInfo extends React.Component {
                 </td>
                 <td colSpan="2" className="Content-ul">
                   <i className="fas fa-circle" style={{fontSize:"5px", marginRight:"5px"}}/>
-                  Room for 2 people
+                  Room for {this.state.room.SONGUOITOIDA} people
                 </td>
               </tr>
               <tr>
@@ -161,8 +204,7 @@ class ApartmentInfo extends React.Component {
                 <td className="content-info">Apartment area</td>
                 <td>{this.state.apartmentInfo.DIENTICH} m2</td>
                 <td className="content-info">Kind of room</td>
-                <td>{this.state.room.TEN_LOAIPHONG}
-                    ({this.state.lsRoom.SONGUOITOIDA} người)
+                <td>{this.state.room.TEN_LOAIPHONG} (for {this.state.lsRoom.SONGUOITOIDA} people)
                   </td>
               </tr>
               <tr>
@@ -193,7 +235,8 @@ class ApartmentInfo extends React.Component {
               </tr>
             </table>
           </div>
-        </div>
+        )}
+          </div>
       </div>
     );
   }

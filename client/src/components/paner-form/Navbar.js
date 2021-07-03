@@ -7,7 +7,7 @@ class Navbar extends React.Component {
     super(props);
     this.state = {
       idUser: localStorage.getItem("idTk"),
-      username: localStorage.getItem("username"),
+      email: localStorage.getItem("email"),
       click: false,
       logged: false,
     };
@@ -16,7 +16,7 @@ class Navbar extends React.Component {
       window.localStorage.clear()
   };
   render() {
-    const { idUser, username } = this.state;
+    const { idUser, email } = this.state;
     return (
       <>
         <nav className="navbar">
@@ -65,7 +65,7 @@ class Navbar extends React.Component {
                 >
                   <div style={{ display: "inline-block", fontSize: "15px" }}>
                     <p>You login as: </p>
-                    <p>{username}</p>
+                    <p>{email}</p>
                     <b class="caret"></b>
                   </div>
                 </a>

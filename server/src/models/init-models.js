@@ -70,6 +70,7 @@ function initModels(sequelize) {
 
 	PHONG.belongsTo(NHA, { as: "ID_NHA_NHA", foreignKey: "ID_NHA"});
 	NHA.hasMany(PHONG, { as: "PHONGs", foreignKey: "ID_NHA"});
+	
 	STYLENHA.belongsTo(NHA, { as: "ID_NHA_NHA", foreignKey: "ID_NHA"});
 	NHA.hasMany(STYLENHA, { as: "STYLENHAs", foreignKey: "ID_NHA"});
 

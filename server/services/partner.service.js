@@ -122,7 +122,6 @@ module.exports = {
 					address,
 					taxCode,
 				} = params;
-				//const idtk = parseInt(idTK);
 				const createUser = await dbContext.THONGTINCHUHO.create({
 					TEN_CHUHO: fullName,
 					EMAIL: email,
@@ -169,10 +168,9 @@ module.exports = {
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
-				const intId = parseInt(idTk);
 				const show = await dbContext.THONGTINCHUHO.findOne({
 					where: {
-						ID_TAIKHOAN: intId,
+						ID_TAIKHOAN: idTk,
 					},
 				});
 				return show;
@@ -242,12 +240,11 @@ module.exports = {
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
-				const intId = parseInt(idTk);
 				const status1 = await dbContext.THONGTINCHUHO.findAll({
 					required: false,
 					attributes: ["TEN_CHUHO"],
 					where: {
-						ID_TAIKHOAN: intId,
+						ID_TAIKHOAN: idTk,
 					},
 					include: [
 						{
@@ -285,13 +282,12 @@ module.exports = {
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
-				const intId = parseInt(idTk);
 
 				const showTK = await dbContext.THONGTINCHUHO.findAll({
 					required: false,
 					attributes: ["TEN_CHUHO"],
 					where: {
-						ID_TAIKHOAN: intId,
+						ID_TAIKHOAN: idTk,
 					},
 					include: [
 						{
@@ -329,13 +325,12 @@ module.exports = {
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
-				const intId = parseInt(idTk);
 
 				const showTK = await dbContext.THONGTINCHUHO.findAll({
 					required: false,
 					attributes: ["TEN_CHUHO"],
 					where: {
-						ID_TAIKHOAN: intId,
+						ID_TAIKHOAN: idTk,
 					},
 					include: [
 						{
@@ -480,7 +475,7 @@ module.exports = {
 			params: {
 				idApartment: { type: "string" },
 			},
-			async handler({ action, params, meta, ...ctx }) {
+			async handler({ action, params, meta, ...ctx}) {
 				const { idApartment } = params;
 				const lsRoom = await dbContext.PHONG.findOne({
 					where: {
@@ -491,8 +486,13 @@ module.exports = {
 						"ID_LOAIGIUONG_LOAIGIUONG",
 					],
 				});
-				
-				return lsRoom;
+				if(lsRoom !== null){
+					return "Khong co phong";
+				}
+				else{
+					return lsRoom;
+				}
+
 			},
 		},
 		//15
@@ -819,11 +819,10 @@ module.exports = {
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
-				const intId = parseInt(idTk);
 				const getIDPartner = await dbContext.THONGTINCHUHO.findAll({
 					attributes: ["ID_TT_CHUHO"],
 					where: {
-						ID_TAIKHOAN: intId,
+						ID_TAIKHOAN: idTk,
 					},
 					include: [
 						{
@@ -858,11 +857,10 @@ module.exports = {
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
-				const intId = parseInt(idTk);
 				const getIDPartner = await dbContext.THONGTINCHUHO.findAll({
 					attributes: ["ID_TT_CHUHO"],
 					where: {
-						ID_TAIKHOAN: intId,
+						ID_TAIKHOAN: idTk,
 					},
 					include: [
 						{
@@ -897,11 +895,10 @@ module.exports = {
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
-				const intId = parseInt(idTk);
 				const getIDPartner = await dbContext.THONGTINCHUHO.findAll({
 					attributes: ["ID_TT_CHUHO"],
 					where: {
-						ID_TAIKHOAN: intId,
+						ID_TAIKHOAN: idTk,
 					},
 					include: [
 						{
@@ -936,12 +933,10 @@ module.exports = {
 			},
 			async handler({ action, params, meta, ...ctx }) {
 				const { idTk } = params;
-				const intId = parseInt(idTk);
-
 				const getIDPartner = await dbContext.THONGTINCHUHO.findAll({
 					attributes: ["ID_TT_CHUHO"],
 					where: {
-						ID_TAIKHOAN: intId,
+						ID_TAIKHOAN: idTk,
 					},
 					include: [
 						{

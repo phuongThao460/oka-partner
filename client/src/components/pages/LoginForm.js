@@ -16,20 +16,17 @@ class LoginForm extends Component {
   }
   confirmLogin = () => {
     axios
-      .post("http://localhost:33456/api/partner/signin", {
-        username: this.loginNameRef.current.value,
-        password: this.loginPWRef.current.value,
+      .post("https://gift-api-v1.herokuapp.com/partner/login", {
+        email: this.loginNameRef.current.value,
+        mat_khau: this.loginPWRef.current.value,
       })
       .then((result) => {
-        this.state.idTk = result.data;
+        this.state.idTk = result.data.id;
         if (result.data === "Username or Password not correct") {
           alert(result.data);
         } else {
-          window.localStorage.setItem("idTk", result.data);
-          window.localStorage.setItem(
-            "username",
-            this.loginNameRef.current.value
-          );
+          window.localStorage.setItem("idTk", result.data.id);
+          window.localStorage.setItem("email",this.loginNameRef.current.value);
           this.setState(this);
           if (this.state.id !== "0") {
             this.props.history.push("/AddHomeBlock/" + this.state.idTk);
@@ -37,7 +34,7 @@ class LoginForm extends Component {
         }
       })
       .catch((error) => {
-        alert(error.data);
+        console.log(error.data);
       });
   };
   confirmLogin2 = () => {
